@@ -15,10 +15,18 @@ import Promises
 let kintoneAuth = Auth()
 var conn:Connection? = nil
 var app:App? = nil
+// Init Connection without "guest space ID"
+let connection = Connection(domain, kintoneAuth)
+
+  // Init Record Module
+let recordManagement = Record(connection)
 let query = "レコード番号 >= 2 order by レコード番号 asc"
-let apitoken = "bGIfUIxeHvnblXzhaVtE2LF8zhSJQoVlY6wWWUKV"
+
+//let apitoken = "bGIfUIxeHvnblXzhaVtE2LF8zhSJQoVlY6wWWUKV"
+let apitoken = "qfeTYjpsATHjIjnKOiPp3T8xsAKfthKEsAX0LhkI"
 let domain = "https://devvzqhyi.cybozu.com"
-let appID = 1
+//let appID = 1
+let appID = 3
 
     func testGetRecord() {
         // This is an example of a functional test case.
@@ -29,15 +37,10 @@ let appID = 1
         // Init authenticationAuth
         kintoneAuth.setApiToken(apitoken)
         
-        // Init Connection without "guest space ID"
-        let kintoneConnection = Connection(domain, kintoneAuth)
-        
-        // Init Record Module
-        let kintoneRecord = Record(kintoneConnection)
         
         // execute get record API
         let recordID = 1
-        kintoneRecord.getRecord(appID, recordID).then{response in
+        recordManagement.getRecord(appID, recordID).then{response in
             
             let resultData: Dictionary = response.getRecord()!
             print(resultData["$id"]?.getValue())
@@ -59,13 +62,7 @@ let appID = 1
 func multiGetRecords(){
     // Init authenticationAuth
     kintoneAuth.setApiToken(apitoken)
-    
-    // Init Connection without "guest space ID"
-    let kintoneConnection = Connection(domain, kintoneAuth)
-    
-    // Init Record Module
-    let kintoneRecord = Record(kintoneConnection)
-    kintoneRecord.getRecords(appID, query, nil, true).then{response in
+    recordManagement.getRecords(appID, query, nil, true).then{response in
         let records = response.getRecords()
         
         for (i, dval) in (records?.enumerated())! {
@@ -83,3 +80,35 @@ func multiGetRecords(){
             }
     }
 }
+    
+    func addRecord(){
+        var addData: Dictionary = [String:AnyObject]()
+        var field = FieldValue()
+        field.setType(FieldType.SINGLE_LINE_TEXT)
+        field.setValue("Test Value")
+        addData["name"] = field
+
+            // Init authenticationAuth
+                  kintoneAuth.setApiToken(apitoken)
+                  
+    
+            
+        recordManagement.addRecord(appID, addData as! [String : FieldValue]).then{response in
+            print(response.getId())
+            print(response.getRevision())
+        }.catch{ error in
+            if error is KintoneAPIException {
+                print((error as! KintoneAPIException).toString()!)
+            }
+            else {
+                print((error as! Error).localizedDescription)
+            }
+        }
+        /*
+        YourFieldCode: {
+          value: 'Value Of YourFieldCode'
+        },
+        // Another fieldcode here
+ */
+}
+
