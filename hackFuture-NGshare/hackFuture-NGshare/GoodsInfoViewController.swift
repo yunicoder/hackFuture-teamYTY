@@ -42,6 +42,9 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         goodsTimeTextField.placeholder = "(例)15時"
         featureTextField.text = ""
         featureTextField.placeholder = "(例)黄色パーカー"
+        
+        
+        goodsImage.image = UIImage(data: UserDefaults.standard.data(forKey: "takenImage")!)
     }
     
     /* アウトレット */
