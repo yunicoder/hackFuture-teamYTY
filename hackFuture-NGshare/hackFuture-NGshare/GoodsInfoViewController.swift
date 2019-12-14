@@ -24,6 +24,8 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         self.goodsPriceTextField.delegate = self
         self.goodsPlaceTextField.delegate = self
         self.goodsCommentTextField.delegate = self
+        self.goodsTimeTextField.delegate = self
+        self.featureTextField.delegate = self
         
         //文字列の初期化
         goodsNameTextField.text = ""
@@ -36,6 +38,10 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         goodsPlaceTextField.placeholder = "(例)3F◯◯の前"
         goodsCommentTextField.text = ""
         goodsCommentTextField.placeholder = "(例)使用感はあまりないです"
+        goodsTimeTextField.text = ""
+        goodsTimeTextField.placeholder = "(例)15時"
+        featureTextField.text = ""
+        featureTextField.placeholder = "(例)黄色パーカー"
     }
     
     /* アウトレット */
@@ -45,12 +51,15 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var goodsPriceTextField: UITextField!
     @IBOutlet weak var goodsPlaceTextField: UITextField!
     @IBOutlet weak var goodsCommentTextField: UITextField!
+    @IBOutlet weak var goodsTimeTextField: UITextField!
+    @IBOutlet weak var featureTextField: UITextField!
+    
     
     
     /* アクション */
     //出品ボタン
     @IBAction func exhibitButtonTapped(_ sender: UIButton) {
-        if(goodsNameTextField.text == "" || goodsConditionTextField.text == "" || goodsPriceTextField.text == "" || goodsPlaceTextField.text == ""){
+        if(goodsNameTextField.text == "" || goodsConditionTextField.text == "" || goodsPriceTextField.text == "" || goodsPlaceTextField.text == "" || goodsTimeTextField.text == "" || featureTextField.text == ""){
             //アラートを表示する↓＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
             let alert1: UIAlertController = UIAlertController(title: "注意", message: "必須情報が入力されていません", preferredStyle: .actionSheet)
             let canselAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) { (UIAlertAction) in
@@ -82,7 +91,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     
     /* プロパティ */
     //登録する商品の情報
-    var goods = GoodsInfo(image: UIImage(), name: "", condition: "", price: 0, place: "", comment: "")
+    var goods = GoodsInfo(image: UIImage(), name: "", condition: "", price: 0, place: "",time: "", feature: "", comment: "")
     
     
     /* メソッド */
@@ -103,6 +112,12 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         }
         if(textField.tag == 5){ //取引場所欄
             goods.comment = textField.text!
+        }
+        if(textField.tag == 6){ //取引場所欄
+            goods.time = textField.text!
+        }
+        if(textField.tag == 7){ //取引場所欄
+            goods.feature = textField.text!
         }
         return true
     }

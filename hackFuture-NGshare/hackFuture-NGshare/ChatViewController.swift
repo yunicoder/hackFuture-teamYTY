@@ -10,21 +10,21 @@ import UIKit
 
 class ChatViewController: UIViewController {
 
+    /* ライフサイクル */
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "チャット画面"
+        navigationItem.title = "取引画面"
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    /* アウトレット */
+    @IBOutlet weak var timeText: UILabel!
+    @IBOutlet weak var placeText: UILabel!
+    
+    
+    /* アクション */
+    //受け取り完了ボタンを押したら
+    @IBAction func completeButtonTapped(_ sender: UIButton) {
     }
-    */
-
 }

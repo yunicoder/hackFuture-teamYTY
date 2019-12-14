@@ -42,6 +42,10 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         self.line5.layer.borderColor = UIColor.gray.cgColor
         self.line6.layer.borderWidth = 2.0    // 枠線の幅
         self.line6.layer.borderColor = UIColor.gray.cgColor
+        self.line7.layer.borderWidth = 2.0    // 枠線の幅
+        self.line7.layer.borderColor = UIColor.gray.cgColor
+        self.line8.layer.borderWidth = 2.0    // 枠線の幅
+        self.line8.layer.borderColor = UIColor.gray.cgColor
         
         //kintoneからデータを持ってくる
     }
@@ -52,6 +56,8 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var goodsConditionText: UILabel!
     @IBOutlet weak var goodsPriceText: UILabel!
     @IBOutlet weak var goodsPlaceText: UILabel!
+    @IBOutlet weak var goodsTimeText: UILabel!
+    @IBOutlet weak var featureText: UILabel!
     @IBOutlet weak var goodsCommentText: UILabel!
     
     @IBOutlet weak var line1: UIView!
@@ -60,7 +66,8 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var line4: UIView!
     @IBOutlet weak var line5: UIView!
     @IBOutlet weak var line6: UIView!
-    
+    @IBOutlet weak var line7: UIView!
+    @IBOutlet weak var line8: UIView!
     
     
     /* アクション */
