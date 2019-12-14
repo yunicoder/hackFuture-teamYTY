@@ -67,7 +67,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="100" height="100"/>
                                         <connections>
-                                            <segue destination="e2Z-hO-1BP" kind="show" identifier="segue" id="cWt-aL-Qzd"/>
+                                            <segue destination="1HP-4h-zT4" kind="show" identifier="segue" id="ztE-AM-RLp"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -206,7 +206,7 @@
             <objects>
                 <viewController id="IGh-Z0-VTq" customClass="ChatViewController" customModule="hackFuture_NGshare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hHW-cy-jvP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="chatView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHe-j2-zPz">
@@ -343,13 +343,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CameraView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdl-e4-lgt">
-                                <rect key="frame" x="159" y="111" width="96" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cc6-Ao-oE0">
                                 <rect key="frame" x="0.0" y="547" width="375" height="120"/>
                                 <subviews>
@@ -390,6 +383,7 @@
                         <outlet property="cameraTypeButton" destination="WmK-5L-QVp" id="EJq-cT-kon"/>
                         <outlet property="previewView" destination="Gzy-9A-q5j" id="CtW-EN-Fi1"/>
                         <outlet property="shutterButton" destination="RaN-3j-516" id="gMq-VZ-qhm"/>
+                        <segue destination="e2Z-hO-1BP" kind="show" identifier="toGoodsInfo" id="IRs-YC-MZe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XgW-cZ-mSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
