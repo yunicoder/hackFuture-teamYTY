@@ -16,6 +16,7 @@
 		0DD0ACEB23A4CC22003D31D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DD0ACE923A4CC22003D31D2 /* Main.storyboard */; };
 		0DD0ACED23A4CC23003D31D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DD0ACEC23A4CC23003D31D2 /* Assets.xcassets */; };
 		0DD0ACF023A4CC23003D31D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DD0ACEE23A4CC23003D31D2 /* LaunchScreen.storyboard */; };
+		F1235C0523A4E1F00028902F /* ExtentionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1235C0423A4E1F00028902F /* ExtentionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		0DD0ACEC23A4CC23003D31D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DD0ACEF23A4CC23003D31D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0DD0ACF123A4CC23003D31D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1235C0423A4E1F00028902F /* ExtentionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtentionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,10 +67,11 @@
 				0DD0ACE523A4CC22003D31D2 /* AppDelegate.swift */,
 				0DD0ACE723A4CC22003D31D2 /* PurchaseListViewController.swift */,
 				0D15DA6A23A4D0EC00C0A5E9 /* PurchaseViewController.swift */,
+				0DD0ACE923A4CC22003D31D2 /* Main.storyboard */,
 				0D15DA7023A4D23700C0A5E9 /* ChatViewController.swift */,
 				0D15DA6E23A4D1AC00C0A5E9 /* GoodsInfoViewController.swift */,
 				0D15DA6C23A4D17500C0A5E9 /* CameraViewController.swift */,
-				0DD0ACE923A4CC22003D31D2 /* Main.storyboard */,
+				F1235C0423A4E1F00028902F /* ExtentionViewController.swift */,
 				0DD0ACEC23A4CC23003D31D2 /* Assets.xcassets */,
 				0DD0ACEE23A4CC23003D31D2 /* LaunchScreen.storyboard */,
 				0DD0ACF123A4CC23003D31D2 /* Info.plist */,
@@ -150,6 +153,7 @@
 				0DD0ACE823A4CC22003D31D2 /* PurchaseListViewController.swift in Sources */,
 				0D15DA6D23A4D17500C0A5E9 /* CameraViewController.swift in Sources */,
 				0D15DA6F23A4D1AC00C0A5E9 /* GoodsInfoViewController.swift in Sources */,
+				F1235C0523A4E1F00028902F /* ExtentionViewController.swift in Sources */,
 				0DD0ACE623A4CC22003D31D2 /* AppDelegate.swift in Sources */,
 				0D15DA7123A4D23700C0A5E9 /* ChatViewController.swift in Sources */,
 				0D15DA6B23A4D0EC00C0A5E9 /* PurchaseViewController.swift in Sources */,
