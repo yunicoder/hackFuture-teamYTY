@@ -25,8 +25,6 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         goodsPriceTextField.text = ""
         goodsPlaceTextField.text = ""
         goodsCommentTextField.text = ""
-        
-        //kintoneから情報を取ってくる
     }
     
     /* アウトレット */
@@ -39,6 +37,8 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     
     
     /* アクション */
+    //登録ボタン
+    //kintoneに情報投げる
     
     
     /* プロパティ */
@@ -49,25 +49,21 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     /* メソッド */
     //リターンキーが押された時
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder() //改行
         if(textField.tag == 1){ //名前欄
-            goodsNameTextField.resignFirstResponder()
-            goods.name =  goodsNameTextField.text!
+            goods.name = textField.text!
         }
         if(textField.tag == 2){ //状態欄
-            goodsConditionTextField.resignFirstResponder()
-            goods.condition = goodsConditionTextField.text!
+            goods.condition = textField.text!
         }
         if(textField.tag == 3){ //値段欄
-            goodsPriceTextField.resignFirstResponder()
-            goods.price = Int(goodsPriceTextField.text!)!
+            goods.price = Int(textField.text!)!
         }
         if(textField.tag == 4){ //取引場所欄
-            goodsPlaceTextField.resignFirstResponder()
-            goods.place = goodsPlaceTextField.text!
+            goods.place = textField.text!
         }
         if(textField.tag == 5){ //取引場所欄
-            goodsCommentTextField.resignFirstResponder()
-            goods.comment = goodsCommentTextField.text!
+            goods.comment = textField.text!
         }
         return true
     }
