@@ -15,21 +15,22 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     @IBOutlet weak var goodsImage: UIImageView!
     
     var goodsInfo = [GoodsInfo]() // 全部のデータ
-    var filterGoodsInfo = [GoodsInfo]() //フィルター後のデータ
+    var filterGoodsInfo = [GoodsInfo]() //フィルター後のデータ(基本こっち)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        //goodsCollectionView.delegate = self    // サイズやマージンなどレイアウトに関する処理の委譲
-        //goodsCollectionView.dataSource = self  // 要素の数やセル、クラスなどデータの元となる処理の委譲
-        //layoutInit(collectionView: goodsCollectionView) // レイアウトの設定
+        self.navigationItem.hidesBackButton = true //戻るボタンを消す
+        
+        goodsCollectionView.delegate = self    // サイズやマージンなどレイアウトに関する処理の委譲
+        goodsCollectionView.dataSource = self  // 要素の数やセル、クラスなどデータの元となる処理の委譲
         
         // レイアウトを調整
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5) // マージン
-        //goodsCollectionView.collectionViewLayout = layout
+        goodsCollectionView.collectionViewLayout = layout
     }
     
     //リターンキーが押された時
@@ -65,11 +66,10 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // セグエによる画面遷移が行われる前に呼ばれるメソッド
         if (segue.identifier == "segue") {
-            let nextVC: GoodsInfoViewController = (segue.destination as? GoodsInfoViewController)!
+            let nextVC: PurchaseViewController = (segue.destination as? PurchaseViewController)!
             let selectedRow = goodsCollectionView.indexPathsForSelectedItems! // 選ばれた
             
-            //nextVC.phasset = photos[selectedRow[0].row]  // NextViewController のselectedImgに選択された画像を設定する
-            //print("***\(nextVC.phasset)***")
+            //nextVC.goodsImage.image = filterGoodsInfo[selectedRow[0].row].image  // NextViewController のselectedImgに選択された画像を設定する
         }
     }
 

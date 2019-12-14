@@ -54,8 +54,7 @@ class CameraViewController: UIViewController {
      }
      
      
-     // カメラの設定開始
-     
+     /*---カメラの設定 開始---*/
      
      @IBAction func takePhoto(_ sender: Any) {      // シャッターボタンで実行する
         let captureSetting = AVCapturePhotoSettings()         // キャプチャのセッティング
@@ -77,6 +76,8 @@ class CameraViewController: UIViewController {
         // Dataから写真イメージを作る
         stillImage = UIImage(data: photoData)!
         print(stillImage!)
+        
+        self.performSegue(withIdentifier: "toGoodsInfo", sender: stillImage!)
     }
      
      func setupInputOutput(){    // 入出力の設定
@@ -137,5 +138,14 @@ class CameraViewController: UIViewController {
          
 
      }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // セグエによる画面遷移が行われる前に呼ばれるメソッド
+        if (segue.identifier == "toGoodsInfo") {
+            let nextVC: GoodsInfoViewController = (segue.destination as? GoodsInfoViewController)!
+            //nextVC.goodsImage.image = filterGoodsInfo[selectedRow[0].row].image  // NextViewController のselectedImgに選択された画像を設定する
+            print(sender!.self)
+            //nextVC.goodsImage.image = sender! as? UIImage
+        }
+    }
 
 }
