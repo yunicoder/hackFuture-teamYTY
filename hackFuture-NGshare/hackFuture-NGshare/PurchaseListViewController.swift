@@ -14,7 +14,9 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     
     @IBOutlet weak var goodsImage: UIImageView!
     
-    var goodsImageUrl = ["https://www.pokemon.co.jp/ex/sword_shield/assets/pokemon/thumb_pokemon_190605_03.png","https://realsound.jp/wp-content/uploads/2019/08/20190808-pokemon00-633x633.jpg","https://www.inside-games.jp/imgs/zoom/910737.jpg","https://contents.oricon.co.jp/upimg/news/20190228/2130393_201902280585905001551323314c.jpg","https://www.pokemon.co.jp/ex/sword_shield/assets/pokemon/thumb_pokemon_190605_02.png","http://www.billboard-japan.com/scale/news/00000040/40566/800x_image.jpg","https://dengekionline.com/images/a1jL/pcAC/bAwD/kAfD/RDDEV6uxzuArBD6vxauLROrmLN98HWrT4AGQX1tANkwMUwKVkHt1mcRREcjCDUOVDhObkJHyNbDbbC1V.jpg","https://www.pokemon.co.jp/ex/sword_shield/assets/pokemon/thumb_pokemon_190605_03.png","https://realsound.jp/wp-content/uploads/2019/08/20190808-pokemon00-633x633.jpg","https://www.inside-games.jp/imgs/zoom/910737.jpg","https://contents.oricon.co.jp/upimg/news/20190228/2130393_201902280585905001551323314c.jpg","https://www.pokemon.co.jp/ex/sword_shield/assets/pokemon/thumb_pokemon_190605_02.png","http://www.billboard-japan.com/scale/news/00000040/40566/800x_image.jpg","https://dengekionline.com/images/a1jL/pcAC/bAwD/kAfD/RDDEV6uxzuArBD6vxauLROrmLN98HWrT4AGQX1tANkwMUwKVkHt1mcRREcjCDUOVDhObkJHyNbDbbC1V.jpg","https://www.pokemon.co.jp/ex/sword_shield/assets/pokemon/thumb_pokemon_190605_03.png","https://realsound.jp/wp-content/uploads/2019/08/20190808-pokemon00-633x633.jpg","https://www.inside-games.jp/imgs/zoom/910737.jpg","https://contents.oricon.co.jp/upimg/news/20190228/2130393_201902280585905001551323314c.jpg","https://www.pokemon.co.jp/ex/sword_shield/assets/pokemon/thumb_pokemon_190605_02.png","http://www.billboard-japan.com/scale/news/00000040/40566/800x_image.jpg","https://dengekionline.com/images/a1jL/pcAC/bAwD/kAfD/RDDEV6uxzuArBD6vxauLROrmLN98HWrT4AGQX1tANkwMUwKVkHt1mcRREcjCDUOVDhObkJHyNbDbbC1V.jpg"] // 写真のURL
+    var goodsInfo = [GoodsInfo]() // 全部のデータ
+    var filterGoodsInfo = [GoodsInfo]() //フィルター後のデータ
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,21 +32,18 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         goodsCollectionView.collectionViewLayout = layout
     }
     
-    // URLから画像を生成する関数
-       func getImageByUrl(url: String) -> UIImage{
-           let url = URL(string: url)
-           do {
-               let data = try Data(contentsOf: url!)
-               return UIImage(data: data)!
-           } catch let err {
-               print("Error : \(err.localizedDescription)")
-           }
-           return UIImage()
-       }
+    //リターンキーが押された時
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameSearch.resignFirstResponder() //改行
+        let searchname = nameSearch.text! // 検索された名前
+        
+        return true
+    }
     
     /*---collectionViewの委譲設定 開始---*/
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return goodsImageUrl.count // 表示するセルの数
+        //return filterGoodsInfo.count // 表示するセルの数
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -52,17 +51,27 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         let cell = goodsCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) // 表示するセルを登録(先にStoryboad内でidentifierを指定しておく)
         if let collectionImage = cell.contentView.viewWithTag(1) as? UIImageView {
             // cellの中にあるcollectionImageに画像を代入する
-            collectionImage.image = getImageByUrl(url: self.goodsImageUrl[indexPath.row])
+            //collectionImage.image = filterGoodsInfo[indexPath.row].image
         }
-        //cell.backgroundColor = .red  // セルの色をなんとなく赤に
+        cell.backgroundColor = .red  // セルの色をなんとなく赤に
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize { // 全体レイアウトの設定
         return CGSize(width: 100, height: 100)
     }
+    
     /*---collectionViewの設定の委譲など 終わり---*/
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // セグエによる画面遷移が行われる前に呼ばれるメソッド
+        if (segue.identifier == "segue") {
+            let nextVC: GoodsInfoViewController = (segue.destination as? GoodsInfoViewController)!
+            let selectedRow = goodsCollectionView.indexPathsForSelectedItems! // 選ばれた
+            
+            //nextVC.phasset = photos[selectedRow[0].row]  // NextViewController のselectedImgに選択された画像を設定する
+            //print("***\(nextVC.phasset)***")
+        }
+    }
 
 
 }

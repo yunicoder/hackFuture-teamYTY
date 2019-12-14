@@ -66,6 +66,9 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="100" height="100"/>
+                                        <connections>
+                                            <segue destination="e2Z-hO-1BP" kind="show" identifier="segue" id="cWt-aL-Qzd"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -84,7 +87,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="EOr-VE-3BT">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="8aj-sl-7mX">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VVJ-p9-5KL">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VVJ-p9-5KL">
                                 <rect key="frame" x="267" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="出品はこちら"/>
@@ -191,6 +194,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="cPn-4B-aXE"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Fxb-TD-s7p"/>
                     <connections>
                         <outlet property="goodsCommentTextField" destination="npw-QN-27j" id="p9f-nI-Iik"/>
                         <outlet property="goodsConditionTextField" destination="y3V-AZ-r6O" id="KNK-c5-QGr"/>

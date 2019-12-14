@@ -43,7 +43,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     
     /* プロパティ */
     //登録する商品の情報
-    var goods = GoodsInfo(image: "", name: "", condition: "", price: 0, place: "", comment: "")
+    var goods = GoodsInfo(image: UIImage(), name: "", condition: "", price: 0, place: "", comment: "")
     
     
     /* メソッド */
