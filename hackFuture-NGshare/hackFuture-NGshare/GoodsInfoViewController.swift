@@ -36,6 +36,9 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         goodsPlaceTextField.placeholder = "(例)3F◯◯の前"
         goodsCommentTextField.text = ""
         goodsCommentTextField.placeholder = "(例)使用感はあまりないです"
+        
+        
+        goodsImage.image =  UIImage(data: UserDefaults.standard.data(forKey: "takenImage")!)  //UserDefaltsにある撮った写真を取ってくる
     }
     
     /* アウトレット */

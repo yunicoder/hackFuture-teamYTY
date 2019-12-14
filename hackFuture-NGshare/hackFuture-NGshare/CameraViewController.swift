@@ -33,7 +33,7 @@ class CameraViewController: UIViewController {
          }
          
          shutterButton.isEnabled = true // シャッターボタンを有効にする
-         shutterButton.setImage(UIImage.init(named: "shutterButoon"), for: .normal) // シャターボタンを画像にする
+         shutterButton.setImage(UIImage.init(named: "shutterButton"), for: .normal) // シャターボタンを画像にする
          
          cameraTypeButton.isEnabled = true // カメラタイプボタンを有効にする
          cameraTypeButton.setImage(UIImage.init(named: "cameraTypeButton"), for: .normal)
@@ -75,7 +75,9 @@ class CameraViewController: UIViewController {
         }
 //        // Dataから写真イメージを作る
         if let stillImage = UIImage(data: photoData) {
-            self.performSegue(withIdentifier: "toGoodsInfo", sender: stillImage)
+            let imageData = stillImage.jpegData(compressionQuality: 1); //UIImageをdataに変換
+            UserDefaults.standard.set(imageData,forKey:"takenImage") //UserDefaltsに保存
+            self.performSegue(withIdentifier: "toGoodsInfo", sender: nil)
         }
     }
      
@@ -137,13 +139,5 @@ class CameraViewController: UIViewController {
          
 
      }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // セグエによる画面遷移が行われる前に呼ばれるメソッド
-        if (segue.identifier == "toGoodsInfo") {
-            let nextVC: GoodsInfoViewController = (segue.destination as? GoodsInfoViewController)!
-            //nextVC.goodsImage.image = filterGoodsInfo[selectedRow[0].row].image  // NextViewController のselectedImgに選択された画像を設定する
-            //nextVC.recieveGoodsImage.image = (sender as! UIImage)
-        }
-    }
 
 }
