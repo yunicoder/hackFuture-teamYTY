@@ -43,7 +43,23 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     
     
     /* アクション */
-    //登録ボタン
+    //出品ボタン
+    @IBAction func exhibitButtonTapped(_ sender: UIButton) {
+        //アラートを表示する↓＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+        let alert: UIAlertController = UIAlertController(title: "注意", message: "この商品を出品しますか？", preferredStyle: .actionSheet)
+        let canselAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) { (UIAlertAction) in
+                print("キャンセル")
+        }
+        let okAction: UIAlertAction = UIAlertAction(title: "出品", style: .destructive) { (UIAlertAction) in
+                self.performSegue(withIdentifier: "ToPurchaseListView", sender: nil)
+        }
+        //アラートに設定を反映させる
+        alert.addAction(canselAction)
+        alert.addAction(okAction)
+        //アラート画面を表示させる
+        present(alert, animated: true, completion: nil)
+    }
+    
     //kintoneに情報投げる
     
     

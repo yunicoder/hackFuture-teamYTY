@@ -27,6 +27,11 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         
         //タイトル変更
         navigationItem.title = "購入画面"
+        self.line1.layer.borderWidth = 2.0    // 枠線の幅
+        self.line2.layer.borderWidth = 2.0    // 枠線の幅
+        self.line3.layer.borderWidth = 2.0    // 枠線の幅
+        self.line4.layer.borderWidth = 2.0    // 枠線の幅
+        self.line5.layer.borderWidth = 2.0    // 枠線の幅
         
         //kintoneからデータを持ってくる
     }
@@ -38,6 +43,13 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var goodsPriceText: UILabel!
     @IBOutlet weak var goodsPlaceText: UILabel!
     @IBOutlet weak var goodsCommentText: UILabel!
+    
+    @IBOutlet weak var line1: UIView!
+    @IBOutlet weak var line2: UIView!
+    @IBOutlet weak var line3: UIView!
+    @IBOutlet weak var line4: UIView!
+    @IBOutlet weak var line5: UIView!
+    
     
     
     /* アクション */
