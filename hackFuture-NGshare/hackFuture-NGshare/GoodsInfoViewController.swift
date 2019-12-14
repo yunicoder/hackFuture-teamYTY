@@ -13,6 +13,12 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //タイトル変更
+        navigationItem.title = "出品画面"
+        
+        //背景色の変更
+        view.backgroundColor = UIColor(red: 178/255, green: 255/255, blue: 101/255, alpha: 1.0)
+        
         self.goodsNameTextField.delegate = self
         self.goodsConditionTextField.delegate = self
         self.goodsPriceTextField.delegate = self
