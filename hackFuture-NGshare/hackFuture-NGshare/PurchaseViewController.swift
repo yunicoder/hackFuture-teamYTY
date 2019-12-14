@@ -15,7 +15,7 @@ struct GoodsInfo{
     var name : String //商品の名前
     var condition : String //商品の状態
     var price : Int //商品の値段
-    var prace : String //やりとり場所
+    var place : String //やりとり場所
     var comment : String //コメント
 }
 
@@ -27,6 +27,7 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
     }
     
     /* アウトレット */
+    
     
     
     /* アクション */
