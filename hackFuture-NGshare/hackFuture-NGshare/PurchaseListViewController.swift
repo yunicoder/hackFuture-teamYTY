@@ -20,14 +20,14 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        goodsCollectionView.delegate = self    // サイズやマージンなどレイアウトに関する処理の委譲
-        goodsCollectionView.dataSource = self  // 要素の数やセル、クラスなどデータの元となる処理の委譲
+        //goodsCollectionView.delegate = self    // サイズやマージンなどレイアウトに関する処理の委譲
+        //goodsCollectionView.dataSource = self  // 要素の数やセル、クラスなどデータの元となる処理の委譲
         //layoutInit(collectionView: goodsCollectionView) // レイアウトの設定
         
         // レイアウトを調整
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5) // マージン
-        goodsCollectionView.collectionViewLayout = layout
+        //goodsCollectionView.collectionViewLayout = layout
     }
     
     // URLから画像を生成する関数
