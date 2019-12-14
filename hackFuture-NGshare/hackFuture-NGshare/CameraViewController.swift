@@ -12,6 +12,8 @@ import AVFoundation
 
 class CameraViewController: UIViewController {
 
+    var stillImage: UIImage!
+
      @IBOutlet weak var previewView: UIView! //カメラのビュー
      @IBOutlet weak var shutterButton: UIButton! // シャターボタン
      
@@ -56,16 +58,26 @@ class CameraViewController: UIViewController {
      
      
      @IBAction func takePhoto(_ sender: Any) {      // シャッターボタンで実行する
-
+        let captureSetting = AVCapturePhotoSettings()         // キャプチャのセッティング
+        captureSetting.flashMode = .auto
+        captureSetting.isAutoStillImageStabilizationEnabled = true
+        captureSetting.isHighResolutionPhotoEnabled = false
          
-         let captureSetting = AVCapturePhotoSettings()         // キャプチャのセッティング
-         captureSetting.flashMode = .auto
-         captureSetting.isAutoStillImageStabilizationEnabled = true
-         captureSetting.isHighResolutionPhotoEnabled = false
-         
-         //photoOutputObj.capturePhoto(with: captureSetting, delegate: self) // キャプチャのイメージ処理はデリゲートに任せる
-     }
+        photoOutputObj.capturePhoto(with: captureSetting, delegate: self) // キャプチャのイメージ処理はデリゲートに任せる
+    }
      
+    // 映像をキャプチャする
+    func photoOutput(_ output: AVCapturePhotoOutput,
+                     didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        
+        // Dataを取り出す
+        guard let photoData = photo.fileDataRepresentation() else {
+            return
+        }
+        // Dataから写真イメージを作る
+        stillImage = UIImage(data: photoData)!
+        print(stillImage!)
+    }
      
      func setupInputOutput(){    // 入出力の設定
          
