@@ -69,7 +69,7 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
             let nextVC: PurchaseViewController = (segue.destination as? PurchaseViewController)!
             let selectedRow = goodsCollectionView.indexPathsForSelectedItems! // 選ばれた
             
-            //nextVC.goodsImage.image = filterGoodsInfo[selectedRow[0].row].image  // NextViewController のselectedImgに選択された画像を設定する
+            //nextVC.recieveGoodsImage.image = filterGoodsInfo[selectedRow[0].row].image  // NextViewController のselectedImgに選択された画像を設定する
         }
     }
 

@@ -73,11 +73,10 @@ class CameraViewController: UIViewController {
         guard let photoData = photo.fileDataRepresentation() else {
             return
         }
-        // Dataから写真イメージを作る
-        stillImage = UIImage(data: photoData)!
-        print(stillImage!)
-        
-        self.performSegue(withIdentifier: "toGoodsInfo", sender: stillImage!)
+//        // Dataから写真イメージを作る
+        if let stillImage = UIImage(data: photoData) {
+            self.performSegue(withIdentifier: "toGoodsInfo", sender: stillImage)
+        }
     }
      
      func setupInputOutput(){    // 入出力の設定
@@ -143,8 +142,7 @@ class CameraViewController: UIViewController {
         if (segue.identifier == "toGoodsInfo") {
             let nextVC: GoodsInfoViewController = (segue.destination as? GoodsInfoViewController)!
             //nextVC.goodsImage.image = filterGoodsInfo[selectedRow[0].row].image  // NextViewController のselectedImgに選択された画像を設定する
-            print(sender!.self)
-            //nextVC.goodsImage.image = sender! as? UIImage
+            //nextVC.recieveGoodsImage.image = (sender as! UIImage)
         }
     }
 
