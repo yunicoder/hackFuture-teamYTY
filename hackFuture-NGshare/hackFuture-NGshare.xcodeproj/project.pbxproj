@@ -16,6 +16,7 @@
 		0DD0ACEB23A4CC22003D31D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DD0ACE923A4CC22003D31D2 /* Main.storyboard */; };
 		0DD0ACED23A4CC23003D31D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DD0ACEC23A4CC23003D31D2 /* Assets.xcassets */; };
 		0DD0ACF023A4CC23003D31D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DD0ACEE23A4CC23003D31D2 /* LaunchScreen.storyboard */; };
+		A2A67F0123A569A500B6A519 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A67F0023A569A500B6A519 /* API.swift */; };
 		F1235C0523A4E1F00028902F /* ExtentionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1235C0423A4E1F00028902F /* ExtentionViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		0DD0ACEC23A4CC23003D31D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DD0ACEF23A4CC23003D31D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0DD0ACF123A4CC23003D31D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2A67F0023A569A500B6A519 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		F1235C0423A4E1F00028902F /* ExtentionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtentionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +77,7 @@
 				0DD0ACEC23A4CC23003D31D2 /* Assets.xcassets */,
 				0DD0ACEE23A4CC23003D31D2 /* LaunchScreen.storyboard */,
 				0DD0ACF123A4CC23003D31D2 /* Info.plist */,
+				A2A67F0023A569A500B6A519 /* API.swift */,
 			);
 			path = "hackFuture-NGshare";
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 				F1235C0523A4E1F00028902F /* ExtentionViewController.swift in Sources */,
 				0DD0ACE623A4CC22003D31D2 /* AppDelegate.swift in Sources */,
 				0D15DA7123A4D23700C0A5E9 /* ChatViewController.swift in Sources */,
+				A2A67F0123A569A500B6A519 /* API.swift in Sources */,
 				0D15DA6B23A4D0EC00C0A5E9 /* PurchaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
