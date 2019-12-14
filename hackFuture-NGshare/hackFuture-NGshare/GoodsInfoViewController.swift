@@ -52,19 +52,31 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     /* アクション */
     //出品ボタン
     @IBAction func exhibitButtonTapped(_ sender: UIButton) {
-        //アラートを表示する↓＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-        let alert: UIAlertController = UIAlertController(title: "注意", message: "この商品を出品しますか？", preferredStyle: .actionSheet)
-        let canselAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) { (UIAlertAction) in
-                print("キャンセル")
+        if(goodsNameTextField.text == "" || goodsConditionTextField.text == "" || goodsPriceTextField.text == "" || goodsPlaceTextField.text == ""){
+            //アラートを表示する↓＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+            let alert1: UIAlertController = UIAlertController(title: "注意", message: "必須情報が入力されていません", preferredStyle: .actionSheet)
+            let canselAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) { (UIAlertAction) in
+                    print("キャンセル")
+            }
+            //アラートに設定を反映させる
+            alert1.addAction(canselAction)
+            //アラート画面を表示させる
+            present(alert1, animated: true, completion: nil)
+        }else{
+            //アラートを表示する↓＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+            let alert2: UIAlertController = UIAlertController(title: "注意", message: "この商品を出品しますか？", preferredStyle: .actionSheet)
+            let canselAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) { (UIAlertAction) in
+                    print("キャンセル")
+            }
+            let okAction: UIAlertAction = UIAlertAction(title: "出品", style: .destructive) { (UIAlertAction) in
+                    self.performSegue(withIdentifier: "ToPurchaseListView", sender: nil)
+            }
+            //アラートに設定を反映させる
+            alert2.addAction(canselAction)
+            alert2.addAction(okAction)
+            //アラート画面を表示させる
+            present(alert2, animated: true, completion: nil)
         }
-        let okAction: UIAlertAction = UIAlertAction(title: "出品", style: .destructive) { (UIAlertAction) in
-                self.performSegue(withIdentifier: "ToPurchaseListView", sender: nil)
-        }
-        //アラートに設定を反映させる
-        alert.addAction(canselAction)
-        alert.addAction(okAction)
-        //アラート画面を表示させる
-        present(alert, animated: true, completion: nil)
     }
     
     //kintoneに情報投げる
