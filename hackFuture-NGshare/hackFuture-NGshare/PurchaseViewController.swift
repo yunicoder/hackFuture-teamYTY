@@ -11,7 +11,7 @@ import UIKit
 
 //商品状態の構造体
 struct GoodsInfo{
-    var image : String //商品の画像名
+    var image : UIImage //商品の画像名
     var name : String //商品の名前
     var condition : String //商品の状態
     var price : Int //商品の値段
