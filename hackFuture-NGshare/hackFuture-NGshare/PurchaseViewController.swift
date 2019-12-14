@@ -27,11 +27,19 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         
         //タイトル変更
         navigationItem.title = "購入画面"
+        view.backgroundColor = UIColor(red: 255/255, green: 229/255, blue: 204/255, alpha: 1.0)
         self.line1.layer.borderWidth = 2.0    // 枠線の幅
+        self.line1.layer.borderColor = UIColor.gray.cgColor
         self.line2.layer.borderWidth = 2.0    // 枠線の幅
+        self.line2.layer.borderColor = UIColor.gray.cgColor
         self.line3.layer.borderWidth = 2.0    // 枠線の幅
+        self.line3.layer.borderColor = UIColor.gray.cgColor
         self.line4.layer.borderWidth = 2.0    // 枠線の幅
+        self.line4.layer.borderColor = UIColor.gray.cgColor
         self.line5.layer.borderWidth = 2.0    // 枠線の幅
+        self.line5.layer.borderColor = UIColor.gray.cgColor
+        self.line6.layer.borderWidth = 2.0    // 枠線の幅
+        self.line6.layer.borderColor = UIColor.gray.cgColor
         
         //kintoneからデータを持ってくる
     }
@@ -49,6 +57,7 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var line3: UIView!
     @IBOutlet weak var line4: UIView!
     @IBOutlet weak var line5: UIView!
+    @IBOutlet weak var line6: UIView!
     
     
     

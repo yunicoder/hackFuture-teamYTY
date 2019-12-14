@@ -27,10 +27,15 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         
         //文字列の初期化
         goodsNameTextField.text = ""
+        goodsNameTextField.placeholder = "(例)モバイルバッテリー"
         goodsConditionTextField.text = ""
+        goodsConditionTextField.placeholder = "(例)キズあり"
         goodsPriceTextField.text = ""
+        goodsPriceTextField.placeholder = "(例)500"
         goodsPlaceTextField.text = ""
+        goodsPlaceTextField.placeholder = "(例)3F◯◯の前"
         goodsCommentTextField.text = ""
+        goodsCommentTextField.placeholder = "(例)使用感はあまりないです"
     }
     
     /* アウトレット */

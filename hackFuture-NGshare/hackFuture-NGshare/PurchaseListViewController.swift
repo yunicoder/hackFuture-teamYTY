@@ -20,8 +20,8 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
+        navigationItem.title = "出品リスト"
         self.navigationItem.hidesBackButton = true //戻るボタンを消す
         
         goodsCollectionView.delegate = self    // サイズやマージンなどレイアウトに関する処理の委譲
