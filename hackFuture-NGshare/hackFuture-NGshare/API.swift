@@ -81,15 +81,34 @@ func multiGetRecords(){
     }
 }
     
-    func addRecord(){
+func addRecord(image:UIImage,name:String,condition:String,price:String,place:String,coment:String){
         var addData: Dictionary = [String:AnyObject]()
         var field = FieldValue()
-        field.setType(FieldType.SINGLE_LINE_TEXT)
-        field.setValue("Test Value")
-        addData["name"] = field
-
+        field.setType(FieldType.FILE)
+        field.setValue(image)
+        addData["image"] = field
+        var field1 = FieldValue()
+        field1.setType(FieldType.SINGLE_LINE_TEXT)
+        field1.setValue(name)
+        addData["name"] = field1
+        var field2 = FieldValue()
+        field2.setType(FieldType.SINGLE_LINE_TEXT)
+        field2.setValue(condition)
+        addData["condition"] = field2
+        var field3 = FieldValue()
+        field3.setType(FieldType.SINGLE_LINE_TEXT)
+        field3.setValue(price)
+        addData["price"] = field3
+        var field4 = FieldValue()
+        field4.setType(FieldType.SINGLE_LINE_TEXT)
+        field4.setValue(place)
+        addData["place"] = field4
+        var field5 = FieldValue()
+        field5.setType(FieldType.MULTI_LINE_TEXT)
+        field5.setValue(coment)
+        addData["coment"] = field5
             // Init authenticationAuth
-                  kintoneAuth.setApiToken(apitoken)
+        kintoneAuth.setApiToken(apitoken)
                   
     
             
@@ -104,11 +123,6 @@ func multiGetRecords(){
                 print((error as! Error).localizedDescription)
             }
         }
-        /*
-        YourFieldCode: {
-          value: 'Value Of YourFieldCode'
-        },
-        // Another fieldcode here
- */
+      
 }
 
