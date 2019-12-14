@@ -1,0 +1,6 @@
+framework module kintone_ios_sdk {
+  umbrella header "kintone-ios-sdk-umbrella.h"
+
+  export *
+  module * { export * }
+}
