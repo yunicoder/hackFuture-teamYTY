@@ -8,23 +8,30 @@
 
 import UIKit
 
-class PurchaseViewController: UIViewController {
 
+//商品状態の構造体
+struct GoodsInfo{
+    var image : String //商品の画像名
+    var name : String //商品の名前
+    var condition : String //商品の状態
+    var price : Int //商品の値段
+    var prace : String //やりとり場所
+    var comment : String //コメント
+}
+
+
+class PurchaseViewController: UIViewController, UITextFieldDelegate {
+    /* ライフサイクル */
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    /* アウトレット */
+    
+    
+    /* アクション */
+    //登録ボタン押したとき
+    //kintoneにデータを保存
+    
+    
 }
