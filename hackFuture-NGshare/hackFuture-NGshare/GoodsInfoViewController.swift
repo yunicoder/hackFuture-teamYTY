@@ -41,6 +41,8 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var goodsPlaceTextField: UITextField!
     @IBOutlet weak var goodsCommentTextField: UITextField!
     
+    var recieveGoodsImage:UIImageView!
+
     
     /* アクション */
     //出品ボタン
