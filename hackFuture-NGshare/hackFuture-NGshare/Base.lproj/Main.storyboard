@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3sE-pq-3c6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3sE-pq-3c6">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,27 +18,90 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Wur-Om-N9S"/>
+                        <segue destination="x5G-qs-h2z" kind="relationship" relationship="rootViewController" id="kaA-KK-Tmr"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vwj-4c-y3U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1587" y="19"/>
+            <point key="canvasLocation" x="-1998" y="18"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="RIG-b0-jlZ">
+            <objects>
+                <viewController id="x5G-qs-h2z" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aBh-Uv-S2e">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="【ログインID】" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHB-le-1EO">
+                                <rect key="frame" x="17" y="71" width="217" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="【ログインPASS】" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9I-Zc-9YD">
+                                <rect key="frame" x="17" y="271" width="262" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Q9-2c-tr6">
+                                <rect key="frame" x="0.0" y="135" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZyA-ax-yqL">
+                                <rect key="frame" x="0.0" y="350" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAB-bs-OtG">
+                                <rect key="frame" x="0.0" y="547" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="M0x-UZ-jcx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="初めての方はこちら"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ydB-y1-c2a">
+                                <rect key="frame" x="131" y="421" width="62" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="ログイン"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="UdH-3I-gOC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="qAB-bs-OtG" firstAttribute="leading" secondItem="mCU-W3-o0h" secondAttribute="leading" id="4oh-Xg-xSL"/>
+                            <constraint firstItem="mCU-W3-o0h" firstAttribute="bottom" secondItem="qAB-bs-OtG" secondAttribute="bottom" constant="80" id="g8y-bK-7Rc"/>
+                            <constraint firstItem="mCU-W3-o0h" firstAttribute="trailing" secondItem="qAB-bs-OtG" secondAttribute="trailing" id="sQX-Od-nOg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mCU-W3-o0h"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6tR-8x-edD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HxT-2J-pLZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1221.5999999999999" y="14.842578710644679"/>
         </scene>
         <!--Purchase List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="PurchaseListViewController" customModule="hackFuture_NGshare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="hLB-38-Jit">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YWM-q8-g1s">
-                                <rect key="frame" x="0.0" y="120" width="375" height="527"/>
+                                <rect key="frame" x="0.0" y="164" width="375" height="503"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="E6k-Ij-aSU">
                                     <size key="itemSize" width="100" height="100"/>
@@ -111,7 +174,7 @@
             <objects>
                 <viewController id="e2Z-hO-1BP" customClass="GoodsInfoViewController" customModule="hackFuture_NGshare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NNq-Kk-mXY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="980"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kzb-gc-7RI">
@@ -297,7 +360,7 @@
             <objects>
                 <viewController id="IGh-Z0-VTq" customClass="ChatViewController" customModule="hackFuture_NGshare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hHW-cy-jvP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fp9-nS-jI9">
@@ -341,11 +404,11 @@
             <objects>
                 <viewController id="1HP-4h-zT4" customClass="PurchaseViewController" customModule="hackFuture_NGshare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="01X-qM-wis">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="980"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1i-2Z-wYf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="980"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="956"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R1D-at-pFF">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="980"/>
@@ -559,11 +622,11 @@
             <objects>
                 <viewController id="W1a-UK-53B" customClass="CameraViewController" customModule="hackFuture_NGshare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gzy-9A-q5j">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cc6-Ao-oE0">
-                                <rect key="frame" x="0.0" y="527" width="375" height="120"/>
+                                <rect key="frame" x="0.0" y="547" width="375" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RaN-3j-516">
                                         <rect key="frame" x="156" y="42" width="64" height="36"/>
@@ -611,6 +674,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="r8T-df-9wf"/>
+        <segue reference="UdH-3I-gOC"/>
     </inferredMetricsTieBreakers>
 </document>
