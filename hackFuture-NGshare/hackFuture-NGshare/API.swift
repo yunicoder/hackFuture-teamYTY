@@ -22,11 +22,11 @@ let connection = Connection(domain, kintoneAuth)
 let recordManagement = Record(connection)
 let query = "レコード番号 >= 2 order by レコード番号 asc"
 
-//let apitoken = "bGIfUIxeHvnblXzhaVtE2LF8zhSJQoVlY6wWWUKV"
-let apitoken = "qfeTYjpsATHjIjnKOiPp3T8xsAKfthKEsAX0LhkI"
+let apitoken = "bGIfUIxeHvnblXzhaVtE2LF8zhSJQoVlY6wWWUKV"
+//let apitoken = "qfeTYjpsATHjIjnKOiPp3T8xsAKfthKEsAX0LhkI"
 let domain = "https://devvzqhyi.cybozu.com"
-//let appID = 1
-let appID = 3
+let appID = 1
+//let appID = 3
 
     func testGetRecord() {
         // This is an example of a functional test case.
@@ -59,16 +59,32 @@ let appID = 3
         }
     }
 
-func multiGetRecords(){
+func multiGetRecords()-> [GoodsInfo]{
+    var goods = [GoodsInfo]()
     // Init authenticationAuth
     kintoneAuth.setApiToken(apitoken)
     recordManagement.getRecords(appID, query, nil, true).then{response in
         let records = response.getRecords()
-        
         for (i, dval) in (records?.enumerated())! {
             for (code, value) in dval {
-                print(value.getType())
-                print(value.getValue())
+                switch code {
+                case "image":
+                    goods[i].image = value.getValue() as! UIImage
+                case "name":
+                    goods[i].name = value.getValue() as! String
+                case "price":
+                    goods[i].price = value.getValue() as! Int
+                case "place":
+                    goods[i].place = value.getValue() as! String
+                case "coment":
+                    goods[i].comment = value.getValue() as! String
+                case "future":
+                    goods[i].feature = value.getValue() as! String
+                case "condition":
+                    goods[i].condition = value.getValue() as! String
+                default:
+                    goods[i].comment = "error"
+                }
             }
         }
         }.catch{ error in
@@ -79,9 +95,10 @@ func multiGetRecords(){
                 print((error as! Error).localizedDescription)
             }
     }
+    return goods
 }
     
-func addRecord(image:UIImage,name:String,condition:String,price:String,place:String,coment:String){
+func addRecord(image:UIImage,name:String,condition:String,price:String,place:String,coment:String,future:String){
         var addData: Dictionary = [String:AnyObject]()
         var field = FieldValue()
         field.setType(FieldType.FILE)
@@ -107,6 +124,10 @@ func addRecord(image:UIImage,name:String,condition:String,price:String,place:Str
         field5.setType(FieldType.MULTI_LINE_TEXT)
         field5.setValue(coment)
         addData["coment"] = field5
+        var field6 = FieldValue()
+        field6.setType(FieldType.MULTI_LINE_TEXT)
+        field6.setValue(future)
+        addData["future"] = field6
             // Init authenticationAuth
         kintoneAuth.setApiToken(apitoken)
                   

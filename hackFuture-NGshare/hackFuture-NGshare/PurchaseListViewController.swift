@@ -20,7 +20,6 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.title = "出品リスト"
         self.navigationItem.hidesBackButton = true //戻るボタンを消す
         
