@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-hackFuture-NGshare/Pods-hackFuture-NGshare-frameworks.sh
+${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework
+${BUILT_PRODUCTS_DIR}/PromisesSwift/Promises.framework
+${BUILT_PRODUCTS_DIR}/kintone-ios-sdk/kintone_ios_sdk.framework

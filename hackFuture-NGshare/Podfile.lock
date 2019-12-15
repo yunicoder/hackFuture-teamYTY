@@ -1,0 +1,25 @@
+PODS:
+  - kintone-ios-sdk (0.3.1):
+    - PromisesSwift (~> 1.2.6)
+  - PromisesObjC (1.2.8)
+  - PromisesSwift (1.2.8):
+    - PromisesObjC (= 1.2.8)
+
+DEPENDENCIES:
+  - kintone-ios-sdk
+  - PromisesSwift
+
+SPEC REPOS:
+  trunk:
+    - kintone-ios-sdk
+    - PromisesObjC
+    - PromisesSwift
+
+SPEC CHECKSUMS:
+  kintone-ios-sdk: 83140dbdfd4b0b18bcea81a3a7224f2596892074
+  PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  PromisesSwift: 37bad6f4daddb02f7c9c531efe91e8b21c13ee2f
+
+PODFILE CHECKSUM: 79e7cc61f556e2bbcccef1959a7ab0c6f8ddf881
+
+COCOAPODS: 1.8.4
