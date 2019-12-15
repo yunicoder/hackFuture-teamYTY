@@ -80,7 +80,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     
     //セグエによる画面遷移が行われる直前
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        let controller = segue.destination as! PurchaseListViewController
+        let controller = segue.destination as! ChatViewController
         //追加する人の情報を渡す
         //controller.imageTmp = self.imageKeyTmp
         //controller.nameTmp = self.nameTmp
@@ -90,6 +90,11 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         //controller.timeTmp = self.timeTmp
         //controller.fetureTmp = self.featureTmp
         //controller.commentTmp = self.commentTmp
+        
+        controller.timeText.text = goodsTimeTextField.text!
+        controller.placeText.text = goodsCommentTextField.text! + "に来てください。"
+        
+        
     }
     
     

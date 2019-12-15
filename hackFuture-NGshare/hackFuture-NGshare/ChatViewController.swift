@@ -21,6 +21,11 @@ class ChatViewController: UIViewController {
     /* アウトレット */
     @IBOutlet weak var timeText: UILabel!
     @IBOutlet weak var placeText: UILabel!
+    @IBOutlet weak var goodsImagetext: UIImageView!
+    @IBOutlet weak var goodsNameText: UILabel!
+    @IBOutlet weak var goodsConditionText: UILabel!
+    @IBOutlet weak var goodsPriceText: UILabel!
+    
     
     
     /* アクション */
