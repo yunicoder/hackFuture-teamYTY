@@ -1,0 +1,6 @@
+framework module Pods_hackFuture_NGshare {
+  umbrella header "Pods-hackFuture-NGshare-umbrella.h"
+
+  export *
+  module * { export * }
+}

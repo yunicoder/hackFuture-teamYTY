@@ -29,7 +29,7 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         
         //タイトル変更
         navigationItem.title = "購入画面"
-        view.backgroundColor = UIColor(red: 255/255, green: 229/255, blue: 204/255, alpha: 1.0)
+        self.contentView.backgroundColor = UIColor(red: 255/255, green: 229/255, blue: 204/255, alpha: 1.0)
         self.line1.layer.borderWidth = 2.0    // 枠線の幅
         self.line1.layer.borderColor = UIColor.gray.cgColor
         self.line2.layer.borderWidth = 2.0    // 枠線の幅
@@ -59,6 +59,7 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var goodsTimeText: UILabel!
     @IBOutlet weak var featureText: UILabel!
     @IBOutlet weak var goodsCommentText: UILabel!
+    @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var line1: UIView!
     @IBOutlet weak var line2: UIView!
