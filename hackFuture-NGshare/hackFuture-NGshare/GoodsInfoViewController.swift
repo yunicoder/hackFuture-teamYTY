@@ -79,6 +79,8 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
                     print("キャンセル")
             }
             let okAction: UIAlertAction = UIAlertAction(title: "出品", style: .destructive) { (UIAlertAction) in
+                    //kintoneに登録
+                addRecord(image: self.imageTmp!, name: self.nameTmp!, condition: self.conditionTmp!, price: self.priceTmp!, place: self.placeTmp!, coment: self.commentTmp!, future: self.featureTmp!)
                     self.performSegue(withIdentifier: "ToPurchaseListView", sender: nil)
             }
             //アラートに設定を反映させる
@@ -94,7 +96,14 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     
     /* プロパティ */
     //登録する商品の情報
-    var goods = GoodsInfo(image: UIImage(), name: "", condition: "", price: 0, place: "",time: "", feature: "", comment: "")
+    var imageTmp : UIImage?
+    var nameTmp : String?
+    var conditionTmp : String?
+    var priceTmp : String?
+    var placeTmp : String?
+    var timeTmp : String?
+    var featureTmp : String?
+    var commentTmp : String?
     
     
     /* メソッド */
@@ -102,25 +111,25 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder() //改行
         if(textField.tag == 1){ //名前欄
-            goods.name = textField.text!
+            nameTmp = textField.text!
         }
         if(textField.tag == 2){ //状態欄
-            goods.condition = textField.text!
+            conditionTmp = textField.text!
         }
         if(textField.tag == 3){ //値段欄
-            goods.price = Int(textField.text!)!
+            priceTmp = textField.text!
         }
         if(textField.tag == 4){ //取引場所欄
-            goods.place = textField.text!
+            placeTmp = textField.text!
         }
         if(textField.tag == 5){ //取引場所欄
-            goods.comment = textField.text!
+            commentTmp = textField.text!
         }
         if(textField.tag == 6){ //取引場所欄
-            goods.time = textField.text!
+            timeTmp = textField.text!
         }
         if(textField.tag == 7){ //取引場所欄
-            goods.feature = textField.text!
+            featureTmp = textField.text!
         }
         return true
     }

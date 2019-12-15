@@ -76,6 +76,8 @@ func multiGetRecords()-> [GoodsInfo]{
                     goods[i].price = value.getValue() as! Int
                 case "place":
                     goods[i].place = value.getValue() as! String
+                case "see_time":
+                    goods[i].time = value.getValue() as! String
                 case "coment":
                     goods[i].comment = value.getValue() as! String
                 case "future":

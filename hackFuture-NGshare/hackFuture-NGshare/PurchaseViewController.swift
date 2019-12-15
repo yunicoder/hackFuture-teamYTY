@@ -16,7 +16,7 @@ struct GoodsInfo{
     var condition : String //商品の状態
     var price : Int //商品の値段
     var place : String //やりとり場所
-    var time : String //取引をする時間
+    var time : String //やりとり時間
     var feature : String //自分の特徴
     var comment : String //コメント
 }

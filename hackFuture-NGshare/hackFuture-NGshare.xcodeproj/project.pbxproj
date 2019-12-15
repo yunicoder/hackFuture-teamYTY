@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -98,7 +98,6 @@
 				04C34DDBD34352B6A35C6934 /* Pods-hackFuture-NGshare.debug.xcconfig */,
 				53D45143CB6EE575B254609D /* Pods-hackFuture-NGshare.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -381,7 +380,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F6TJ83N5PZ;
+				DEVELOPMENT_TEAM = 3KPJ2BPVDZ;
 				INFOPLIST_FILE = "hackFuture-NGshare/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -400,7 +399,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F6TJ83N5PZ;
+				DEVELOPMENT_TEAM = 3KPJ2BPVDZ;
 				INFOPLIST_FILE = "hackFuture-NGshare/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
