@@ -20,7 +20,7 @@ let connection = Connection(domain, kintoneAuth)
 
   // Init Record Module
 let recordManagement = Record(connection)
-let query = "レコード番号 >= 2 order by レコード番号 asc"
+let query = "レコード番号 >= 3 order by レコード番号 asc"
 
 let apitoken = "bGIfUIxeHvnblXzhaVtE2LF8zhSJQoVlY6wWWUKV"
 //let apitoken = "qfeTYjpsATHjIjnKOiPp3T8xsAKfthKEsAX0LhkI"
@@ -60,13 +60,15 @@ let appID = 1
     }
 
 func multiGetRecords()-> [GoodsInfo]{
-    var goods = [GoodsInfo]()
+    var goods : [GoodsInfo] = []
     // Init authenticationAuth
     kintoneAuth.setApiToken(apitoken)
     recordManagement.getRecords(appID, query, nil, true).then{response in
         let records = response.getRecords()
         for (i, dval) in (records?.enumerated())! {
+            //print(dval)
             for (code, value) in dval {
+                print(code)
                 switch code {
                 case "image":
                     goods[i].image = value.getValue() as! UIImage
@@ -85,7 +87,8 @@ func multiGetRecords()-> [GoodsInfo]{
                 case "condition":
                     goods[i].condition = value.getValue() as! String
                 default:
-                    goods[i].comment = "error"
+                    //goods[i].comment = "error"
+                    break
                 }
             }
         }
@@ -100,7 +103,7 @@ func multiGetRecords()-> [GoodsInfo]{
     return goods
 }
     
-func addRecord(image:UIImage,name:String,condition:String,price:String,place:String,coment:String,future:String){
+func addRecord(image:Data,name:String,condition:String,price:String,place:String,coment:String,future:String){
         var addData: Dictionary = [String:AnyObject]()
         var field = FieldValue()
         field.setType(FieldType.FILE)

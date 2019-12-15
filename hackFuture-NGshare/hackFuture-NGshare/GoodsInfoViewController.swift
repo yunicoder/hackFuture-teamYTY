@@ -80,6 +80,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
             }
             let okAction: UIAlertAction = UIAlertAction(title: "出品", style: .destructive) { (UIAlertAction) in
                     //kintoneに登録
+                self.imageTmp = self.goodsImage.image!.jpegData(compressionQuality: 1);
                 addRecord(image: self.imageTmp!, name: self.nameTmp!, condition: self.conditionTmp!, price: self.priceTmp!, place: self.placeTmp!, coment: self.commentTmp!, future: self.featureTmp!)
                     self.performSegue(withIdentifier: "ToPurchaseListView", sender: nil)
             }
@@ -96,7 +97,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     
     /* プロパティ */
     //登録する商品の情報
-    var imageTmp : UIImage?
+    var imageTmp : Data?
     var nameTmp : String?
     var conditionTmp : String?
     var priceTmp : String?
