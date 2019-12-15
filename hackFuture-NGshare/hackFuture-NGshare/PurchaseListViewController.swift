@@ -17,7 +17,6 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     var goodsInfo = [GoodsInfo]() // 全部のデータ
     var filterGoodsInfo = [GoodsInfo]() //フィルター後のデータ(基本こっち)
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "出品リスト"
@@ -30,8 +29,23 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5) // マージン
         goodsCollectionView.collectionViewLayout = layout
+        
+       // goodsInfo = multiGetRecords()
+        //filterGoodsInfo = multiGetRecords()
     }
     
+    
+    // URLから画像を生成する関数
+    func getImageByUrl(url: String) -> UIImage{
+        let url = URL(string: url)
+        do {
+            let data = try Data(contentsOf: url!)
+            return UIImage(data: data)!
+        } catch let err {
+            print("Error : \(err.localizedDescription)")
+        }
+        return UIImage()
+    }
     //リターンキーが押された時
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameSearch.resignFirstResponder() //改行

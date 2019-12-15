@@ -598,26 +598,36 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cc6-Ao-oE0">
                                 <rect key="frame" x="0.0" y="547" width="375" height="120"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RaN-3j-516">
-                                        <rect key="frame" x="156" y="42" width="64" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RaN-3j-516">
+                                        <rect key="frame" x="157.5" y="45" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="Npb-wE-ySo"/>
+                                            <constraint firstAttribute="width" constant="60" id="g5L-hx-uEw"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Shutter"/>
                                         <connections>
                                             <action selector="takePhoto:" destination="W1a-UK-53B" eventType="touchUpInside" id="7Hg-iA-52C"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmK-5L-QVp">
-                                        <rect key="frame" x="307" y="48" width="62" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="切り替え"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmK-5L-QVp">
+                                        <rect key="frame" x="320" y="60" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="rws-W8-vxb"/>
+                                            <constraint firstAttribute="height" constant="40" id="sDi-4e-5dM"/>
+                                        </constraints>
                                         <connections>
                                             <action selector="changeType:" destination="W1a-UK-53B" eventType="touchUpInside" id="CWU-cb-Yvb"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="WmK-5L-QVp" secondAttribute="trailing" constant="15" id="1uv-vj-aMU"/>
+                                    <constraint firstItem="RaN-3j-516" firstAttribute="centerY" secondItem="Cc6-Ao-oE0" secondAttribute="centerY" constant="15" id="7UK-dO-i9c"/>
+                                    <constraint firstItem="WmK-5L-QVp" firstAttribute="centerY" secondItem="Cc6-Ao-oE0" secondAttribute="centerY" constant="20" id="LDw-AH-lwW"/>
+                                    <constraint firstAttribute="bottom" secondItem="WmK-5L-QVp" secondAttribute="bottom" constant="20" id="ZHV-vK-3pJ"/>
+                                    <constraint firstItem="WmK-5L-QVp" firstAttribute="top" secondItem="Cc6-Ao-oE0" secondAttribute="top" constant="60" id="fXb-g8-CCv"/>
+                                    <constraint firstItem="RaN-3j-516" firstAttribute="centerX" secondItem="Cc6-Ao-oE0" secondAttribute="centerX" id="kWT-EE-Y9P"/>
                                     <constraint firstAttribute="height" constant="120" id="nS0-sL-t2n"/>
                                 </constraints>
                             </view>
