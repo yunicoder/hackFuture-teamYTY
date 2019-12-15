@@ -8,7 +8,38 @@
 
 import UIKit
 
+
+
 class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
+    
+    /* プロパティ */
+    //登録する商品の情報
+    var imageTmp : UIImage?
+    var nameTmp : String?
+    var conditionTmp : String?
+    var priceTmp : String?
+    var placeTmp : String?
+    var timeTmp : String?
+    var featureTmp : String?
+    var commentTmp : String?
+    var imageKeyTmp : String?
+    
+    //デコーダとエンコーダ
+    let encoder = JSONEncoder()
+    let decoder = JSONDecoder()
+    
+    
+    /* アウトレット */
+    @IBOutlet weak var goodsImage: UIImageView!
+    @IBOutlet weak var goodsNameTextField: UITextField!
+    @IBOutlet weak var goodsConditionTextField: UITextField!
+    @IBOutlet weak var goodsPriceTextField: UITextField!
+    @IBOutlet weak var goodsPlaceTextField: UITextField!
+    @IBOutlet weak var goodsCommentTextField: UITextField!
+    @IBOutlet weak var goodsTimeTextField: UITextField!
+    @IBOutlet weak var featureTextField: UITextField!
+    
+    
     /* ライフサイクル */
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,16 +78,19 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         goodsImage.image = UIImage(data: UserDefaults.standard.data(forKey: "takenImage")!)
     }
     
-    /* アウトレット */
-    @IBOutlet weak var goodsImage: UIImageView!
-    @IBOutlet weak var goodsNameTextField: UITextField!
-    @IBOutlet weak var goodsConditionTextField: UITextField!
-    @IBOutlet weak var goodsPriceTextField: UITextField!
-    @IBOutlet weak var goodsPlaceTextField: UITextField!
-    @IBOutlet weak var goodsCommentTextField: UITextField!
-    @IBOutlet weak var goodsTimeTextField: UITextField!
-    @IBOutlet weak var featureTextField: UITextField!
-    
+    //セグエによる画面遷移が行われる直前
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        let controller = segue.destination as! PurchaseListViewController
+        //追加する人の情報を渡す
+        //controller.imageTmp = self.imageKeyTmp
+        //controller.nameTmp = self.nameTmp
+        //controller.conditionTmp = self.conditionTmp
+        //controller.priceTmp = self.priceTmp
+        //controller.placeTmp = self.placeTmp
+        //controller.timeTmp = self.timeTmp
+        //controller.fetureTmp = self.featureTmp
+        //controller.commentTmp = self.commentTmp
+    }
     
     
     /* アクション */
@@ -79,9 +113,11 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
                     print("キャンセル")
             }
             let okAction: UIAlertAction = UIAlertAction(title: "出品", style: .destructive) { (UIAlertAction) in
+                /*
                     //kintoneに登録
                 self.imageTmp = self.goodsImage.image!.jpegData(compressionQuality: 1);
                 addRecord(image: self.imageTmp!, name: self.nameTmp!, condition: self.conditionTmp!, price: self.priceTmp!, place: self.placeTmp!, coment: self.commentTmp!, future: self.featureTmp!)
+                 */
                     self.performSegue(withIdentifier: "ToPurchaseListView", sender: nil)
             }
             //アラートに設定を反映させる
@@ -93,18 +129,6 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     }
     
     //kintoneに情報投げる
-    
-    
-    /* プロパティ */
-    //登録する商品の情報
-    var imageTmp : Data?
-    var nameTmp : String?
-    var conditionTmp : String?
-    var priceTmp : String?
-    var placeTmp : String?
-    var timeTmp : String?
-    var featureTmp : String?
-    var commentTmp : String?
     
     
     /* メソッド */
