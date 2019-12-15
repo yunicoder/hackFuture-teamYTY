@@ -14,8 +14,9 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     
     @IBOutlet weak var goodsImage: UIImageView!
     
-    var goodsInfo = [GoodsInfo]() // 全部のデータ
-    var filterGoodsInfo = [GoodsInfo]() //フィルター後のデータ(基本こっち)
+    //var goodsInfo = [GoodsInfo]() // 全部のデータ
+    //var filterGoodsInfo = [GoodsInfo]() //フィルター後のデータ(基本こっち)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +31,7 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5) // マージン
         goodsCollectionView.collectionViewLayout = layout
         
-       // goodsInfo = multiGetRecords()
-        //filterGoodsInfo = multiGetRecords()
+       
     }
     
     
@@ -65,7 +65,7 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         let cell = goodsCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) // 表示するセルを登録(先にStoryboad内でidentifierを指定しておく)
         if let collectionImage = cell.contentView.viewWithTag(1) as? UIImageView {
             // cellの中にあるcollectionImageに画像を代入する
-            //collectionImage.image = filterGoodsInfo[indexPath.row].image
+            //collectionImage.image = UserDefaults.standard.data(forKey: UserDefalts.standard.data[indexPath.row])
         }
         cell.backgroundColor = .red  // セルの色をなんとなく赤に
         return cell
@@ -81,8 +81,6 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         if (segue.identifier == "segue") {
             let nextVC: PurchaseViewController = (segue.destination as? PurchaseViewController)!
             let selectedRow = goodsCollectionView.indexPathsForSelectedItems! // 選ばれた
-            
-            //nextVC.recieveGoodsImage.image = filterGoodsInfo[selectedRow[0].row].image  // NextViewController のselectedImgに選択された画像を設定する
         }
     }
 
