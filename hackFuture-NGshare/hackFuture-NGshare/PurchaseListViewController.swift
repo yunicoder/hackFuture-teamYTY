@@ -8,6 +8,19 @@
 
 import UIKit
 
+//商品状態の構造体
+struct GoodsInfo : Codable{
+    var image : String //商品の画像名。保存したキー
+    var name : String //商品の名前
+    var condition : String //商品の状態
+    var price : Int //商品の値段
+    var place : String //やりとり場所
+    var time : String //やりとり時間
+    var feature : String //自分の特徴
+    var comment : String //コメント
+}
+
+
 class PurchaseListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     @IBOutlet weak var nameSearch: UISearchBar!
     @IBOutlet weak var goodsCollectionView: UICollectionView! // 商品のコレクションビュー
@@ -18,6 +31,27 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     //var filterGoodsInfo = [GoodsInfo]() //フィルター後のデータ(基本こっち)
     
     
+    /* プロパティ */
+    var goods : [GoodsInfo] = []
+    var firstFlag = 1
+    var addFlag = 0
+    
+    //デコーダとエンコーダ
+    let encoder = JSONEncoder()
+    let decoder = JSONDecoder()
+    
+    //登録画面からデータを受け取るため
+    var imageTmp : String?
+    var nameTmp : String?
+    var conditionTmp : String?
+    var priceTmp : Int?
+    var placeTmp : String?
+    var timeTmp : String?
+    var featureTmp : String?
+    var commentTmp : String?
+    
+    
+    /* ライフサイクル */
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "出品リスト"
@@ -30,6 +64,39 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5) // マージン
         goodsCollectionView.collectionViewLayout = layout
+        
+        //起動時に一度だけやる処理
+        if(firstFlag == 1){
+            //本体に保存されている内容を読み込み
+            if((UserDefaults.standard.array(forKey: "GoodsInfo")) != nil){
+                var loadInfoData:[String] = UserDefaults.standard.array(forKey: "GoodsInfo") as! [String]
+                for value in 0...(loadInfoData.count-1){
+                    var loadData:GoodsInfo? = try? decoder.decode(GoodsInfo.self, from: loadInfoData[value].data(using: .utf8)!)
+                    goods.append(loadData!)
+                }
+            }
+            firstFlag = 0
+        }
+        
+        //追加フラグが１なら。すなわち、登録画面で新しく登録されたら
+        if(addFlag == 1){
+            var new = GoodsInfo(image: imageTmp!, name: nameTmp!, condition: conditionTmp!, price: priceTmp!, place: placeTmp!, time: timeTmp!, feature: featureTmp!, comment: commentTmp!)
+            goods.append(new)
+            
+            addFlag = 0
+         
+            //UserDefaultsの内容全消去
+            UserDefaults.standard.removeObject(forKey: "GoodsInfo")
+            //本体に保存
+            if(goods.isEmpty == false){ //itemsが空なら保存しない
+                var setInfoList: [String] = []
+                for value in 0...(goods.count-1){
+                    var data = try? encoder.encode(goods[value]) //データ型に変換
+                    setInfoList.append(String(data:data!, encoding: .utf8)!) //String型に変換
+                    UserDefaults.standard.set(setInfoList, forKey: "GoodsInfo")
+                }
+            }
+        }
         
        
     }
@@ -56,8 +123,8 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     
     /*---collectionViewの委譲設定 開始---*/
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return filterGoodsInfo.count // 表示するセルの数
-        return 10
+        return goods.count // 表示するセルの数
+        //return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -65,7 +132,7 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         let cell = goodsCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) // 表示するセルを登録(先にStoryboad内でidentifierを指定しておく)
         if let collectionImage = cell.contentView.viewWithTag(1) as? UIImageView {
             // cellの中にあるcollectionImageに画像を代入する
-            //collectionImage.image = UserDefaults.standard.data(forKey: UserDefalts.standard.data[indexPath.row])
+            collectionImage.image = UIImage(data: UserDefaults.standard.data(forKey: goods[indexPath.row].image)!)
         }
         cell.backgroundColor = .red  // セルの色をなんとなく赤に
         return cell

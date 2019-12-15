@@ -59,6 +59,7 @@ let appID = 1
         }
     }
 
+/*
 func multiGetRecords()-> [GoodsInfo]{
     var goods : [GoodsInfo] = []
     // Init authenticationAuth
@@ -102,6 +103,7 @@ func multiGetRecords()-> [GoodsInfo]{
     }
     return goods
 }
+ */
     
 func addRecord(image:Data,name:String,condition:String,price:String,place:String,coment:String,future:String){
         var addData: Dictionary = [String:AnyObject]()

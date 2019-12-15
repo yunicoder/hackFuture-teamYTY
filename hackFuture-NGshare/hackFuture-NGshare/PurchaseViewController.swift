@@ -9,19 +9,6 @@
 import UIKit
 
 
-//商品状態の構造体
-struct GoodsInfo : Codable{
-    var image : String //商品の画像名。保存したキー
-    var name : String //商品の名前
-    var condition : String //商品の状態
-    var price : Int //商品の値段
-    var place : String //やりとり場所
-    var time : String //やりとり時間
-    var feature : String //自分の特徴
-    var comment : String //コメント
-}
-
-
 class PurchaseViewController: UIViewController, UITextFieldDelegate {
     /* ライフサイクル */
     override func viewDidLoad() {

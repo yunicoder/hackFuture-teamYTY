@@ -17,7 +17,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     var imageTmp : UIImage?
     var nameTmp : String?
     var conditionTmp : String?
-    var priceTmp : String?
+    var priceTmp : Int?
     var placeTmp : String?
     var timeTmp : String?
     var featureTmp : String?
@@ -82,14 +82,15 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         let controller = segue.destination as! PurchaseListViewController
         //追加する人の情報を渡す
-        //controller.imageTmp = self.imageKeyTmp
-        //controller.nameTmp = self.nameTmp
-        //controller.conditionTmp = self.conditionTmp
-        //controller.priceTmp = self.priceTmp
-        //controller.placeTmp = self.placeTmp
-        //controller.timeTmp = self.timeTmp
-        //controller.fetureTmp = self.featureTmp
-        //controller.commentTmp = self.commentTmp
+        controller.imageTmp = self.imageKeyTmp
+        controller.nameTmp = self.nameTmp
+        controller.conditionTmp = self.conditionTmp
+        controller.priceTmp = self.priceTmp
+        controller.placeTmp = self.placeTmp
+        controller.timeTmp = self.timeTmp
+        controller.featureTmp = self.featureTmp
+        controller.commentTmp = self.commentTmp
+        controller.addFlag = 1
     }
     
     
@@ -142,7 +143,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
             conditionTmp = textField.text!
         }
         if(textField.tag == 3){ //値段欄
-            priceTmp = textField.text!
+            priceTmp = Int(textField.text!)
         }
         if(textField.tag == 4){ //取引場所欄
             placeTmp = textField.text!
