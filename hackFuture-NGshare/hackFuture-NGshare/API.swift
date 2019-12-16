@@ -71,7 +71,7 @@ func multiGetRecords()-> [GoodsInfo]{
                 print(code)
                 switch code {
                 case "image":
-                    goods[i].image = value.getValue() as! UIImage
+                    goods[i].image = value.getValue() as! String
                 case "name":
                     goods[i].name = value.getValue() as! String
                 case "price":
