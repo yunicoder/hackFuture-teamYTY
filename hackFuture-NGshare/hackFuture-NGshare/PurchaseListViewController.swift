@@ -57,7 +57,7 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     /*---collectionViewの委譲設定 開始---*/
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return filterGoodsInfo.count // 表示するセルの数
-        return 10
+        return 50
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

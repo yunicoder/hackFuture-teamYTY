@@ -386,7 +386,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.saitama-u.a.yano.578.240.hackFuture-NGshare";
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.saitama-u.t.yabe.240.hackFuture-NGshare";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -405,7 +405,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.saitama-u.a.yano.578.240.hackFuture-NGshare";
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.saitama-u.t.yabe.240.hackFuture-NGshare";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
