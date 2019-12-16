@@ -15,7 +15,7 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     @IBOutlet weak var goodsImage: UIImageView!
     
     //var goodsInfo = [GoodsInfo]() // 全部のデータ
-    //var filterGoodsInfo = [GoodsInfo]() //フィルター後のデータ(基本こっち)
+    var filterGoodsInfo = [GoodsInfo]() //フィルター後のデータ(基本こっち)
     
     
     override func viewDidLoad() {
@@ -31,6 +31,9 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5) // マージン
         goodsCollectionView.collectionViewLayout = layout
         
+        filterGoodsInfo = multiGetRecords()
+        print("filetr:\(filterGoodsInfo)")
+
        
     }
     

@@ -95,14 +95,18 @@ class CameraViewController: UIViewController {
                  for: AVMediaType.video, // ビデオ入力
                  position: type // バックカメラorフロントカメラ
              )
-             
-             let input = try AVCaptureDeviceInput(device: device!) // 入力元
-             if session.canAddInput(input){
-                 session.addInput(input)
-             }
-             else{
-                 print("セッションに入力を追加できなかった")
-             }
+            if device == nil{
+                self.performSegue(withIdentifier: "toGoodsInfo", sender: nil)
+            }
+            else{
+                 let input = try AVCaptureDeviceInput(device: device!) // 入力元
+                 if session.canAddInput(input){
+                     session.addInput(input)
+                 }
+                 else{
+                     print("セッションに入力を追加できなかった")
+                 }
+            }
          }catch  let error as NSError {
              print("カメラが使えない \n \(error.description)")
              return

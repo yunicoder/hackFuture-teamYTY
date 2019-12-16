@@ -20,6 +20,18 @@ struct GoodsInfo : Codable{
     var feature : String //自分の特徴
     var comment : String //コメント
 }
+extension GoodsInfo{
+    init(){
+        image = "noImage"
+        name = "noName"
+        condition = "noCondition"
+        price = -1
+        place = "noPlace"
+        time = "noTime"
+        feature = "noFeature"
+        comment = "noComment"
+    }
+}
 
 
 class PurchaseViewController: UIViewController, UITextFieldDelegate {

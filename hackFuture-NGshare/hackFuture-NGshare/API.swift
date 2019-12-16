@@ -60,45 +60,49 @@ let appID = 1
     }
 
 func multiGetRecords()-> [GoodsInfo]{
-    var goods : [GoodsInfo] = []
+    var goods = [GoodsInfo]()
     // Init authenticationAuth
     kintoneAuth.setApiToken(apitoken)
     recordManagement.getRecords(appID, query, nil, true).then{response in
         let records = response.getRecords()
         for (i, dval) in (records?.enumerated())! {
+            goods.append(GoodsInfo.init())
             //print(dval)
             for (code, value) in dval {
-                print(code)
+                //print("code:\(code)")
+                //print("value.getValue:\(value.getValue()!)")
                 switch code {
                 case "image":
-                    goods[i].image = value.getValue() as! String
+                    break
+                    //goods[i].image = value.getValue() as! String
                 case "name":
-                    goods[i].name = value.getValue() as! String
+                    goods[i].name = value.getValue()! as! String
                 case "price":
-                    goods[i].price = value.getValue() as! Int
+                    goods[i].price = Int(value.getValue()! as! String)!
                 case "place":
-                    goods[i].place = value.getValue() as! String
+                    goods[i].place = value.getValue()! as! String
                 case "see_time":
-                    goods[i].time = value.getValue() as! String
+                    goods[i].time = value.getValue()! as! String
                 case "coment":
-                    goods[i].comment = value.getValue() as! String
+                    goods[i].comment = value.getValue()! as! String
                 case "future":
-                    goods[i].feature = value.getValue() as! String
+                    goods[i].feature = value.getValue()! as! String
                 case "condition":
-                    goods[i].condition = value.getValue() as! String
+                    goods[i].condition = value.getValue()! as! String
                 default:
                     //goods[i].comment = "error"
                     break
                 }
             }
+           print("goodsByFor:\(goods)")
         }
-        }.catch{ error in
-            if error is KintoneAPIException {
-                print((error as! KintoneAPIException).toString()!)
-            }
-            else {
-                print((error as! Error).localizedDescription)
-            }
+    }.catch{ error in
+        if error is KintoneAPIException {
+            print((error as! KintoneAPIException).toString()!)
+        }
+        else {
+            print((error).localizedDescription)
+        }
     }
     return goods
 }

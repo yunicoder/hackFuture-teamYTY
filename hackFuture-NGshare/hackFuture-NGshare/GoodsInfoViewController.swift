@@ -74,8 +74,9 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         featureTextField.text = ""
         featureTextField.placeholder = "(例)黄色パーカー"
         
-        
-        goodsImage.image = UIImage(data: UserDefaults.standard.data(forKey: "takenImage")!)
+        if let data = UserDefaults.standard.data(forKey: "takenImage"){
+            goodsImage.image = UIImage(data: data)
+        }
     }
     
     //セグエによる画面遷移が行われる直前
