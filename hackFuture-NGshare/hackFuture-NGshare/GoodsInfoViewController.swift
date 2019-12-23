@@ -153,14 +153,14 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         if(textField.tag == 4){ //取引場所欄
             placeTmp = textField.text!
         }
-        if(textField.tag == 5){ //取引場所欄
-            commentTmp = textField.text!
-        }
-        if(textField.tag == 6){ //取引場所欄
+        if(textField.tag == 5){ //取引時間欄
             timeTmp = textField.text!
         }
-        if(textField.tag == 7){ //取引場所欄
+        if(textField.tag == 6){ //出品者の特徴欄
             featureTmp = textField.text!
+        }
+        if(textField.tag == 7){ //コメント欄
+            commentTmp = textField.text!
         }
         return true
     }
