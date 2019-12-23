@@ -37,18 +37,6 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
        
     }
     
-    
-    // URLから画像を生成する関数
-    func getImageByUrl(url: String) -> UIImage{
-        let url = URL(string: url)
-        do {
-            let data = try Data(contentsOf: url!)
-            return UIImage(data: data)!
-        } catch let err {
-            print("Error : \(err.localizedDescription)")
-        }
-        return UIImage()
-    }
     //リターンキーが押された時
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameSearch.resignFirstResponder() //改行

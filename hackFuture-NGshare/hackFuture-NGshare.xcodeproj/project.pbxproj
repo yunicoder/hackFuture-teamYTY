@@ -20,6 +20,7 @@
 		F1235C0523A4E1F00028902F /* ExtentionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1235C0423A4E1F00028902F /* ExtentionViewController.swift */; };
 		F1674E2623A5BF8E00A90FB1 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1674E2523A5BF8E00A90FB1 /* API.swift */; };
 		F1674E2823A5BFC200A90FB1 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F1674E2723A5BFC200A90FB1 /* Podfile */; };
+		F1674E3623B0C05700A90FB1 /* DataMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1674E3523B0C05700A90FB1 /* DataMgr.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		F1235C0423A4E1F00028902F /* ExtentionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtentionViewController.swift; sourceTree = "<group>"; };
 		F1674E2523A5BF8E00A90FB1 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		F1674E2723A5BFC200A90FB1 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		F1674E3523B0C05700A90FB1 /* DataMgr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMgr.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				F1674E2523A5BF8E00A90FB1 /* API.swift */,
 				0DD0ACE523A4CC22003D31D2 /* AppDelegate.swift */,
 				0DD0ACE723A4CC22003D31D2 /* PurchaseListViewController.swift */,
+				F1674E3523B0C05700A90FB1 /* DataMgr.swift */,
 				0D15DA6A23A4D0EC00C0A5E9 /* PurchaseViewController.swift */,
 				0D15DA7023A4D23700C0A5E9 /* ChatViewController.swift */,
 				0D15DA6E23A4D1AC00C0A5E9 /* GoodsInfoViewController.swift */,
@@ -226,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0DD0ACE823A4CC22003D31D2 /* PurchaseListViewController.swift in Sources */,
+				F1674E3623B0C05700A90FB1 /* DataMgr.swift in Sources */,
 				0D15DA6D23A4D17500C0A5E9 /* CameraViewController.swift in Sources */,
 				0D15DA6F23A4D1AC00C0A5E9 /* GoodsInfoViewController.swift in Sources */,
 				F1235C0523A4E1F00028902F /* ExtentionViewController.swift in Sources */,
