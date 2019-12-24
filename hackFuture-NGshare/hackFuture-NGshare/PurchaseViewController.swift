@@ -34,8 +34,20 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         self.line8.layer.borderWidth = 2.0    // 枠線の幅
         self.line8.layer.borderColor = UIColor.gray.cgColor
         
-        //kintoneからデータを持ってくる
+        // 受けったデータをラベルに書き込む
+        //print("recieveGoodsInfo:\(recieveGoodsInfo?.feature)")
+        //goodsImage = recieveGoodsInfo?.image
+        goodsNameText.text = recieveGoodsInfo?.name
+        goodsConditionText.text = recieveGoodsInfo?.condition
+        goodsPriceText.text = String(recieveGoodsInfo!.price)
+        //goodsPlaceText.text = recieveGoodsInfo?.place
+        goodsTimeText.text = recieveGoodsInfo?.time
+        //featureText.text = recieveGoodsInfo?.feature
+        goodsCommentText.text = recieveGoodsInfo?.comment
     }
+    
+    // 送られてくるデータ
+    var recieveGoodsInfo:GoodsInfo?
     
     /* アウトレット */
     @IBOutlet weak var goodsImage: UIImageView!

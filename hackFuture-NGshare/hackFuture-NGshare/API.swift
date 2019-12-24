@@ -59,7 +59,9 @@ let appID = 1
         }
     }
 
-func multiGetRecords()-> [GoodsInfo]{
+typealias CompletionClosure = ((_ result:[GoodsInfo]) -> Void)
+
+func multiGetRecords(completionClosure:@escaping (_ result:[GoodsInfo]) -> Void){
     var goods = [GoodsInfo]()
     // Init authenticationAuth
     kintoneAuth.setApiToken(apitoken)
@@ -94,8 +96,9 @@ func multiGetRecords()-> [GoodsInfo]{
                     break
                 }
             }
-           print("goodsByFor:\(goods)")
+            //print("goodsByFor:\(goods)")
         }
+        completionClosure(goods)
     }.catch{ error in
         if error is KintoneAPIException {
             print((error as! KintoneAPIException).toString()!)
@@ -104,7 +107,6 @@ func multiGetRecords()-> [GoodsInfo]{
             print((error).localizedDescription)
         }
     }
-    return goods
 }
     
 func addRecord(image:Data,name:String,condition:String,price:String,place:String,coment:String,future:String){

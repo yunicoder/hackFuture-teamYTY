@@ -31,8 +31,13 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5) // マージン
         goodsCollectionView.collectionViewLayout = layout
         
-        filterGoodsInfo = multiGetRecords()
-        print("filetr:\(filterGoodsInfo)")
+        // kintoneからデータを取得する
+        multiGetRecords(completionClosure: { (result:[GoodsInfo]) in
+            self.filterGoodsInfo = result
+            print("filetr1:\(self.filterGoodsInfo)")
+            self.goodsCollectionView.reloadData()
+        })
+        print("filetr2:\(filterGoodsInfo)")
 
        
     }
@@ -47,8 +52,7 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     
     /*---collectionViewの委譲設定 開始---*/
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return filterGoodsInfo.count // 表示するセルの数
-        return 50
+        return filterGoodsInfo.count // 表示するセルの数
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -72,6 +76,7 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         if (segue.identifier == "segue") {
             let nextVC: PurchaseViewController = (segue.destination as? PurchaseViewController)!
             let selectedRow = goodsCollectionView.indexPathsForSelectedItems! // 選ばれた
+            nextVC.recieveGoodsInfo = self.filterGoodsInfo[selectedRow[0].row]
         }
     }
 
