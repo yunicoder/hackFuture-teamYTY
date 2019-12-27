@@ -34,12 +34,19 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         // kintoneからデータを取得する
         multiGetRecords(completionClosure: { (result:[GoodsInfo]) in
             self.filterGoodsInfo = result
-            print("filetr1:\(self.filterGoodsInfo)")
+            print("\(self.filterGoodsInfo):filterGoodsInfo")
             self.goodsCollectionView.reloadData()
         })
-        print("filetr2:\(filterGoodsInfo)")
-
-       
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // kintoneからデータを取得する
+        multiGetRecords(completionClosure: { (result:[GoodsInfo]) in
+            self.filterGoodsInfo = result
+            print("\(self.filterGoodsInfo):filterGoodsInfo")
+            self.goodsCollectionView.reloadData()
+        })
+        goodsCollectionView.reloadData() // データをリロードする
     }
     
     //リターンキーが押された時
@@ -61,6 +68,10 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         if let collectionImage = cell.contentView.viewWithTag(1) as? UIImageView {
             // cellの中にあるcollectionImageに画像を代入する
             //collectionImage.image = UserDefaults.standard.data(forKey: UserDefalts.standard.data[indexPath.row])
+        }
+        if let nameLabel = cell.contentView.viewWithTag(2) as? UILabel {
+            // cellの中にあるLabelに商品名を代入する
+            nameLabel.text = filterGoodsInfo[indexPath.row].name
         }
         cell.backgroundColor = .red  // セルの色をなんとなく赤に
         return cell
