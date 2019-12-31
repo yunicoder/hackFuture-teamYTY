@@ -59,10 +59,16 @@ let appID = 1
         }
     }
 
+<<<<<<< HEAD
 typealias CompletionClosure = ((_ result:[GoodsInfo]) -> Void)
 
 func multiGetRecords(completionClosure:@escaping (_ result:[GoodsInfo]) -> Void){
     var goods = [GoodsInfo]()
+=======
+/*
+func multiGetRecords()-> [GoodsInfo]{
+    var goods : [GoodsInfo] = []
+>>>>>>> c138f870c3ffebcddb03ff5f2d22a4e0e1b68151
     // Init authenticationAuth
     kintoneAuth.setApiToken(apitoken)
     recordManagement.getRecords(appID, query, nil, true).then{response in
@@ -108,6 +114,7 @@ func multiGetRecords(completionClosure:@escaping (_ result:[GoodsInfo]) -> Void)
         }
     }
 }
+ */
     
 func addRecord(image:Data,name:String,condition:String,price:String,place:String,coment:String,future:String){
         var addData: Dictionary = [String:AnyObject]()
