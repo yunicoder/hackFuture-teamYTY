@@ -62,13 +62,13 @@ let appID = 1
 typealias CompletionClosure = ((_ result:[GoodsInfo]) -> Void)
 
 func multiGetRecords(completionClosure:@escaping (_ result:[GoodsInfo]) -> Void){
-    var goods = [GoodsInfo]()
+    var resGoods = [GoodsInfo]() // kintoneから読み込んで最後にresultとして返す値(responseGoodsの略)
     // Init authenticationAuth
     kintoneAuth.setApiToken(apitoken)
     recordManagement.getRecords(appID, query, nil, true).then{response in
         let records = response.getRecords()
         for (i, dval) in (records?.enumerated())! {
-            goods.append(GoodsInfo.init())
+            resGoods.append(GoodsInfo.init()) // resGoodsの初期化
             //print(dval)
             for (code, value) in dval {
                 //print("code:\(code)")
@@ -76,29 +76,29 @@ func multiGetRecords(completionClosure:@escaping (_ result:[GoodsInfo]) -> Void)
                 switch code {
                 case "image":
                     break
-                    //goods[i].image = value.getValue() as! String
+                    //resGoods[i].image = value.getValue() as! String
                 case "name":
-                    goods[i].name = value.getValue()! as! String
+                    resGoods[i].name = value.getValue()! as! String
                 case "price":
-                    goods[i].price = Int(value.getValue()! as! String)!
+                    resGoods[i].price = value.getValue()! as! String
                 case "place":
-                    goods[i].place = value.getValue()! as! String
+                    resGoods[i].place = value.getValue()! as! String
                 case "see_time":
-                    goods[i].time = value.getValue()! as! String
+                    resGoods[i].time = value.getValue()! as! String
                 case "coment":
-                    goods[i].comment = value.getValue()! as! String
+                    resGoods[i].comment = value.getValue()! as! String
                 case "future":
-                    goods[i].feature = value.getValue()! as! String
+                    resGoods[i].feature = value.getValue()! as! String
                 case "condition":
-                    goods[i].condition = value.getValue()! as! String
+                    resGoods[i].condition = value.getValue()! as! String
                 default:
-                    //goods[i].comment = "error"
+                    //resGoods[i].comment = "error"
                     break
                 }
             }
-            //print("goodsByFor:\(goods)")
+            //print("goodsByFor:\(resGoods)")
         }
-        completionClosure(goods)
+        completionClosure(resGoods) // クロージャーを終了させる(resultに値が入る)
     }.catch{ error in
         if error is KintoneAPIException {
             print((error as! KintoneAPIException).toString()!)
@@ -108,53 +108,63 @@ func multiGetRecords(completionClosure:@escaping (_ result:[GoodsInfo]) -> Void)
         }
     }
 }
+
+
+// kintoneの保存するデータの型が以下であることに注意
+// image:Data,name:String,condition:String,price:String,place:String,coment:String,future:String
+func addRecord(addedGoods: GoodsInfo){
+    var addData: Dictionary = [String:AnyObject]()
     
-func addRecord(image:Data,name:String,condition:String,price:String,place:String,coment:String,future:String){
-        var addData: Dictionary = [String:AnyObject]()
-        var field = FieldValue()
-        field.setType(FieldType.FILE)
-        field.setValue(image)
-        addData["image"] = field
-        var field1 = FieldValue()
-        field1.setType(FieldType.SINGLE_LINE_TEXT)
-        field1.setValue(name)
-        addData["name"] = field1
-        var field2 = FieldValue()
-        field2.setType(FieldType.SINGLE_LINE_TEXT)
-        field2.setValue(condition)
-        addData["condition"] = field2
-        var field3 = FieldValue()
-        field3.setType(FieldType.SINGLE_LINE_TEXT)
-        field3.setValue(price)
-        addData["price"] = field3
-        var field4 = FieldValue()
-        field4.setType(FieldType.SINGLE_LINE_TEXT)
-        field4.setValue(place)
-        addData["place"] = field4
-        var field5 = FieldValue()
-        field5.setType(FieldType.MULTI_LINE_TEXT)
-        field5.setValue(coment)
-        addData["coment"] = field5
-        var field6 = FieldValue()
-        field6.setType(FieldType.MULTI_LINE_TEXT)
-        field6.setValue(future)
-        addData["future"] = field6
-            // Init authenticationAuth
-        kintoneAuth.setApiToken(apitoken)
-                  
+    var imageField = FieldValue()
+    imageField.setType(FieldType.FILE)
+    // imageField.setValue(addedGoods.image)
+    // addData["image"] = imageField // データの型を後で考えよう
     
-            
-        recordManagement.addRecord(appID, addData as! [String : FieldValue]).then{response in
-            print(response.getId())
-            print(response.getRevision())
-        }.catch{ error in
-            if error is KintoneAPIException {
-                print((error as! KintoneAPIException).toString()!)
-            }
-            else {
-                print((error as! Error).localizedDescription)
-            }
+    var nameField = FieldValue()
+    nameField.setType(FieldType.SINGLE_LINE_TEXT)
+    nameField.setValue(addedGoods.name)
+    addData["name"] = nameField
+    
+    var conditonField = FieldValue()
+    conditonField.setType(FieldType.SINGLE_LINE_TEXT)
+    conditonField.setValue(addedGoods.condition)
+    addData["condition"] = conditonField
+    
+    var priceField = FieldValue()
+    priceField.setType(FieldType.SINGLE_LINE_TEXT)
+    priceField.setValue(addedGoods.price)
+    addData["price"] = priceField
+    
+    var placeField = FieldValue()
+    placeField.setType(FieldType.SINGLE_LINE_TEXT)
+    placeField.setValue(addedGoods.place)
+    addData["place"] = placeField
+    
+    var commentField = FieldValue()
+    commentField.setType(FieldType.MULTI_LINE_TEXT)
+    commentField.setValue(addedGoods.comment)
+    addData["coment"] = commentField
+    
+    var featureField = FieldValue()
+    featureField.setType(FieldType.MULTI_LINE_TEXT)
+    featureField.setValue(addedGoods.feature)
+    addData["future"] = featureField
+    
+    kintoneAuth.setApiToken(apitoken)
+              
+
+        
+    recordManagement.addRecord(appID, addData as! [String : FieldValue]).then{response in
+        print(response.getId())
+        print(response.getRevision())
+    }.catch{ error in
+        if error is KintoneAPIException {
+            print((error as! KintoneAPIException).toString()!)
         }
+        else {
+            print((error as! Error).localizedDescription)
+        }
+    }
       
 }
 

@@ -147,7 +147,7 @@ class CameraViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // セグエによる画面遷移が行われる前に呼ばれるメソッド
         if (segue.identifier == "toGoodsInfo") {
             let nextVC: GoodsInfoViewController = (segue.destination as? GoodsInfoViewController)!
-            // nextVC.imageKeyTmp = "takenImage" //多分ここ配列でKeyを送ってる
+            nextVC.imageKeyTmp = "takenImage" //多分ここ配列でKeyを送ってる
         }
     }
 

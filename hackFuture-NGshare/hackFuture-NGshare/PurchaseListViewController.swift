@@ -34,7 +34,7 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         // kintoneからデータを取得する
         multiGetRecords(completionClosure: { (result:[GoodsInfo]) in
             self.filterGoodsInfo = result
-            print("\(self.filterGoodsInfo):filterGoodsInfo")
+            // print("\(self.filterGoodsInfo):filterGoodsInfoFromLoad")
             self.goodsCollectionView.reloadData()
         })
     }
@@ -43,7 +43,7 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         // kintoneからデータを取得する
         multiGetRecords(completionClosure: { (result:[GoodsInfo]) in
             self.filterGoodsInfo = result
-            print("\(self.filterGoodsInfo):filterGoodsInfo")
+            // print("\(self.filterGoodsInfo):filterGoodsInfoFromAppear")
             self.goodsCollectionView.reloadData()
         })
         goodsCollectionView.reloadData() // データをリロードする
