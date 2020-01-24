@@ -55,3 +55,4 @@ func getImageByUrl(url: String) -> UIImage{
     }
     return UIImage()
 }
+

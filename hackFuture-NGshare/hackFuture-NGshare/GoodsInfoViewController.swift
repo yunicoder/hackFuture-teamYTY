@@ -107,11 +107,19 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
             }
             let okAction: UIAlertAction = UIAlertAction(title: "出品", style: .destructive) { (UIAlertAction) in
                 //kintoneに登録
-                //self.registerGoods.image = self.goodsImage.image!.jpegData(compressionQuality: 1)!
-                self.registerGoods.image = "Test"
+                
+                
+                var data: NSData = NSData()
+                if let image = self.goodsImage.image {
+                    data = image.jpegData(compressionQuality: 0.1)! as NSData
+                }
+                let base64String = data.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters) as String
+                self.registerGoods.image = base64String
+                
                 //print("tmp_image\(tmp_image)")
+                //print("\(self.registerGoods):self.registerGoods")
                 addRecord(addedGoods: self.registerGoods)
-                print("\(self.registerGoods):self.registerGoods")
+                
                 
                 self.performSegue(withIdentifier: "ToPurchaseListView", sender: nil)
             }
@@ -137,7 +145,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
             self.registerGoods.condition = textField.text!
         }
         if(textField.tag == 3){ //値段欄
-        self.registerGoods.price = textField.text!
+            self.registerGoods.price = textField.text!
         }
         if(textField.tag == 4){ //取引場所欄
             self.registerGoods.place = textField.text!
@@ -159,3 +167,4 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     }
 
 }
+
