@@ -73,6 +73,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    /*
     //セグエによる画面遷移が行われる直前
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         let controller = segue.destination as! ChatViewController
@@ -82,6 +83,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         
         
     }
+ */
     
     
     /* アクション */
@@ -105,9 +107,11 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
             }
             let okAction: UIAlertAction = UIAlertAction(title: "出品", style: .destructive) { (UIAlertAction) in
                 //kintoneに登録
-                // self.imageTmp = self.goodsImage.image!.jpegData(compressionQuality: 1);
-                // addRecord(addedGoods: self.registerGoods)
-                // print("\(self.registerGoods):self.registerGoods")
+                //self.registerGoods.image = self.goodsImage.image!.jpegData(compressionQuality: 1)!
+                self.registerGoods.image = "Test"
+                //print("tmp_image\(tmp_image)")
+                addRecord(addedGoods: self.registerGoods)
+                print("\(self.registerGoods):self.registerGoods")
                 
                 self.performSegue(withIdentifier: "ToPurchaseListView", sender: nil)
             }
@@ -127,25 +131,25 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder() //改行
         if(textField.tag == 1){ //名前欄
-            registerGoods.name = textField.text!
+            self.registerGoods.name = textField.text!
         }
         if(textField.tag == 2){ //状態欄
-            registerGoods.condition = textField.text!
+            self.registerGoods.condition = textField.text!
         }
         if(textField.tag == 3){ //値段欄
-            registerGoods.price = textField.text!
+        self.registerGoods.price = textField.text!
         }
         if(textField.tag == 4){ //取引場所欄
-            registerGoods.place = textField.text!
+            self.registerGoods.place = textField.text!
         }
         if(textField.tag == 5){ //取引時間欄
-            registerGoods.time = textField.text!
+            self.registerGoods.time = textField.text!
         }
         if(textField.tag == 6){ //出品者の特徴欄
-            registerGoods.feature = textField.text!
+            self.registerGoods.feature = textField.text!
         }
         if(textField.tag == 7){ //コメント欄
-            registerGoods.comment = textField.text!
+            self.registerGoods.comment = textField.text!
         }
         return true
     }

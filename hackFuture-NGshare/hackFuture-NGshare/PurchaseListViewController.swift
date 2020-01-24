@@ -43,7 +43,7 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         // kintoneからデータを取得する
         multiGetRecords(completionClosure: { (result:[GoodsInfo]) in
             self.filterGoodsInfo = result
-            // print("\(self.filterGoodsInfo):filterGoodsInfoFromAppear")
+             //print("\(self.filterGoodsInfo):filterGoodsInfoFromAppear")
             self.goodsCollectionView.reloadData()
         })
         goodsCollectionView.reloadData() // データをリロードする
@@ -67,7 +67,7 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         let cell = goodsCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) // 表示するセルを登録(先にStoryboad内でidentifierを指定しておく)
         if let collectionImage = cell.contentView.viewWithTag(1) as? UIImageView {
             // cellの中にあるcollectionImageに画像を代入する
-            //collectionImage.image = UserDefaults.standard.data(forKey: UserDefalts.standard.data[indexPath.row])
+            //collectionImage.image = UIImage(data: filterGoodsInfo[indexPath.row].image)
         }
         if let nameLabel = cell.contentView.viewWithTag(2) as? UILabel {
             // cellの中にあるLabelに商品名を代入する
