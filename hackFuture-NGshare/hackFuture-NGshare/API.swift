@@ -74,9 +74,8 @@ func multiGetRecords(completionClosure:@escaping (_ result:[GoodsInfo]) -> Void)
                 //print("code:\(code)")
                 //print("value.getValue:\(value.getValue()!)")
                 switch code {
-                case "image":
-                    break
-                    //resGoods[i].image = value.getValue()! as! Data
+                case "image_data":
+                    resGoods[i].image = value.getValue()! as! String
                 case "name":
                     resGoods[i].name = value.getValue()! as! String
                 case "price":
@@ -116,7 +115,7 @@ func addRecord(addedGoods: GoodsInfo){
     var addData: Dictionary = [String:AnyObject]()
     
     var imageField = FieldValue()
-    imageField.setType(FieldType.SINGLE_LINE_TEXT)
+    imageField.setType(FieldType.MULTI_LINE_TEXT)
     imageField.setValue(addedGoods.image)
     addData["image_data"] = imageField // データの型を後で考えよう
     
@@ -136,9 +135,9 @@ func addRecord(addedGoods: GoodsInfo){
     addData["price"] = priceField
     
     var timeField = FieldValue()
-    priceField.setType(FieldType.NUMBER)
-    priceField.setValue(addedGoods.time)
-    addData["see_time"] = priceField
+    timeField.setType(FieldType.NUMBER)
+    timeField.setValue(addedGoods.time)
+    addData["see_time"] = timeField
     
     var placeField = FieldValue()
     placeField.setType(FieldType.SINGLE_LINE_TEXT)
