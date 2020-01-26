@@ -62,20 +62,17 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = goodsCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) // 表示するセルを登録(先にStoryboad内でidentifierを指定しておく)
+        
+        // cellの中にあるcollectionImageに画像を代入する
         if let collectionImage = cell.contentView.viewWithTag(1) as? UIImageView {
-            // cellの中にあるcollectionImageに画像を代入する
-            if let decodedData = Data(base64Encoded: filterGoodsInfo[indexPath.row].image , options: Data.Base64DecodingOptions.ignoreUnknownCharacters){ // based64の文字列をdata型に変換してそれがnilではない時、つまり写真データがある時
-                let decodedImage = UIImage(data: decodedData as Data) // dataをUIImageに変換
-                collectionImage.image = decodedImage // 写真を表示
-            }
-            else{ // 写真データがない、もしくは変換できない時
-                collectionImage.image = UIImage(named: "noImage") // noImageと表示
-            }
+            collectionImage.image = PicDataToUIImage(picData: filterGoodsInfo[indexPath.row].image)
         }
+        
+        // cellの中にあるLabelに商品名を代入する
         if let nameLabel = cell.contentView.viewWithTag(2) as? UILabel {
-            // cellの中にあるLabelに商品名を代入する
             nameLabel.text = filterGoodsInfo[indexPath.row].name
         }
+        
         // cell.backgroundColor = .red  // セルの色をなんとなく赤に
         return cell
     }

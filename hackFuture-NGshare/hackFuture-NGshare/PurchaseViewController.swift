@@ -16,35 +16,21 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         
         //タイトル変更
         navigationItem.title = "購入画面"
-        self.contentView.backgroundColor = UIColor(red: 255/255, green: 229/255, blue: 204/255, alpha: 1.0)
-        self.line1.layer.borderWidth = 2.0    // 枠線の幅
-        self.line1.layer.borderColor = UIColor.gray.cgColor
-        self.line2.layer.borderWidth = 2.0    // 枠線の幅
-        self.line2.layer.borderColor = UIColor.gray.cgColor
-        self.line3.layer.borderWidth = 2.0    // 枠線の幅
-        self.line3.layer.borderColor = UIColor.gray.cgColor
-        self.line4.layer.borderWidth = 2.0    // 枠線の幅
-        self.line4.layer.borderColor = UIColor.gray.cgColor
-        self.line5.layer.borderWidth = 2.0    // 枠線の幅
-        self.line5.layer.borderColor = UIColor.gray.cgColor
-        self.line6.layer.borderWidth = 2.0    // 枠線の幅
-        self.line6.layer.borderColor = UIColor.gray.cgColor
-        self.line7.layer.borderWidth = 2.0    // 枠線の幅
-        self.line7.layer.borderColor = UIColor.gray.cgColor
-        self.line8.layer.borderWidth = 2.0    // 枠線の幅
-        self.line8.layer.borderColor = UIColor.gray.cgColor
         
-        // 受けったデータをラベルに書き込む
+        // レイアウト
+        self.contentView.backgroundColor = UIColor(red: 255/255, green: 229/255, blue: 204/255, alpha: 1.0) // 背景色
+        writeBorder(layer: self.line1.layer) // 灰色の線を描画
+        writeBorder(layer: self.line2.layer) // 灰色の線を描画
+        writeBorder(layer: self.line3.layer) // 灰色の線を描画
+        writeBorder(layer: self.line4.layer) // 灰色の線を描画
+        writeBorder(layer: self.line5.layer) // 灰色の線を描画
+        writeBorder(layer: self.line6.layer) // 灰色の線を描画
+        writeBorder(layer: self.line7.layer) // 灰色の線を描画
+        writeBorder(layer: self.line8.layer) // 灰色の線を描画
         
-        // 写真を表示
-        if let decodedData = Data(base64Encoded: recieveGoodsInfo!.image , options: Data.Base64DecodingOptions.ignoreUnknownCharacters){ // based64の文字列をdata型に変換してそれがnilではない時、つまり写真データがある時
-            let decodedImage = UIImage(data: decodedData as Data) // dataをUIImageに変換
-            goodsImage.image = decodedImage // 写真を表示
-        }
-        else{ // 写真データがない、もしくは変換できない時
-            goodsImage.image = UIImage(named: "noImage") // noImageと表示
-        }
         
+        
+        goodsImage.image = PicDataToUIImage(picData: recieveGoodsInfo!.image) // 写真を表示
         goodsNameText.text = recieveGoodsInfo?.name // 商品名を表示
         goodsConditionText.text = recieveGoodsInfo?.condition // 商品状態を表示
         goodsPriceText.text = String(recieveGoodsInfo!.price) // 商品価格を表示
@@ -94,5 +80,11 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         alert.addAction(okAction)
         //アラート画面を表示させる
         present(alert, animated: true, completion: nil)
+    }
+    
+    // 枠線を描く
+    func writeBorder(layer:CALayer){
+        layer.borderWidth = 2.0    // 枠線の幅
+        layer.borderColor = UIColor.gray.cgColor // 枠線の色
     }
 }
