@@ -35,15 +35,23 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         self.line8.layer.borderColor = UIColor.gray.cgColor
         
         // 受けったデータをラベルに書き込む
-        //print("recieveGoodsInfo:\(recieveGoodsInfo?.feature)")
-        //goodsImage = recieveGoodsInfo?.image
-        goodsNameText.text = recieveGoodsInfo?.name
-        goodsConditionText.text = recieveGoodsInfo?.condition
-        goodsPriceText.text = String(recieveGoodsInfo!.price)
+        
+        // 写真を表示
+        if let decodedData = Data(base64Encoded: recieveGoodsInfo!.image , options: Data.Base64DecodingOptions.ignoreUnknownCharacters){ // based64の文字列をdata型に変換してそれがnilではない時、つまり写真データがある時
+            let decodedImage = UIImage(data: decodedData as Data) // dataをUIImageに変換
+            goodsImage.image = decodedImage // 写真を表示
+        }
+        else{ // 写真データがない、もしくは変換できない時
+            goodsImage.image = UIImage(named: "noImage") // noImageと表示
+        }
+        
+        goodsNameText.text = recieveGoodsInfo?.name // 商品名を表示
+        goodsConditionText.text = recieveGoodsInfo?.condition // 商品状態を表示
+        goodsPriceText.text = String(recieveGoodsInfo!.price) // 商品価格を表示
         //goodsPlaceText.text = recieveGoodsInfo?.place
-        goodsTimeText.text = recieveGoodsInfo?.time
+        goodsTimeText.text = recieveGoodsInfo?.time // 取引時間を表示
         //featureText.text = recieveGoodsInfo?.feature
-        goodsCommentText.text = recieveGoodsInfo?.comment
+        goodsCommentText.text = recieveGoodsInfo?.comment // 商品のコメントを表示
     }
     
     // 送られてくるデータ
