@@ -27,7 +27,7 @@ struct GoodsInfo : Codable{
 // イニシャライザ
 extension GoodsInfo{
     init(){
-        image = "nill"
+        image = "noImage"
         name = "noName"
         condition = "noCondition"
         price = "-1"

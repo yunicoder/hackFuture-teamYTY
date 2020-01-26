@@ -98,7 +98,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YWM-q8-g1s">
-                                <rect key="frame" x="0.0" y="120" width="375" height="527"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="591"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="E6k-Ij-aSU">
                                     <size key="itemSize" width="100" height="100"/>
@@ -151,7 +151,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YWM-q8-g1s" secondAttribute="trailing" id="Hyb-Hb-EoU"/>
                             <constraint firstItem="YWM-q8-g1s" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Jf5-ij-New"/>
                             <constraint firstItem="hLB-38-Jit" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="PRE-F4-SYZ"/>
-                            <constraint firstItem="YWM-q8-g1s" firstAttribute="top" secondItem="hLB-38-Jit" secondAttribute="bottom" constant="64" id="beR-vG-zby"/>
+                            <constraint firstItem="YWM-q8-g1s" firstAttribute="top" secondItem="hLB-38-Jit" secondAttribute="bottom" id="beR-vG-zby"/>
                             <constraint firstItem="hLB-38-Jit" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mKj-HF-zbq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -872,6 +872,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="V3J-Sg-tQm"/>
         <segue reference="r8T-df-9wf"/>
     </inferredMetricsTieBreakers>
 </document>
