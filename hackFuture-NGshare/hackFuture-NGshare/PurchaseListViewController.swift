@@ -16,6 +16,7 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     
     //var goodsInfo = [GoodsInfo]() // 全部のデータ
     var filterGoodsInfo = [GoodsInfo]() //フィルター後のデータ(基本こっち)
+    var searchGoodsInfo = [GoodsInfo]()
     
     
     override func viewDidLoad() {
@@ -56,6 +57,30 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         
         return true
     }
+    /*
+    //検索ボタン押下時の呼び出しメソッド
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        nameSearch.endEditing(true)
+        
+        //検索結果配列を空にする。
+        searchGoodsInfo.removeAll()
+        
+        if(nameSearch.text == "") {
+            //検索文字列が空の場合はすべてを表示する。
+            searchGoodsInfo = filterGoodsInfo
+        } else {
+            //検索文字列を含むデータを検索結果配列に追加する。
+            for data in filterGoodsInfo {
+                if data.containsString(testSearchBar.text!) {
+                    searchResult.append(data)
+                }
+            }
+        }
+        
+        //テーブルを再読み込みする。
+        goodsCollectionView.reloadData()
+    }
+ */
     
     /*---collectionViewの委譲設定 開始---*/
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
