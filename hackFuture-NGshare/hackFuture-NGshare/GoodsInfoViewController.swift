@@ -68,7 +68,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         featureTextField.text = ""
         featureTextField.placeholder = "(例)黄色パーカー"
         
-        if let data = UserDefaults.standard.data(forKey: "takenImage"){
+        if let data = UserDefaults.standard.data(forKey: imageKeyTmp!){
             goodsImage.image = UIImage(data: data)
         }
     }

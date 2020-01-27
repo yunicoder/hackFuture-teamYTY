@@ -858,12 +858,25 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sHL-Nt-ZZ1"/>
                     </view>
-                    <navigationItem key="navigationItem" id="DTR-Ny-x8e"/>
+                    <navigationItem key="navigationItem" id="DTR-Ny-x8e">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="wlf-le-UcY">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="90A-RN-rBc">
+                                <rect key="frame" x="236" y="7" width="123" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="カメラロールから選択"/>
+                                <connections>
+                                    <action selector="cameraRollButtonTapped:" destination="W1a-UK-53B" eventType="touchUpInside" id="OeG-m7-63V"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cameraTypeButton" destination="WmK-5L-QVp" id="EJq-cT-kon"/>
                         <outlet property="previewView" destination="Gzy-9A-q5j" id="CtW-EN-Fi1"/>
                         <outlet property="shutterButton" destination="RaN-3j-516" id="gMq-VZ-qhm"/>
-                        <segue destination="e2Z-hO-1BP" kind="show" identifier="toGoodsInfo" id="IRs-YC-MZe"/>
+                        <segue destination="e2Z-hO-1BP" kind="show" identifier="toGoodsInfoFromCamera" id="IRs-YC-MZe"/>
+                        <segue destination="e2Z-hO-1BP" kind="show" identifier="toGoodsInfoFromCameraRoll" id="n1t-dN-3Rq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XgW-cZ-mSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -872,6 +885,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="n1t-dN-3Rq"/>
         <segue reference="0LP-b7-Hv5"/>
     </inferredMetricsTieBreakers>
 </document>
