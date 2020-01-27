@@ -27,7 +27,7 @@ struct GoodsInfo : Codable{
 // イニシャライザ
 extension GoodsInfo{
     init(){
-        image = "nill"
+        image = "noImage"
         name = "noName"
         condition = "noCondition"
         price = "-1"
@@ -56,3 +56,18 @@ func getImageByUrl(url: String) -> UIImage{
     return UIImage()
 }
 
+// 写真データをbase64からUIImageに変換
+func PicDataToUIImage(picData: String) -> UIImage{
+    var res = UIImage()
+    if let decodedData = Data(base64Encoded: picData , options: Data.Base64DecodingOptions.ignoreUnknownCharacters){ // based64の文字列をdata型に変換してそれがnilではない時、つまり写真データがある時
+        res = UIImage(data: decodedData as Data)! // dataをUIImageに変換
+    }
+    else{ // 画像データがない時
+        res = UIImage(named: "noImage")!
+    }
+    return res
+}
+
+
+ 
+ 

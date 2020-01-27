@@ -16,34 +16,28 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         
         //タイトル変更
         navigationItem.title = "購入画面"
-        self.contentView.backgroundColor = UIColor(red: 255/255, green: 229/255, blue: 204/255, alpha: 1.0)
-        self.line1.layer.borderWidth = 2.0    // 枠線の幅
-        self.line1.layer.borderColor = UIColor.gray.cgColor
-        self.line2.layer.borderWidth = 2.0    // 枠線の幅
-        self.line2.layer.borderColor = UIColor.gray.cgColor
-        self.line3.layer.borderWidth = 2.0    // 枠線の幅
-        self.line3.layer.borderColor = UIColor.gray.cgColor
-        self.line4.layer.borderWidth = 2.0    // 枠線の幅
-        self.line4.layer.borderColor = UIColor.gray.cgColor
-        self.line5.layer.borderWidth = 2.0    // 枠線の幅
-        self.line5.layer.borderColor = UIColor.gray.cgColor
-        self.line6.layer.borderWidth = 2.0    // 枠線の幅
-        self.line6.layer.borderColor = UIColor.gray.cgColor
-        self.line7.layer.borderWidth = 2.0    // 枠線の幅
-        self.line7.layer.borderColor = UIColor.gray.cgColor
-        self.line8.layer.borderWidth = 2.0    // 枠線の幅
-        self.line8.layer.borderColor = UIColor.gray.cgColor
         
-        // 受けったデータをラベルに書き込む
-        //print("recieveGoodsInfo:\(recieveGoodsInfo?.feature)")
-        //goodsImage = recieveGoodsInfo?.image
-        goodsNameText.text = recieveGoodsInfo?.name
-        goodsConditionText.text = recieveGoodsInfo?.condition
-        goodsPriceText.text = String(recieveGoodsInfo!.price)
+        // レイアウト
+        self.contentView.backgroundColor = UIColor(red: 255/255, green: 229/255, blue: 204/255, alpha: 1.0) // 背景色
+        writeBorder(layer: self.line1.layer) // 灰色の線を描画
+        writeBorder(layer: self.line2.layer) // 灰色の線を描画
+        writeBorder(layer: self.line3.layer) // 灰色の線を描画
+        writeBorder(layer: self.line4.layer) // 灰色の線を描画
+        writeBorder(layer: self.line5.layer) // 灰色の線を描画
+        writeBorder(layer: self.line6.layer) // 灰色の線を描画
+        writeBorder(layer: self.line7.layer) // 灰色の線を描画
+        writeBorder(layer: self.line8.layer) // 灰色の線を描画
+        
+        
+        
+        goodsImage.image = PicDataToUIImage(picData: recieveGoodsInfo!.image) // 写真を表示
+        goodsNameText.text = recieveGoodsInfo?.name // 商品名を表示
+        goodsConditionText.text = recieveGoodsInfo?.condition // 商品状態を表示
+        goodsPriceText.text = String(recieveGoodsInfo!.price) // 商品価格を表示
         //goodsPlaceText.text = recieveGoodsInfo?.place
-        goodsTimeText.text = recieveGoodsInfo?.time
+        goodsTimeText.text = recieveGoodsInfo?.time // 取引時間を表示
         //featureText.text = recieveGoodsInfo?.feature
-        goodsCommentText.text = recieveGoodsInfo?.comment
+        goodsCommentText.text = recieveGoodsInfo?.comment // 商品のコメントを表示
     }
     
     // 送られてくるデータ
@@ -86,5 +80,11 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         alert.addAction(okAction)
         //アラート画面を表示させる
         present(alert, animated: true, completion: nil)
+    }
+    
+    // 枠線を描く
+    func writeBorder(layer:CALayer){
+        layer.borderWidth = 2.0    // 枠線の幅
+        layer.borderColor = UIColor.gray.cgColor // 枠線の色
     }
 }
