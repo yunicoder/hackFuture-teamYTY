@@ -40,7 +40,7 @@
 		877C30F3724F48FB1698126D /* Pods_hackFuture_NGshare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hackFuture_NGshare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1235C0423A4E1F00028902F /* ExtentionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtentionViewController.swift; sourceTree = "<group>"; };
 		F1674E2523A5BF8E00A90FB1 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		F1674E2723A5BFC200A90FB1 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		F1674E2723A5BFC200A90FB1 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F1674E3523B0C05700A90FB1 /* DataMgr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMgr.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -403,13 +403,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = F6TJ83N5PZ;
+				DEVELOPMENT_TEAM = N2R3GU4933;
 				INFOPLIST_FILE = "hackFuture-NGshare/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.saitama-u.t.yabe.240.hackFuture-NGshare";
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.saitama-u.y.terasawa.hackFuture-NGshare";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

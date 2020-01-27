@@ -8,19 +8,22 @@
 
 import UIKit
 
-class PurchaseListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
+class PurchaseListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UISearchBarDelegate  {
     @IBOutlet weak var nameSearch: UISearchBar!
     @IBOutlet weak var goodsCollectionView: UICollectionView! // 商品のコレクションビュー
     
     @IBOutlet weak var goodsImage: UIImageView!
     
-    //var goodsInfo = [GoodsInfo]() // 全部のデータ
+    var goodsInfo = [GoodsInfo]() // 全部のデータ
     var filterGoodsInfo = [GoodsInfo]() //フィルター後のデータ(基本こっち)
     var searchGoodsInfo = [GoodsInfo]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nameSearch.delegate = self
+        nameSearch.placeholder = "商品名の検索"
+        nameSearch.showsCancelButton = true
         navigationItem.title = "出品リスト"
         self.navigationItem.hidesBackButton = true //戻るボタンを消す
         
@@ -31,8 +34,9 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         
         // kintoneからデータを取得する
         multiGetRecords(completionClosure: { (result:[GoodsInfo]) in
-            self.filterGoodsInfo = result
+            self.goodsInfo = result
             // print("\(self.filterGoodsInfo):filterGoodsInfoFromLoad")
+            self.filterGoodsInfo = self.goodsInfo
             self.goodsCollectionView.reloadData()
         })
     }
@@ -49,14 +53,26 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     
     //リターンキーが押された時
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("\(#function)")
         nameSearch.resignFirstResponder() //改行
         let searchname = nameSearch.text! // 検索された名前
         
         return true
     }
-    /*
+    
+    //キャンセルボタン押下時の呼び出しメソッド
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("\(#function)")
+        // キャンセルされた場合、検索は行わない。
+        searchBar.text = ""
+        self.view.endEditing(true)
+        filterGoodsInfo = goodsInfo
+        goodsCollectionView.reloadData() // データをリロードする
+    }
+    
     //検索ボタン押下時の呼び出しメソッド
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("\(#function)")
         nameSearch.endEditing(true)
         
         //検索結果配列を空にする。
@@ -67,17 +83,18 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
             searchGoodsInfo = filterGoodsInfo
         } else {
             //検索文字列を含むデータを検索結果配列に追加する。
-            for data in filterGoodsInfo {
-                if data.containsString(testSearchBar.text!) {
-                    searchResult.append(data)
+            for (i,_) in filterGoodsInfo.enumerated() {
+                if (filterGoodsInfo[i].name.contains(nameSearch.text!)){
+                    searchGoodsInfo.append(filterGoodsInfo[i])
                 }
             }
         }
         
         //テーブルを再読み込みする。
+        filterGoodsInfo = searchGoodsInfo
         goodsCollectionView.reloadData()
     }
- */
+ 
     
     /*---collectionViewの委譲設定 開始---*/
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
