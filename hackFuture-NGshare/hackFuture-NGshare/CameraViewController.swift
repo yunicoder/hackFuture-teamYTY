@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 
-class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,AVCapturePhotoCaptureDelegate {
 
     // Outlet接続
     @IBOutlet weak var previewView: UIView! //カメラのビュー

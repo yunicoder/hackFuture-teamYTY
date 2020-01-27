@@ -87,4 +87,13 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         layer.borderWidth = 2.0    // 枠線の幅
         layer.borderColor = UIColor.gray.cgColor // 枠線の色
     }
+    
+    // セグエによる画面遷移
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if(segue.identifier == "ToChatView"){
+            let nextController = segue.destination as! ChatViewController
+            nextController.recieveGoodsInfo = recieveGoodsInfo // 商品情報をchatに送る
+        }
+        
+    }
 }

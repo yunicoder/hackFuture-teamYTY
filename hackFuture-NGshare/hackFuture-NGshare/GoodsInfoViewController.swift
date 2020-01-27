@@ -73,17 +73,16 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    /*
-    //セグエによる画面遷移が行われる直前
+    
+    // セグエによる画面遷移
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        let controller = segue.destination as! ChatViewController
-        
-        controller.timeText.text = goodsTimeTextField.text!
-        controller.placeText.text = goodsCommentTextField.text! + "に来てください。"
-        
+        if(segue.identifier == "toGoodsInfoFromCamera"){
+            let nextController = segue.destination as! ChatViewController
+            nextController.recieveGoodsInfo = registerGoods
+        }
         
     }
- */
+ 
     
     
     /* アクション */
