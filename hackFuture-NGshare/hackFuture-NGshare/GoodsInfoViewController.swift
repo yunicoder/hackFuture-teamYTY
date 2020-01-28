@@ -76,9 +76,9 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     
     // セグエによる画面遷移
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if(segue.identifier == "toGoodsInfoFromCamera"){
+        if(segue.identifier == "toChat"){ // 出品後のchatへの遷移
             let nextController = segue.destination as! ChatViewController
-            nextController.recieveGoodsInfo = registerGoods
+            nextController.recieveGoodsInfo = registerGoods // 登録した商品情報を送る
         }
         
     }
