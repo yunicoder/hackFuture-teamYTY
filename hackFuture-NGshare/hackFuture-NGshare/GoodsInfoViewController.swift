@@ -32,6 +32,8 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var goodsCommentTextField: UITextField!
     @IBOutlet weak var goodsTimeTextField: UITextField!
     @IBOutlet weak var featureTextField: UITextField!
+    @IBOutlet weak var selectConditionButton: UIButton!
+    
     
     
     /* ライフサイクル */

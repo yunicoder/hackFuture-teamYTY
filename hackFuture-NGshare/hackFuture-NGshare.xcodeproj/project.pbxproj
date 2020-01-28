@@ -11,6 +11,7 @@
 		0D15DA6D23A4D17500C0A5E9 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D15DA6C23A4D17500C0A5E9 /* CameraViewController.swift */; };
 		0D15DA6F23A4D1AC00C0A5E9 /* GoodsInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D15DA6E23A4D1AC00C0A5E9 /* GoodsInfoViewController.swift */; };
 		0D15DA7123A4D23700C0A5E9 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D15DA7023A4D23700C0A5E9 /* ChatViewController.swift */; };
+		0D233C4F23DE82FB00F12420 /* ConditionSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D233C4E23DE82FB00F12420 /* ConditionSelectViewController.swift */; };
 		0DD0ACE623A4CC22003D31D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD0ACE523A4CC22003D31D2 /* AppDelegate.swift */; };
 		0DD0ACE823A4CC22003D31D2 /* PurchaseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD0ACE723A4CC22003D31D2 /* PurchaseListViewController.swift */; };
 		0DD0ACEB23A4CC22003D31D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DD0ACE923A4CC22003D31D2 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 		0D15DA6C23A4D17500C0A5E9 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		0D15DA6E23A4D1AC00C0A5E9 /* GoodsInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsInfoViewController.swift; sourceTree = "<group>"; };
 		0D15DA7023A4D23700C0A5E9 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		0D233C4E23DE82FB00F12420 /* ConditionSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionSelectViewController.swift; sourceTree = "<group>"; };
 		0DD0ACE223A4CC22003D31D2 /* hackFuture-NGshare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hackFuture-NGshare.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DD0ACE523A4CC22003D31D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0DD0ACE723A4CC22003D31D2 /* PurchaseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseListViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				0D15DA6C23A4D17500C0A5E9 /* CameraViewController.swift */,
 				F1235C0423A4E1F00028902F /* ExtentionViewController.swift */,
 				0DD0ACE923A4CC22003D31D2 /* Main.storyboard */,
+				0D233C4E23DE82FB00F12420 /* ConditionSelectViewController.swift */,
 				0DD0ACEC23A4CC23003D31D2 /* Assets.xcassets */,
 				0DD0ACEE23A4CC23003D31D2 /* LaunchScreen.storyboard */,
 				0DD0ACF123A4CC23003D31D2 /* Info.plist */,
@@ -228,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D233C4F23DE82FB00F12420 /* ConditionSelectViewController.swift in Sources */,
 				0DD0ACE823A4CC22003D31D2 /* PurchaseListViewController.swift in Sources */,
 				F1674E3623B0C05700A90FB1 /* DataMgr.swift in Sources */,
 				0D15DA6D23A4D17500C0A5E9 /* CameraViewController.swift in Sources */,
