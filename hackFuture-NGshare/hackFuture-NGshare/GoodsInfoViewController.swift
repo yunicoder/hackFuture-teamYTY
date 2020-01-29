@@ -22,6 +22,16 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
     
     var backBarButtonItem: UIBarButtonItem!     // 一覧画面に戻るボタン
     
+    //時間選択するやつ
+    var datePicker: UIDatePicker = {
+        let dp = UIDatePicker()
+        dp.datePickerMode = UIDatePicker.Mode.dateAndTime
+        dp.timeZone = NSTimeZone.local
+        dp.locale = Locale.current
+        dp.addTarget(self, action: #selector(dateChange), for: .valueChanged)
+        return dp
+    }()
+    
     //デコーダとエンコーダ
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
@@ -33,12 +43,12 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
     @IBOutlet weak var selectedConditionLabel: UILabel!
     @IBOutlet weak var goodsPriceTextField: UITextField!
     @IBOutlet weak var goodsPlaceTextField: UITextField!
-    @IBOutlet weak var goodsTimeTextField: UITextField!
     @IBOutlet weak var featureTextField: UITextField!
     @IBOutlet weak var selectConditionButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var goodsCommentTextField: UITextView!
+    @IBOutlet weak var goodsTimeTextField: UITextField!
+    
     
     /* ライフサイクル */
     override func viewDidLoad() {
@@ -60,8 +70,8 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
         self.goodsNameTextField.delegate = self
         self.goodsPriceTextField.delegate = self
         self.goodsPlaceTextField.delegate = self
-        self.goodsCommentTextField.delegate = self
         self.goodsTimeTextField.delegate = self
+        self.goodsCommentTextField.delegate = self
         self.featureTextField.delegate = self
         
         //値段の入力時のキーボードに完了ボタンを追加
@@ -76,6 +86,9 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
         goodsPriceTextField.keyboardType = UIKeyboardType.numberPad
         goodsPriceTextField.delegate = self
         
+        //時間はドラムロール
+        goodsTimeTextField.inputView = datePicker
+        
         //文字列の初期化
         goodsNameTextField.text = ""
         goodsNameTextField.placeholder = "(例)モバイルバッテリー"
@@ -85,8 +98,6 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
         goodsPlaceTextField.text = ""
         goodsPlaceTextField.placeholder = "(例)3F◯◯の前"
         goodsCommentTextField.text = ""
-        goodsTimeTextField.text = ""
-        goodsTimeTextField.placeholder = "(例)15時"
         featureTextField.text = ""
         featureTextField.placeholder = "(例)黄色パーカー"
         
@@ -112,7 +123,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
                 goodsPlaceTextField.text = self.registerGoods.place
             }
             if(registerGoods.time != "" && registerGoods.time != "noTime"){
-                goodsTimeTextField.text = self.registerGoods.time
+                //goodsTimeTextField.text = self.registerGoods.time
             }
             if(registerGoods.feature != "" && registerGoods.feature != "noFeature"){
                 featureTextField.text = self.registerGoods.feature
@@ -140,6 +151,19 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
             controller.goodsTmp.feature = self.registerGoods.feature
             controller.goodsTmp.comment = self.registerGoods.comment
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+
+        super.viewWillAppear(animated)
+        self.configureObserver()
+
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+
+        super.viewWillDisappear(animated)
+        self.removeObserver() // Notificationを画面が消えるときに削除
     }
 
     
@@ -256,6 +280,57 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
     // "購入画面"ボタンが押された時の処理
     @objc func backBarButtonTapped(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "toPurchaseListView", sender: nil)
+    }
+    
+    // Notificationを設定
+    func configureObserver() {
+
+        let notification = NotificationCenter.default
+     notification.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+     notification.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    // Notificationを削除
+    func removeObserver() {
+
+        let notification = NotificationCenter.default
+        notification.removeObserver(self)
+    }
+
+    // キーボードが現れた時に、画面全体をずらす。
+     @objc func keyboardWillShow(notification: Notification?) {
+
+     let rect = (notification?.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+     let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+        UIView.animate(withDuration: duration!, animations: { () in
+            let transform = CGAffineTransform(translationX: 0, y: -(rect?.size.height)!)
+            self.view.transform = transform
+
+        })
+    }
+
+    // キーボードが消えたときに、画面を戻す
+     
+     @objc func keyboardWillHide(notification: Notification?) {
+
+     let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Double
+        UIView.animate(withDuration: duration!, animations: { () in
+
+            self.view.transform = CGAffineTransform.identity
+        })
+    }
+    
+    @objc func dateChange(){
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh:mm"
+        goodsTimeTextField.text = "\(formatter.string(from: datePicker.date))"
+    }
+    
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        // キーボード入力や、カット/ペースによる変更を防ぐ
+        return false
     }
 }
 
