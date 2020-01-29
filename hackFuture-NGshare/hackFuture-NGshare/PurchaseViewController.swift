@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class PurchaseViewController: UIViewController, UITextFieldDelegate {
     /* ライフサイクル */
     override func viewDidLoad() {
@@ -65,6 +64,8 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var line7: UIView!
     @IBOutlet weak var line8: UIView!
     
+    //flag
+    var delfalg = 0
     
     /* アクション */
     //購入ボタンを押したとき
@@ -75,8 +76,17 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
                 print("キャンセル")
         }
         let okAction: UIAlertAction = UIAlertAction(title: "購入", style: .destructive) { (UIAlertAction) in
-                self.performSegue(withIdentifier: "ToChatView", sender: nil)
+            //del(delGoodsInfo: self.recieveGoodsInfo!)
+            del(delGoodsInfo: self.recieveGoodsInfo!, completionClosureInt: { (result:Int) in
+                if(result == 0){
+                    self.performSegue(withIdentifier: "ToChatView", sender: nil)
+                }else{
+                    self.navigationController?.popToRootViewController(animated: true)
+    
+                }
+            })
         }
+
         //アラートに設定を反映させる
         alert.addAction(canselAction)
         alert.addAction(okAction)
@@ -84,22 +94,6 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         present(alert, animated: true, completion: nil)
     }
     
-    //テキストビューが変更された
-    func textViewDidChange(textView: UITextView) {
-        print("textViewDidChange : \(textView.text)");
-    }
-    
-    // テキストビューにフォーカスが移った
-    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
-        print("textViewShouldBeginEditing : \(textView.text)");
-        return true
-    }
-    
-    // テキストビューからフォーカスが失われた
-    func textViewShouldEndEditing(textView: UITextView) -> Bool {
-        print("textViewShouldEndEditing : \(textView.text)");
-        return true
-    }
     
     // 枠線を描く
     func writeBorder(layer:CALayer){

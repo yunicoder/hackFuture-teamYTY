@@ -20,7 +20,7 @@ let connection = Connection(domain, kintoneAuth)
 
   // Init Record Module
 let recordManagement = Record(connection)
-let query = "レコード番号 >= 3 order by レコード番号 asc"
+let query = "ID >= 3 order by ID asc"
 
 let apitoken = "bGIfUIxeHvnblXzhaVtE2LF8zhSJQoVlY6wWWUKV"
 //let apitoken = "qfeTYjpsATHjIjnKOiPp3T8xsAKfthKEsAX0LhkI"
@@ -90,6 +90,8 @@ func multiGetRecords(completionClosure:@escaping (_ result:[GoodsInfo]) -> Void)
                     resGoods[i].feature = value.getValue()! as! String
                 case "condition":
                     resGoods[i].condition = value.getValue()! as! String
+                case "ID":
+                    resGoods[i].ID = Int(value.getValue()! as! String)!
                 default:
                     //resGoods[i].comment = "error"
                     break
@@ -172,3 +174,25 @@ func addRecord(addedGoods: GoodsInfo){
       
 }
 
+typealias CompletionClosureInt = ((_ result:Int) -> Void)
+
+func del(delGoodsInfo:GoodsInfo ,completionClosureInt:@escaping (_ result:Int) -> Void){
+    var flag = 0
+    print("Call delRecord")
+    var delList = [Int]()
+    delList.append(delGoodsInfo.ID)
+    kintoneAuth.setApiToken(apitoken)
+    recordManagement.deleteRecords(appID, delList).then{
+        print("Complete")
+        completionClosureInt(flag)
+    }.catch{ error in
+            if error is KintoneAPIException {
+                print((error as! KintoneAPIException).toString()!)
+            }
+            else {
+                print((error as! Error).localizedDescription)
+            }
+        flag = 1
+        completionClosureInt(flag)
+    }
+}
