@@ -17,10 +17,41 @@ class ConditionSelectViewController: UIViewController, UITableViewDataSource, UI
     
     /* プロパティ */
     //入力途中のデータを入れる
-    var goodsTmp : GoodsInfo?
+    var goodsTmp = GoodsInfo.init()
     
     //表示する状態の配列
-    var conditions : [String] = ["AA (新品・未使用)","A    (未使用に近い)","AB (目立った傷や汚れなし)","B    (やや傷や汚れあり)","C    (傷や汚れあり)","D    (全体的に状態が悪い)"]
+    var conditions : [String] = ["AA (新品・未使用)","A    (未使用に近い・開封したが未使用)","AB (目立った傷や汚れなし・少量使用済み)","B    (やや傷や汚れあり・3分の1ほど使用済み)","C    (傷や汚れあり・半分ほど使用済み)","D    (全体的に状態が悪い・残りが3分の1以下)"]
+    
+    
+    /* ライフサイクル */
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        tableView.dataSource = self
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //セルがタップされたら
+        if(segue.identifier == "toGoodsInfoView"){
+            //どのセルをタップしたかを調べる
+            //indexPathForSelectedRowは最後に選択したセルのIndexPathインスタンスを提供する
+            if let selectedRow = tableView.indexPathForSelectedRow {
+                //destinationは遷移先のビューコントローラーのインスタンスを提供。型はUIViewControllerクラスになっているので、ダウンキャストしている。
+                let controller = segue.destination as! GoodsInfoViewController
+                
+                //入力途中のデータと選んだ状態を入れる
+                controller.registerGoods.name = self.goodsTmp.name
+                controller.registerGoods.condition = self.conditions[selectedRow.row]
+                    controller.registerGoods.price =  self.goodsTmp.price
+                controller.registerGoods.place = self.goodsTmp.place
+                controller.registerGoods.time = self.goodsTmp.time
+                controller.registerGoods.feature = self.goodsTmp.feature
+                controller.registerGoods.comment = self.goodsTmp.comment
+                
+                controller.retentionFlag = 1
+            }
+        }
+    }
     
     
     /* メソッド */
@@ -34,13 +65,5 @@ class ConditionSelectViewController: UIViewController, UITableViewDataSource, UI
         cell.textLabel?.text = condition
         
         return cell
-    }
-    
-    
-    /* ライフサイクル */
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        tableView.dataSource = self
     }
 }

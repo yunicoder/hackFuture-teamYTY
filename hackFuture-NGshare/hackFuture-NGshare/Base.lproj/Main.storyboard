@@ -241,11 +241,6 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NN0-4w-93N" userLabel="goodsConditionView">
                                                 <rect key="frame" x="0.0" y="300" width="375" height="100"/>
                                                 <subviews>
-                                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" restorationIdentifier="2" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y3V-AZ-r6O">
-                                                        <rect key="frame" x="10" y="55.5" width="355" height="34"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                                    </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="※必須" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puc-bG-62J">
                                                         <rect key="frame" x="69.5" y="25" width="45" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -259,23 +254,27 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QA2-ZF-c1d">
-                                                        <rect key="frame" x="128" y="20" width="77" height="30"/>
+                                                        <rect key="frame" x="16" y="62" width="77" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" title="状態の選択"/>
                                                         <connections>
-                                                            <segue destination="BEa-3c-jjI" kind="show" id="aFr-QQ-mXl"/>
+                                                            <segue destination="BEa-3c-jjI" kind="show" identifier="toConSelectView" id="aFr-QQ-mXl"/>
                                                         </connections>
                                                     </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="選択した状態" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2DK-Gw-ABD">
+                                                        <rect key="frame" x="156" y="67" width="104" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="y3V-AZ-r6O" firstAttribute="leading" secondItem="NN0-4w-93N" secondAttribute="leading" constant="10" id="1H5-we-MCW"/>
                                                     <constraint firstItem="puc-bG-62J" firstAttribute="leading" secondItem="o6I-Q2-Scy" secondAttribute="trailing" id="3bg-62-2e9"/>
                                                     <constraint firstAttribute="height" constant="100" id="8JM-Dc-A7n"/>
                                                     <constraint firstItem="o6I-Q2-Scy" firstAttribute="leading" secondItem="NN0-4w-93N" secondAttribute="leading" id="GU2-vm-hfW"/>
-                                                    <constraint firstItem="y3V-AZ-r6O" firstAttribute="top" secondItem="o6I-Q2-Scy" secondAttribute="bottom" constant="10" id="KeV-Q2-bT5"/>
                                                     <constraint firstItem="puc-bG-62J" firstAttribute="top" secondItem="NN0-4w-93N" secondAttribute="top" constant="25" id="Vha-er-OZU"/>
-                                                    <constraint firstAttribute="trailing" secondItem="y3V-AZ-r6O" secondAttribute="trailing" constant="10" id="co1-XE-qGb"/>
                                                     <constraint firstItem="o6I-Q2-Scy" firstAttribute="top" secondItem="NN0-4w-93N" secondAttribute="top" constant="25" id="hFC-Lb-UEI"/>
                                                 </constraints>
                                             </view>
@@ -495,13 +494,13 @@
                     <connections>
                         <outlet property="featureTextField" destination="Qzb-Q4-UHh" id="tj0-bT-HD6"/>
                         <outlet property="goodsCommentTextField" destination="npw-QN-27j" id="p9f-nI-Iik"/>
-                        <outlet property="goodsConditionTextField" destination="y3V-AZ-r6O" id="KNK-c5-QGr"/>
                         <outlet property="goodsImage" destination="D3K-R5-N9C" id="e21-rB-8bx"/>
                         <outlet property="goodsNameTextField" destination="LcO-xz-ot5" id="ECl-iq-ekU"/>
                         <outlet property="goodsPlaceTextField" destination="6TK-4G-lNH" id="Gwn-QV-9z1"/>
                         <outlet property="goodsPriceTextField" destination="1Yx-MW-WGn" id="E5Q-FZ-iTB"/>
                         <outlet property="goodsTimeTextField" destination="2Yw-cL-lLs" id="l9F-dZ-2Iw"/>
                         <outlet property="selectConditionButton" destination="QA2-ZF-c1d" id="z8W-PW-xZ2"/>
+                        <outlet property="selectedConditionLabel" destination="2DK-Gw-ABD" id="AzD-8C-6PL"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="ToPurchaseListView" id="r8T-df-9wf"/>
                     </connections>
                 </viewController>
@@ -529,6 +528,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="e2Z-hO-1BP" kind="show" identifier="toGoodsInfoView" id="0Hn-52-3wi"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -917,6 +919,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="aFr-QQ-mXl"/>
+        <segue reference="0Hn-52-3wi"/>
         <segue reference="r8T-df-9wf"/>
     </inferredMetricsTieBreakers>
 </document>

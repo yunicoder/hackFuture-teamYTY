@@ -18,6 +18,8 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
 
     var imageKeyTmp : String? // 撮った写真のキー
     
+    var retentionFlag = 0 //保持しているデータがある時１
+    
     //デコーダとエンコーダ
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
@@ -26,7 +28,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     /* アウトレット */
     @IBOutlet weak var goodsImage: UIImageView!
     @IBOutlet weak var goodsNameTextField: UITextField!
-    @IBOutlet weak var goodsConditionTextField: UITextField!
+    @IBOutlet weak var selectedConditionLabel: UILabel!
     @IBOutlet weak var goodsPriceTextField: UITextField!
     @IBOutlet weak var goodsPlaceTextField: UITextField!
     @IBOutlet weak var goodsCommentTextField: UITextField!
@@ -47,7 +49,6 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = UIColor(red: 178/255, green: 255/255, blue: 101/255, alpha: 1.0)
         
         self.goodsNameTextField.delegate = self
-        self.goodsConditionTextField.delegate = self
         self.goodsPriceTextField.delegate = self
         self.goodsPlaceTextField.delegate = self
         self.goodsCommentTextField.delegate = self
@@ -57,8 +58,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         //文字列の初期化
         goodsNameTextField.text = ""
         goodsNameTextField.placeholder = "(例)モバイルバッテリー"
-        goodsConditionTextField.text = ""
-        goodsConditionTextField.placeholder = "(例)キズあり"
+        selectedConditionLabel.text = ""
         goodsPriceTextField.text = ""
         goodsPriceTextField.placeholder = "(例)500"
         goodsPlaceTextField.text = ""
@@ -70,28 +70,65 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         featureTextField.text = ""
         featureTextField.placeholder = "(例)黄色パーカー"
         
+        //値段のとこは数字のみのキーボードにする
+        goodsPlaceTextField.keyboardType = UIKeyboardType.numberPad
+        
         if let data = UserDefaults.standard.data(forKey: "takenImage"){
             goodsImage.image = UIImage(data: data)
         }
+        
+        //状態選択画面や確認画面から遷移してきた時。つまり値を保持している時
+        if(retentionFlag == 1){
+            
+            if(registerGoods.name != "" && registerGoods.name != "noName"){
+                goodsNameTextField.text = self.registerGoods.name
+            }
+            if(registerGoods.condition != "" && registerGoods.condition != "noCondition"){
+                selectedConditionLabel.text = self.registerGoods.condition
+                selectedConditionLabel.sizeToFit()
+            }
+            if(registerGoods.price != "" && registerGoods.price != "-1"){
+                goodsPriceTextField.text = self.registerGoods.price
+            }
+            if(registerGoods.place != "" && registerGoods.place != "noPlace"){
+                goodsPlaceTextField.text = self.registerGoods.place
+            }
+            if(registerGoods.time != "" && registerGoods.time != "noTime"){
+                goodsTimeTextField.text = self.registerGoods.time
+            }
+            if(registerGoods.feature != "" && registerGoods.feature != "noFeature"){
+                featureTextField.text = self.registerGoods.feature
+            }
+            if(registerGoods.comment != "" && registerGoods.comment != "noComment"){
+                goodsCommentTextField.text = self.registerGoods.comment
+            }
+            
+            retentionFlag = 0
+        }
     }
     
-    /*
-    //セグエによる画面遷移が行われる直前
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        let controller = segue.destination as! ChatViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        controller.timeText.text = goodsTimeTextField.text!
-        controller.placeText.text = goodsCommentTextField.text! + "に来てください。"
-        
-        
+        //状態選択画面へ
+        if(segue.identifier == "toConSelectView"){
+            let controller = segue.destination as! ConditionSelectViewController
+            
+            //入力中のデータを入れる
+            controller.goodsTmp.name = self.registerGoods.name
+            controller.goodsTmp.condition = self.registerGoods.condition
+            controller.goodsTmp.price = self.registerGoods.price
+            controller.goodsTmp.place = self.registerGoods.place
+            controller.goodsTmp.time = self.registerGoods.time
+            controller.goodsTmp.feature = self.registerGoods.feature
+            controller.goodsTmp.comment = self.registerGoods.comment
+        }
     }
- */
-    
+
     
     /* アクション */
     //出品ボタン
     @IBAction func exhibitButtonTapped(_ sender: UIButton) {
-        if(goodsNameTextField.text == "" || goodsConditionTextField.text == "" || goodsPriceTextField.text == "" || goodsPlaceTextField.text == "" || goodsTimeTextField.text == "" || featureTextField.text == ""){
+        if(registerGoods.name == "noName" || registerGoods.condition == "noCondition" || registerGoods.price == "-1" || registerGoods.place == "noPlace" || registerGoods.time == "noTime" || registerGoods.comment == "noComment"){
             //アラートを表示する↓＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
             let alert1: UIAlertController = UIAlertController(title: "注意", message: "必須情報が入力されていません", preferredStyle: .actionSheet)
             let canselAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) { (UIAlertAction) in
@@ -142,9 +179,6 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder() //改行
         if(textField.tag == 1){ //名前欄
             self.registerGoods.name = textField.text!
-        }
-        if(textField.tag == 2){ //状態欄
-            self.registerGoods.condition = textField.text!
         }
         if(textField.tag == 3){ //値段欄
             self.registerGoods.price = textField.text!
