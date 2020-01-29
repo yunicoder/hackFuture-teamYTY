@@ -218,6 +218,28 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+            textField.resignFirstResponder() //改行
+            if(textField.tag == 1){ //名前欄
+                self.registerGoods.name = textField.text!
+            }
+            if(textField.tag == 3){ //値段欄
+                self.registerGoods.price = textField.text!
+            }
+            if(textField.tag == 4){ //取引場所欄
+                self.registerGoods.place = textField.text!
+            }
+            if(textField.tag == 5){ //取引時間欄
+                self.registerGoods.time = textField.text!
+            }
+            if(textField.tag == 6){ //出品者の特徴欄
+                self.registerGoods.feature = textField.text!
+            }
+            if(textField.tag == 7){ //コメント欄
+                self.registerGoods.comment = textField.text!
+            }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
