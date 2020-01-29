@@ -10,21 +10,19 @@ import UIKit
 import AVFoundation
 
 
-class CameraViewController: UIViewController {
+class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,AVCapturePhotoCaptureDelegate {
 
-    var stillImage: UIImage!
-
-     @IBOutlet weak var previewView: UIView! //カメラのビュー
-     @IBOutlet weak var shutterButton: UIButton! // シャターボタン
+    // Outlet接続
+    @IBOutlet weak var previewView: UIView! //カメラのビュー
+    @IBOutlet weak var shutterButton: UIButton! // シャターボタン
+    @IBOutlet weak var cameraTypeButton: UIButton! // カメラタイプボタン(カメラの前後設定切り替えボタン)
      
-     @IBOutlet weak var cameraTypeButton: UIButton! // カメラタイプボタン(カメラの前後設定切り替えボタン)
-     
-     
-     var isBack = true // 現在、カメラがどっちにあるかどうかのフラグ(バックの時にtrue)
-     
-     var session = AVCaptureSession() // セッションの作成
-     
-     var photoOutputObj = AVCapturePhotoOutput() // 出力先の作成
+    
+    // 変数など
+    var isBack = true // 現在、カメラがどっちにあるかどうかのフラグ(バックの時にtrue)
+    var session = AVCaptureSession() // セッションの作成
+    var photoOutputObj = AVCapturePhotoOutput() // 出力先の作成
+    
      
      override func viewDidAppear(_ animated: Bool) {
          super.viewDidAppear(animated)
@@ -39,18 +37,17 @@ class CameraViewController: UIViewController {
          cameraTypeButton.setImage(UIImage.init(named: "cameraTypeButton"), for: .normal)
          
          setupInputOutput() // 入出力の設定
-         
          setPreviewLayer() // プレビューレイヤの設定
          
          session.startRunning() // セッション開始
+        
 
      }
      
      
      override func viewDidLoad() {
          super.viewDidLoad()
-         
-         // Do any additional setup after loading the view.
+        
      }
      
      
@@ -73,11 +70,11 @@ class CameraViewController: UIViewController {
         guard let photoData = photo.fileDataRepresentation() else {
             return
         }
-//        // Dataから写真イメージを作る
+        // Dataから写真イメージを作る
         if let stillImage = UIImage(data: photoData) {
             let imageData = stillImage.jpegData(compressionQuality: 1); //UIImageをdataに変換
             UserDefaults.standard.set(imageData,forKey:"takenImage") //UserDefaltsに保存
-            self.performSegue(withIdentifier: "toGoodsInfo", sender: nil)
+            self.performSegue(withIdentifier: "toGoodsInfoFromCamera", sender: nil)
         }
     }
      
@@ -96,7 +93,7 @@ class CameraViewController: UIViewController {
                  position: type // バックカメラorフロントカメラ
              )
             if device == nil{
-                self.performSegue(withIdentifier: "toGoodsInfo", sender: nil)
+                // self.performSegue(withIdentifier: "toGoodsInfoFromCamera", sender: nil) // カメラが使えない時は勝手に遷移させる
             }
             else{
                  let input = try AVCaptureDeviceInput(device: device!) // 入力元
@@ -144,10 +141,50 @@ class CameraViewController: UIViewController {
 
      }
     
+    /* カメラの設定　終了 */
+    
+    
+    
+    /* カメラロールの設定　開始　*/
+    @IBAction func cameraRollButtonTapped(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) { // 使用可能か
+            let pickerView = UIImagePickerController() // 写真を選ぶビュー
+            pickerView.sourceType = .photoLibrary // 写真の選択元をカメラロールにする(「.camera」にすればカメラを起動できる)
+            pickerView.delegate = self // デリゲート
+            
+            self.present(pickerView, animated: true)// ビューに表示
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) { // 写真が選択された時に呼ばれる
+        
+        let image = info[.originalImage] as? UIImage
+        // Dataから写真イメージを作る
+        if let stillImage = image {
+            let imageData = stillImage.jpegData(compressionQuality: 1); //UIImageをdataに変換
+            UserDefaults.standard.set(imageData,forKey:"choosenImage") //UserDefaltsに保存
+            
+            self.dismiss(animated: true) // 引っ込める
+            self.performSegue(withIdentifier: "toGoodsInfoFromCameraRoll", sender: nil) // 遷移
+        
+            
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) { // キャンセルを押された時に呼ばれる
+        dismiss(animated: true, completion: nil) // 閉じる
+    }
+    
+    /* カメラロールの設定　終了　*/
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // セグエによる画面遷移が行われる前に呼ばれるメソッド
-        if (segue.identifier == "toGoodsInfo") {
+        if (segue.identifier == "toGoodsInfoFromCamera") {
             let nextVC: GoodsInfoViewController = (segue.destination as? GoodsInfoViewController)!
             nextVC.imageKeyTmp = "takenImage" //多分ここ配列でKeyを送ってる
+        }
+        if (segue.identifier == "toGoodsInfoFromCameraRoll") {
+            let nextVC: GoodsInfoViewController = (segue.destination as? GoodsInfoViewController)!
+            nextVC.imageKeyTmp = "choosenImage" //多分ここ配列でKeyを送ってる
         }
     }
 
