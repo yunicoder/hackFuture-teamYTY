@@ -28,6 +28,8 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         writeBorder(layer: self.line7.layer) // 灰色の線を描画
         writeBorder(layer: self.line8.layer) // 灰色の線を描画
         
+        commentsText.isEditable = false
+        
         
         
         goodsImage.image = PicDataToUIImage(picData: recieveGoodsInfo!.image) // 写真を表示
@@ -37,7 +39,7 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         //goodsPlaceText.text = recieveGoodsInfo?.place
         goodsTimeText.text = recieveGoodsInfo?.time // 取引時間を表示
         //featureText.text = recieveGoodsInfo?.feature
-        goodsCommentText.text = recieveGoodsInfo?.comment // 商品のコメントを表示
+        commentsText.text = recieveGoodsInfo?.comment // 商品のコメントを表示
     }
     
     // 送られてくるデータ
@@ -51,8 +53,8 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var goodsPlaceText: UILabel!
     @IBOutlet weak var goodsTimeText: UILabel!
     @IBOutlet weak var featureText: UILabel!
-    @IBOutlet weak var goodsCommentText: UILabel!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var commentsText: UITextView!
     
     @IBOutlet weak var line1: UIView!
     @IBOutlet weak var line2: UIView!
@@ -80,6 +82,23 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         alert.addAction(okAction)
         //アラート画面を表示させる
         present(alert, animated: true, completion: nil)
+    }
+    
+    //テキストビューが変更された
+    func textViewDidChange(textView: UITextView) {
+        print("textViewDidChange : \(textView.text)");
+    }
+    
+    // テキストビューにフォーカスが移った
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        print("textViewShouldBeginEditing : \(textView.text)");
+        return true
+    }
+    
+    // テキストビューからフォーカスが失われた
+    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+        print("textViewShouldEndEditing : \(textView.text)");
+        return true
     }
     
     // 枠線を描く

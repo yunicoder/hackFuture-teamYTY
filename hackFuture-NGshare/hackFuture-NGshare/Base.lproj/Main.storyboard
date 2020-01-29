@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3sE-pq-3c6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3sE-pq-3c6">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -90,15 +90,15 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="PurchaseListViewController" customModule="hackFuture_NGshare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="hLB-38-Jit">
-                                <rect key="frame" x="0.0" y="44" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YWM-q8-g1s">
-                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="591"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="E6k-Ij-aSU">
                                     <size key="itemSize" width="100" height="100"/>
@@ -182,11 +182,11 @@
             <objects>
                 <viewController id="e2Z-hO-1BP" customClass="GoodsInfoViewController" customModule="hackFuture_NGshare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NNq-Kk-mXY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="980"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kzb-gc-7RI">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="980"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vue-Dp-oKy">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="930"/>
@@ -406,24 +406,25 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKa-am-vIi" userLabel="GoodsCommentView">
                                                 <rect key="frame" x="0.0" y="800" width="375" height="100"/>
                                                 <subviews>
-                                                    <textField opaque="NO" tag="7" contentMode="scaleToFill" restorationIdentifier="5" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="npw-QN-27j">
-                                                        <rect key="frame" x="10" y="55.5" width="355" height="34"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                                    </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="【コメント】" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PqE-uo-BHx">
                                                         <rect key="frame" x="0.0" y="25" width="104" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZKM-0q-PDh">
+                                                        <rect key="frame" x="8" y="53" width="359" height="47"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="npw-QN-27j" firstAttribute="leading" secondItem="BKa-am-vIi" secondAttribute="leading" constant="10" id="4jU-yP-rVH"/>
                                                     <constraint firstAttribute="height" constant="100" id="5Es-3R-wNR"/>
-                                                    <constraint firstAttribute="trailing" secondItem="npw-QN-27j" secondAttribute="trailing" constant="10" id="9Bs-r6-lEx"/>
-                                                    <constraint firstItem="npw-QN-27j" firstAttribute="top" secondItem="PqE-uo-BHx" secondAttribute="bottom" constant="10" id="EoK-zt-ESh"/>
                                                     <constraint firstItem="PqE-uo-BHx" firstAttribute="leading" secondItem="BKa-am-vIi" secondAttribute="leading" id="NO1-UF-ihI"/>
                                                     <constraint firstItem="PqE-uo-BHx" firstAttribute="top" secondItem="BKa-am-vIi" secondAttribute="top" constant="25" id="PGb-6w-zOp"/>
                                                 </constraints>
@@ -486,7 +487,7 @@
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="featureTextField" destination="Qzb-Q4-UHh" id="tj0-bT-HD6"/>
-                        <outlet property="goodsCommentTextField" destination="npw-QN-27j" id="p9f-nI-Iik"/>
+                        <outlet property="goodsCommentTextField" destination="ZKM-0q-PDh" id="s9n-6y-E7Z"/>
                         <outlet property="goodsConditionTextField" destination="y3V-AZ-r6O" id="KNK-c5-QGr"/>
                         <outlet property="goodsImage" destination="D3K-R5-N9C" id="e21-rB-8bx"/>
                         <outlet property="goodsNameTextField" destination="LcO-xz-ot5" id="ECl-iq-ekU"/>
@@ -505,7 +506,7 @@
             <objects>
                 <viewController id="IGh-Z0-VTq" customClass="ChatViewController" customModule="hackFuture_NGshare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hHW-cy-jvP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fp9-nS-jI9">
@@ -517,7 +518,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cjz-xf-W8c">
-                                <rect key="frame" x="20" y="64" width="335" height="350"/>
+                                <rect key="frame" x="20" y="20" width="335" height="350"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="【商品名】" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSJ-ec-eIu">
                                         <rect key="frame" x="31" y="127" width="87" height="21"/>
@@ -628,11 +629,11 @@
             <objects>
                 <viewController id="1HP-4h-zT4" customClass="PurchaseViewController" customModule="hackFuture_NGshare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="01X-qM-wis">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="980"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1i-2Z-wYf">
-                                <rect key="frame" x="0.0" y="44" width="375" height="956"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="980"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R1D-at-pFF">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="980"/>
@@ -730,13 +731,6 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="コメント" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBM-rP-NPq">
-                                                <rect key="frame" x="25" y="780" width="281" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tYW-f0-nxK">
                                                 <rect key="frame" x="16" y="888" width="343" height="1"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -760,6 +754,15 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VmZ-A1-wO1" customClass="InspectableTextView" customModule="hackFuture_NGshare" customModuleProvider="target">
+                                                <rect key="frame" x="25" y="780" width="306" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -790,8 +793,8 @@
                     <navigationItem key="navigationItem" id="nXV-kj-Z37"/>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
+                        <outlet property="commentsText" destination="VmZ-A1-wO1" id="3aQ-2I-FA3"/>
                         <outlet property="contentView" destination="R1D-at-pFF" id="dpe-F5-zoi"/>
-                        <outlet property="goodsCommentText" destination="eBM-rP-NPq" id="zvi-1P-zU8"/>
                         <outlet property="goodsConditionText" destination="nds-ze-SdQ" id="7yU-7b-7Vc"/>
                         <outlet property="goodsImage" destination="RRe-mK-iJn" id="2yR-tY-LPX"/>
                         <outlet property="goodsNameText" destination="rgA-YU-Ocm" id="xew-5D-m6E"/>
@@ -817,11 +820,11 @@
             <objects>
                 <viewController id="W1a-UK-53B" customClass="CameraViewController" customModule="hackFuture_NGshare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gzy-9A-q5j">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cc6-Ao-oE0">
-                                <rect key="frame" x="0.0" y="547" width="375" height="120"/>
+                                <rect key="frame" x="0.0" y="527" width="375" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RaN-3j-516">
                                         <rect key="frame" x="157.5" y="45" width="60" height="60"/>
@@ -867,7 +870,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="DTR-Ny-x8e">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="wlf-le-UcY">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="90A-RN-rBc">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="90A-RN-rBc">
                                 <rect key="frame" x="236" y="7" width="123" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -893,6 +896,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="IRs-YC-MZe"/>
-        <segue reference="0LP-b7-Hv5"/>
+        <segue reference="r8T-df-9wf"/>
     </inferredMetricsTieBreakers>
 </document>
