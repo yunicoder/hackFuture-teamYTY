@@ -20,7 +20,7 @@ let connection = Connection(domain, kintoneAuth)
 
   // Init Record Module
 let recordManagement = Record(connection)
-let query = "レコード番号 >= 3 order by レコード番号 asc"
+let query = "ID >= 3 order by ID asc"
 
 let apitoken = "bGIfUIxeHvnblXzhaVtE2LF8zhSJQoVlY6wWWUKV"
 //let apitoken = "qfeTYjpsATHjIjnKOiPp3T8xsAKfthKEsAX0LhkI"

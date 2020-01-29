@@ -75,7 +75,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         //値段のとこは数字のみのキーボードにする
         goodsPriceTextField.keyboardType = UIKeyboardType.numberPad
         
-        if let data = UserDefaults.standard.data(forKey: "takenImage"){
+        if let data = UserDefaults.standard.data(forKey: imageKeyTmp!){
             goodsImage.image = UIImage(data: data)
         }
         
