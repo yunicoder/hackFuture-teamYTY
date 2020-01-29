@@ -20,7 +20,7 @@ class ConditionSelectViewController: UIViewController, UITableViewDataSource, UI
     var goodsTmp = GoodsInfo.init()
     
     //表示する状態の配列
-    var conditions : [String] = ["AA (新品・未使用)","A    (未使用に近い・開封したが未使用)","AB (目立った傷や汚れなし・少量使用済み)","B    (やや傷や汚れあり・3分の1ほど使用済み)","C    (傷や汚れあり・半分ほど使用済み)","D    (全体的に状態が悪い・残りが3分の1以下)"]
+    var conditions : [String] = ["AA (新品・未使用)","A    (未使用に近い・開封したが未使用)","AB (目立った傷や汚れなし・少量使用済み)","B    (やや傷や汚れあり・3分の1ほど使用済み)","C    (傷や汚れあり・半分ほど使用済み)","D    (全体的に状態が悪い・3分の2以上使用済み)"]
     
     
     /* ライフサイクル */

@@ -160,7 +160,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
             present(alert1, animated: true, completion: nil)
         }else{
             //アラートを表示する↓＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-            let alert2: UIAlertController = UIAlertController(title: "注意", message: "この商品を出品しますか？" + "\n-----------------------------------------------" + "\n【商品名】\n" + self.registerGoods.name + "\n【状態】\n" + self.registerGoods.condition + "\n【値段】\n" + self.registerGoods.price + "\n【取り引き場所】\n" + self.registerGoods.place + "\n【取引時間】\n" + self.registerGoods.time + "\n【出品者の特徴】\n" + self.registerGoods.feature + "\n【コメント】\n" + self.registerGoods.comment, preferredStyle: .actionSheet)
+            let alert2: UIAlertController = UIAlertController(title: "注意", message: "この商品を出品しますか？" + "\n-----------------------------------------------" + "\n【商品名】\n" + self.registerGoods.name + "\n\n【状態】\n" + self.registerGoods.condition + "\n\n【値段】\n" + self.registerGoods.price + "\n\n【取り引き場所】\n" + self.registerGoods.place + "\n\n【取引時間】\n" + self.registerGoods.time + "\n\n【出品者の特徴】\n" + self.registerGoods.feature + "\n\n【コメント】\n" + self.registerGoods.comment, preferredStyle: .actionSheet)
             let canselAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) { (UIAlertAction) in
                     print("キャンセル")
             }
