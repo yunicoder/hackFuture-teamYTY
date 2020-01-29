@@ -73,7 +73,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         // Dataから写真イメージを作る
         if let stillImage = UIImage(data: photoData) {
             let imageData = stillImage.jpegData(compressionQuality: 1); //UIImageをdataに変換
-            UserDefaults.standard.set(imageData,forKey:"takenImage") //UserDefaltsに保存
+            UserDefaults.standard.set(imageData,forKey:"imageKey") //UserDefaltsに保存
             self.performSegue(withIdentifier: "toGoodsInfoFromCamera", sender: nil)
         }
     }
@@ -162,7 +162,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         // Dataから写真イメージを作る
         if let stillImage = image {
             let imageData = stillImage.jpegData(compressionQuality: 1); //UIImageをdataに変換
-            UserDefaults.standard.set(imageData,forKey:"choosenImage") //UserDefaltsに保存
+            UserDefaults.standard.set(imageData,forKey:"imageKey") //UserDefaltsに保存
             
             self.dismiss(animated: true) // 引っ込める
             self.performSegue(withIdentifier: "toGoodsInfoFromCameraRoll", sender: nil) // 遷移
@@ -180,11 +180,9 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // セグエによる画面遷移が行われる前に呼ばれるメソッド
         if (segue.identifier == "toGoodsInfoFromCamera") {
             let nextVC: GoodsInfoViewController = (segue.destination as? GoodsInfoViewController)!
-            nextVC.imageKeyTmp = "takenImage" //多分ここ配列でKeyを送ってる
         }
         if (segue.identifier == "toGoodsInfoFromCameraRoll") {
             let nextVC: GoodsInfoViewController = (segue.destination as? GoodsInfoViewController)!
-            nextVC.imageKeyTmp = "choosenImage" //多分ここ配列でKeyを送ってる
         }
     }
 
