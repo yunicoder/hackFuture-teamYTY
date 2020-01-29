@@ -9,7 +9,8 @@
 import UIKit
 
 
-class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
+
+class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     /* プロパティ */
     
@@ -32,14 +33,12 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var selectedConditionLabel: UILabel!
     @IBOutlet weak var goodsPriceTextField: UITextField!
     @IBOutlet weak var goodsPlaceTextField: UITextField!
-    @IBOutlet weak var goodsCommentTextField: UITextField!
     @IBOutlet weak var goodsTimeTextField: UITextField!
     @IBOutlet weak var featureTextField: UITextField!
     @IBOutlet weak var selectConditionButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    
-    
+    @IBOutlet weak var goodsCommentTextField: UITextView!
     
     /* ライフサイクル */
     override func viewDidLoad() {
@@ -86,7 +85,6 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         goodsPlaceTextField.text = ""
         goodsPlaceTextField.placeholder = "(例)3F◯◯の前"
         goodsCommentTextField.text = ""
-        goodsCommentTextField.placeholder = "(例)使用感はあまりないです"
         goodsTimeTextField.text = ""
         goodsTimeTextField.placeholder = "(例)15時"
         featureTextField.text = ""
@@ -176,7 +174,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
                 self.registerGoods.image = base64String
                 
                 //print("tmp_image\(tmp_image)")
-                //print("\(self.registerGoods):self.registerGoods")
+                print("\(self.registerGoods):self.registerGoods")
                 addRecord(addedGoods: self.registerGoods)
                 
                 
@@ -196,7 +194,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     /* メソッド */
     //リターンキーが押された時
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder() //改行
+        print("textFieldEditEnd"); textField.resignFirstResponder() //改行
         if(textField.tag == 1){ //名前欄
             self.registerGoods.name = textField.text!
         }
@@ -212,9 +210,13 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         if(textField.tag == 6){ //出品者の特徴欄
             self.registerGoods.feature = textField.text!
         }
-        if(textField.tag == 7){ //コメント欄
-            self.registerGoods.comment = textField.text!
-        }
+        print("registerGoods:\(registerGoods)")
+        return true
+    }
+    // テキストビューからフォーカスが失われた
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        print("textViewShouldEndEditing : \(String(describing: textView.text))");
+        self.registerGoods.comment = textView.text! //コメント欄
         return true
     }
     
@@ -235,3 +237,48 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
+@IBDesignable class InspectableTextView: UITextView {
+
+    // MARK: - プロパティ
+    /// プレースホルダーに表示する文字列（ローカライズ付き）
+    @IBInspectable var localizedString: String = "" {
+        didSet {
+            guard !localizedString.isEmpty else { return }
+            // Localizable.stringsを参照する
+            placeholderLabel.text = NSLocalizedString(localizedString, comment: "(例)使用感はあまりないです")
+            placeholderLabel.sizeToFit()  // 省略不可
+        }
+    }
+
+    /// プレースホルダー用ラベルを作成
+    private lazy var placeholderLabel = UILabel(frame: CGRect(x: 6, y: 6, width: 0, height: 0))
+
+    // MARK: - Viewライフサイクルメソッド
+    /// ロード後に呼ばれる
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        delegate = self
+        configurePlaceholder()
+        togglePlaceholder()
+    }
+
+    /// プレースホルダーを設定する
+    private func configurePlaceholder() {
+        placeholderLabel.textColor = UIColor.gray
+        addSubview(placeholderLabel)
+    }
+
+    /// プレースホルダーの表示・非表示切り替え
+    private func togglePlaceholder() {
+        // テキスト未入力の場合のみプレースホルダーを表示する
+        placeholderLabel.isHidden = text.isEmpty ? false : true
+    }
+}
+
+// MARK: -  UITextView Delegate
+extension InspectableTextView: UITextViewDelegate {
+    /// テキストが書き換えられるたびに呼ばれる ※privateにはできない
+    func textViewDidChange(_ textView: UITextView) {
+        togglePlaceholder()
+    }
+}
