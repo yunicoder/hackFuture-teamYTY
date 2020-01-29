@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class PurchaseViewController: UIViewController, UITextFieldDelegate {
     /* ライフサイクル */
     override func viewDidLoad() {
@@ -28,6 +27,8 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         writeBorder(layer: self.line7.layer) // 灰色の線を描画
         writeBorder(layer: self.line8.layer) // 灰色の線を描画
         
+        commentsText.isEditable = false
+        
         
         
         goodsImage.image = PicDataToUIImage(picData: recieveGoodsInfo!.image) // 写真を表示
@@ -37,7 +38,7 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
         //goodsPlaceText.text = recieveGoodsInfo?.place
         goodsTimeText.text = recieveGoodsInfo?.time // 取引時間を表示
         //featureText.text = recieveGoodsInfo?.feature
-        goodsCommentText.text = recieveGoodsInfo?.comment // 商品のコメントを表示
+        commentsText.text = recieveGoodsInfo?.comment // 商品のコメントを表示
     }
     
     // 送られてくるデータ
@@ -51,8 +52,8 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var goodsPlaceText: UILabel!
     @IBOutlet weak var goodsTimeText: UILabel!
     @IBOutlet weak var featureText: UILabel!
-    @IBOutlet weak var goodsCommentText: UILabel!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var commentsText: UITextView!
     
     @IBOutlet weak var line1: UIView!
     @IBOutlet weak var line2: UIView!
@@ -63,6 +64,8 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var line7: UIView!
     @IBOutlet weak var line8: UIView!
     
+    //flag
+    var delfalg = 0
     
     /* アクション */
     //購入ボタンを押したとき
@@ -73,14 +76,24 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
                 print("キャンセル")
         }
         let okAction: UIAlertAction = UIAlertAction(title: "購入", style: .destructive) { (UIAlertAction) in
-                self.performSegue(withIdentifier: "ToChatView", sender: nil)
+            //del(delGoodsInfo: self.recieveGoodsInfo!)
+            del(delGoodsInfo: self.recieveGoodsInfo!, completionClosureInt: { (result:Int) in
+                if(result == 0){
+                    self.performSegue(withIdentifier: "ToChatView", sender: nil)
+                }else{
+                    self.navigationController?.popToRootViewController(animated: true)
+    
+                }
+            })
         }
+
         //アラートに設定を反映させる
         alert.addAction(canselAction)
         alert.addAction(okAction)
         //アラート画面を表示させる
         present(alert, animated: true, completion: nil)
     }
+    
     
     // 枠線を描く
     func writeBorder(layer:CALayer){

@@ -413,24 +413,25 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKa-am-vIi" userLabel="GoodsCommentView">
                                                 <rect key="frame" x="0.0" y="800" width="375" height="100"/>
                                                 <subviews>
-                                                    <textField opaque="NO" tag="7" contentMode="scaleToFill" restorationIdentifier="5" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="npw-QN-27j">
-                                                        <rect key="frame" x="10" y="55.5" width="355" height="34"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                                    </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="【コメント】" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PqE-uo-BHx">
                                                         <rect key="frame" x="0.0" y="25" width="104" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZKM-0q-PDh">
+                                                        <rect key="frame" x="8" y="53" width="359" height="47"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="npw-QN-27j" firstAttribute="leading" secondItem="BKa-am-vIi" secondAttribute="leading" constant="10" id="4jU-yP-rVH"/>
                                                     <constraint firstAttribute="height" constant="100" id="5Es-3R-wNR"/>
-                                                    <constraint firstAttribute="trailing" secondItem="npw-QN-27j" secondAttribute="trailing" constant="10" id="9Bs-r6-lEx"/>
-                                                    <constraint firstItem="npw-QN-27j" firstAttribute="top" secondItem="PqE-uo-BHx" secondAttribute="bottom" constant="10" id="EoK-zt-ESh"/>
                                                     <constraint firstItem="PqE-uo-BHx" firstAttribute="leading" secondItem="BKa-am-vIi" secondAttribute="leading" id="NO1-UF-ihI"/>
                                                     <constraint firstItem="PqE-uo-BHx" firstAttribute="top" secondItem="BKa-am-vIi" secondAttribute="top" constant="25" id="PGb-6w-zOp"/>
                                                 </constraints>
@@ -493,7 +494,8 @@
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="featureTextField" destination="Qzb-Q4-UHh" id="tj0-bT-HD6"/>
-                        <outlet property="goodsCommentTextField" destination="npw-QN-27j" id="p9f-nI-Iik"/>
+                        <outlet property="goodsCommentTextField" destination="ZKM-0q-PDh" id="s9n-6y-E7Z"/>
+                        <outlet property="goodsConditionTextField" destination="y3V-AZ-r6O" id="KNK-c5-QGr"/>
                         <outlet property="goodsImage" destination="D3K-R5-N9C" id="e21-rB-8bx"/>
                         <outlet property="goodsNameTextField" destination="LcO-xz-ot5" id="ECl-iq-ekU"/>
                         <outlet property="goodsPlaceTextField" destination="6TK-4G-lNH" id="Gwn-QV-9z1"/>
@@ -656,13 +658,6 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="コメント" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBM-rP-NPq">
-                                                <rect key="frame" x="25" y="780" width="281" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tYW-f0-nxK">
                                                 <rect key="frame" x="16" y="888" width="343" height="1"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -686,6 +681,15 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VmZ-A1-wO1" customClass="InspectableTextView" customModule="hackFuture_NGshare" customModuleProvider="target">
+                                                <rect key="frame" x="25" y="780" width="306" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -716,8 +720,8 @@
                     <navigationItem key="navigationItem" id="nXV-kj-Z37"/>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
+                        <outlet property="commentsText" destination="VmZ-A1-wO1" id="3aQ-2I-FA3"/>
                         <outlet property="contentView" destination="R1D-at-pFF" id="dpe-F5-zoi"/>
-                        <outlet property="goodsCommentText" destination="eBM-rP-NPq" id="zvi-1P-zU8"/>
                         <outlet property="goodsConditionText" destination="nds-ze-SdQ" id="7yU-7b-7Vc"/>
                         <outlet property="goodsImage" destination="RRe-mK-iJn" id="2yR-tY-LPX"/>
                         <outlet property="goodsNameText" destination="rgA-YU-Ocm" id="xew-5D-m6E"/>

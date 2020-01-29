@@ -23,6 +23,7 @@ struct GoodsInfo : Codable{
     var time : String //やりとり時間
     var feature : String //自分の特徴
     var comment : String //コメント
+    var ID: Int //レコードID
 }
 // イニシャライザ
 extension GoodsInfo{
@@ -35,6 +36,7 @@ extension GoodsInfo{
         time = "noTime"
         feature = "noFeature"
         comment = "noComment"
+        ID = -1
     }
 }
 
