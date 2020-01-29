@@ -106,8 +106,15 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         let cell = goodsCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) // 表示するセルを登録(先にStoryboad内でidentifierを指定しておく)
         
         // cellの中にあるcollectionImageに画像を代入する
-        if let collectionImage = cell.contentView.viewWithTag(1) as? UIImageView {
-            collectionImage.image = PicDataToUIImage(picData: filterGoodsInfo[indexPath.row].image)
+        if var collectionImage = cell.contentView.viewWithTag(1) as? UIImageView {
+            var picImage = PicDataToUIImage(picData: filterGoodsInfo[indexPath.row].image)
+            var picImageView = UIImageView(image:picImage)
+            
+            
+            let width = collectionView.bounds.size.width / 3.0 -  0.5 * (3.0 - 1)
+            picImageView.frame = CGRect(x:0, y:0, width:width, height:width)
+            
+            collectionImage = picImageView
         }
         
         // cellの中にあるLabelに商品名を代入する
@@ -115,7 +122,7 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
             nameLabel.text = filterGoodsInfo[indexPath.row].name
         }
         
-        // cell.backgroundColor = .red  // セルの色をなんとなく赤に
+        cell.backgroundColor = .red  // セルの色をなんとなく赤に
         return cell
     }
     
