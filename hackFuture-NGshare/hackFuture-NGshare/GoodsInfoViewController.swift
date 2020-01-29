@@ -225,12 +225,13 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     @objc func onClickCommitButton (sender: UIButton) {
         if(goodsPriceTextField.isFirstResponder){
             goodsPriceTextField.resignFirstResponder()
+            registerGoods.price = goodsPriceTextField.text!
         }
     }
     
     // "購入画面"ボタンが押された時の処理
     @objc func backBarButtonTapped(_ sender: UIBarButtonItem) {
-        self.performSegue(withIdentifier: "toPurchaseViewController", sender: nil)
+        self.performSegue(withIdentifier: "toPurchaseListView", sender: nil)
     }
 }
 
