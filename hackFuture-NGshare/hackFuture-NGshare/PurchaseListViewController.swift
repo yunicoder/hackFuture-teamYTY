@@ -125,13 +125,7 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         // cellの中にあるcollectionImageに画像を代入する
         if var collectionImage = cell.contentView.viewWithTag(1) as? UIImageView {
             var picImage = PicDataToUIImage(picData: filterGoodsInfo[indexPath.row].image)
-            var picImageView = UIImageView(image:picImage)
-            
-            
-            let width = collectionView.bounds.size.width / 3.0 -  0.5 * (3.0 - 1)
-            picImageView.frame = CGRect(x:0, y:0, width:width, height:width)
-            
-            collectionImage = picImageView
+            collectionImage.image = picImage
         }
         
         // cellの中にあるLabelに商品名を代入する
