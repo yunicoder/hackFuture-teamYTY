@@ -46,9 +46,9 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         multiGetRecords(completionClosure: { (result:[GoodsInfo]) in
             self.filterGoodsInfo = result
              //print("\(self.filterGoodsInfo):filterGoodsInfoFromAppear")
+            self.goodsInfo = result
             self.goodsCollectionView.reloadData()
         })
-        goodsCollectionView.reloadData() // データをリロードする
     }
     
     //リターンキーが押された時
