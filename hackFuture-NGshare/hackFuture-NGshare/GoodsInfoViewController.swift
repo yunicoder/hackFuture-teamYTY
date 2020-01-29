@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     
     /* プロパティ */
@@ -19,6 +18,8 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     var imageKeyTmp : String? // 撮った写真のキー
     
     var retentionFlag = 0 //保持しているデータがある時１
+    
+    var backBarButtonItem: UIBarButtonItem!     // 一覧画面に戻るボタン
     
     //デコーダとエンコーダ
     let encoder = JSONEncoder()
@@ -47,6 +48,13 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         //タイトル変更
         navigationItem.title = "出品画面"
         
+        //ナビゲーションバーの戻るボタンを消す
+        self.navigationItem.hidesBackButton = true
+        
+        backBarButtonItem = UIBarButtonItem(title: "購入画面", style: .done, target: self, action: #selector(backBarButtonTapped(_:)))
+        // バーボタンアイテムの追加
+        self.navigationItem.leftBarButtonItems = [backBarButtonItem]
+        
         //背景色の変更
         view.backgroundColor = UIColor(red: 178/255, green: 255/255, blue: 101/255, alpha: 1.0)
         
@@ -56,6 +64,18 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         self.goodsCommentTextField.delegate = self
         self.goodsTimeTextField.delegate = self
         self.featureTextField.delegate = self
+        
+        //値段の入力時のキーボードに完了ボタンを追加
+        let custombar = UIView(frame: CGRect(x:0, y:0,width:(UIScreen.main.bounds.size.width),height:40))
+        custombar.backgroundColor = UIColor.groupTableViewBackground
+        let commitBtn = UIButton(frame: CGRect(x:(UIScreen.main.bounds.size.width)-50,y:0,width:50,height:40))
+        commitBtn.setTitle("完了", for: .normal)
+        commitBtn.setTitleColor(UIColor.blue, for:.normal)
+        commitBtn.addTarget(self, action:#selector(onClickCommitButton), for: .touchUpInside)
+        custombar.addSubview(commitBtn)
+        goodsPriceTextField.inputAccessoryView = custombar
+        goodsPriceTextField.keyboardType = UIKeyboardType.numberPad
+        goodsPriceTextField.delegate = self
         
         //文字列の初期化
         goodsNameTextField.text = ""
@@ -72,8 +92,6 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
         featureTextField.text = ""
         featureTextField.placeholder = "(例)黄色パーカー"
         
-        //値段のとこは数字のみのキーボードにする
-        goodsPriceTextField.keyboardType = UIKeyboardType.numberPad
         
         if let data = UserDefaults.standard.data(forKey: "takenImage"){
             goodsImage.image = UIImage(data: data)
@@ -130,7 +148,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     /* アクション */
     //出品ボタン
     @IBAction func exhibitButtonTapped(_ sender: UIButton) {
-        if(registerGoods.name == "noName" || registerGoods.condition == "noCondition" || registerGoods.price == "-1" || registerGoods.place == "noPlace" || registerGoods.time == "noTime" || registerGoods.comment == "noComment"){
+        if(registerGoods.name == "noName" || registerGoods.condition == "noCondition" || registerGoods.price == "-1" || registerGoods.place == "noPlace" || registerGoods.time == "noTime"){
             //アラートを表示する↓＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
             let alert1: UIAlertController = UIAlertController(title: "注意", message: "必須情報が入力されていません", preferredStyle: .actionSheet)
             let canselAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) { (UIAlertAction) in
@@ -142,7 +160,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
             present(alert1, animated: true, completion: nil)
         }else{
             //アラートを表示する↓＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-            let alert2: UIAlertController = UIAlertController(title: "注意", message: "この商品を出品しますか？", preferredStyle: .actionSheet)
+            let alert2: UIAlertController = UIAlertController(title: "注意", message: "この商品を出品しますか？" + "\n-----------------------------------------------" + "\n【商品名】\n" + self.registerGoods.name + "\n【状態】\n" + self.registerGoods.condition + "\n【値段】\n" + self.registerGoods.price + "\n【取り引き場所】\n" + self.registerGoods.place + "\n【取引時間】\n" + self.registerGoods.time + "\n【出品者の特徴】\n" + self.registerGoods.feature + "\n【コメント】\n" + self.registerGoods.comment, preferredStyle: .actionSheet)
             let canselAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) { (UIAlertAction) in
                     print("キャンセル")
             }
@@ -202,6 +220,17 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @objc func onClickCommitButton (sender: UIButton) {
+        if(goodsPriceTextField.isFirstResponder){
+            goodsPriceTextField.resignFirstResponder()
+        }
+    }
+    
+    // "購入画面"ボタンが押された時の処理
+    @objc func backBarButtonTapped(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "toPurchaseViewController", sender: nil)
     }
 }
 
