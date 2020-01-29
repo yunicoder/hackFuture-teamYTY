@@ -182,14 +182,14 @@
             <objects>
                 <viewController id="e2Z-hO-1BP" customClass="GoodsInfoViewController" customModule="hackFuture_NGshare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NNq-Kk-mXY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="980"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kzb-gc-7RI">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="980"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1480"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vue-Dp-oKy">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="930"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1130"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KUT-iV-a7T" userLabel="ImageView">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
@@ -345,7 +345,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eqr-LP-d4I" userLabel="goodsTimeView">
-                                                <rect key="frame" x="0.0" y="600" width="375" height="100"/>
+                                                <rect key="frame" x="0.0" y="600" width="375" height="300"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="※必須" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWW-h9-onM">
                                                         <rect key="frame" x="104" y="25" width="45" height="20.5"/>
@@ -359,8 +359,9 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" tag="5" contentMode="scaleToFill" restorationIdentifier="6" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Yw-cL-lLs">
-                                                        <rect key="frame" x="10" y="55.5" width="355" height="34"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yXe-Jw-Uqh">
+                                                        <rect key="frame" x="8" y="72" width="359" height="34"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
@@ -370,15 +371,12 @@
                                                     <constraint firstItem="Rr3-BK-aux" firstAttribute="top" secondItem="eqr-LP-d4I" secondAttribute="top" constant="25" id="29N-bI-Md1"/>
                                                     <constraint firstItem="eWW-h9-onM" firstAttribute="leading" secondItem="Rr3-BK-aux" secondAttribute="trailing" id="8wr-l4-ugs"/>
                                                     <constraint firstItem="Rr3-BK-aux" firstAttribute="leading" secondItem="eqr-LP-d4I" secondAttribute="leading" id="HDy-IX-iCD"/>
-                                                    <constraint firstItem="2Yw-cL-lLs" firstAttribute="top" secondItem="eWW-h9-onM" secondAttribute="bottom" constant="10" id="MFA-tA-r2k"/>
-                                                    <constraint firstItem="2Yw-cL-lLs" firstAttribute="leading" secondItem="eqr-LP-d4I" secondAttribute="leading" constant="10" id="NFh-iJ-QtM"/>
-                                                    <constraint firstAttribute="height" constant="100" id="Ujc-nD-2Ze"/>
-                                                    <constraint firstAttribute="trailing" secondItem="2Yw-cL-lLs" secondAttribute="trailing" constant="10" id="bfy-Wd-3y8"/>
+                                                    <constraint firstAttribute="height" constant="300" id="Ujc-nD-2Ze"/>
                                                     <constraint firstItem="eWW-h9-onM" firstAttribute="top" secondItem="eqr-LP-d4I" secondAttribute="top" constant="25" id="yQW-de-Rha"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yvu-DA-CrK" userLabel="FeatureView">
-                                                <rect key="frame" x="0.0" y="700" width="375" height="100"/>
+                                                <rect key="frame" x="0.0" y="900" width="375" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="【出品者の特徴】" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCl-xi-qZT">
                                                         <rect key="frame" x="0.0" y="25" width="139" height="20.5"/>
@@ -411,7 +409,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKa-am-vIi" userLabel="GoodsCommentView">
-                                                <rect key="frame" x="0.0" y="800" width="375" height="100"/>
+                                                <rect key="frame" x="0.0" y="1000" width="375" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="【コメント】" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PqE-uo-BHx">
                                                         <rect key="frame" x="0.0" y="25" width="104" height="20.5"/>
@@ -437,7 +435,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEp-Xk-Qsj">
-                                                <rect key="frame" x="0.0" y="900" width="375" height="30"/>
+                                                <rect key="frame" x="0.0" y="1100" width="375" height="30"/>
                                                 <state key="normal" title="出品"/>
                                                 <connections>
                                                     <action selector="exhibitButtonTapped:" destination="e2Z-hO-1BP" eventType="touchUpInside" id="PeA-cC-LxP"/>
@@ -453,9 +451,7 @@
                                             <constraint firstItem="SHa-bh-LTR" firstAttribute="top" secondItem="Fx1-Yc-bD5" secondAttribute="bottom" id="GyU-Z0-SYu"/>
                                             <constraint firstAttribute="trailing" secondItem="BIL-qc-RGW" secondAttribute="trailing" id="NBp-Hh-lGU"/>
                                             <constraint firstItem="NN0-4w-93N" firstAttribute="top" secondItem="BIL-qc-RGW" secondAttribute="bottom" id="P3N-ua-sIG"/>
-                                            <constraint firstAttribute="trailing" secondItem="BKa-am-vIi" secondAttribute="trailing" id="Q9S-Ea-vLX"/>
                                             <constraint firstItem="NN0-4w-93N" firstAttribute="leading" secondItem="vue-Dp-oKy" secondAttribute="leading" id="Ydd-tQ-hfx"/>
-                                            <constraint firstItem="BKa-am-vIi" firstAttribute="leading" secondItem="vue-Dp-oKy" secondAttribute="leading" id="Yho-cT-2KP"/>
                                             <constraint firstItem="eqr-LP-d4I" firstAttribute="leading" secondItem="vue-Dp-oKy" secondAttribute="leading" id="bRK-9N-vSe"/>
                                             <constraint firstItem="KUT-iV-a7T" firstAttribute="top" secondItem="vue-Dp-oKy" secondAttribute="top" id="bVx-Ph-aUa"/>
                                             <constraint firstAttribute="trailing" secondItem="Fx1-Yc-bD5" secondAttribute="trailing" id="dAq-0n-FpB"/>
@@ -467,7 +463,6 @@
                                             <constraint firstAttribute="trailing" secondItem="yvu-DA-CrK" secondAttribute="trailing" id="pb6-FJ-gvb"/>
                                             <constraint firstAttribute="trailing" secondItem="NN0-4w-93N" secondAttribute="trailing" id="qjC-jR-dcE"/>
                                             <constraint firstItem="yvu-DA-CrK" firstAttribute="top" secondItem="eqr-LP-d4I" secondAttribute="bottom" id="shn-Ko-NAs"/>
-                                            <constraint firstItem="BKa-am-vIi" firstAttribute="top" secondItem="yvu-DA-CrK" secondAttribute="bottom" id="vV0-1j-9Kf"/>
                                             <constraint firstAttribute="trailing" secondItem="eqr-LP-d4I" secondAttribute="trailing" id="xu8-79-gAr"/>
                                         </constraints>
                                     </stackView>
@@ -491,16 +486,15 @@
                         <viewLayoutGuide key="safeArea" id="cPn-4B-aXE"/>
                     </view>
                     <navigationItem key="navigationItem" id="Fxb-TD-s7p"/>
-                    <size key="freeformSize" width="375" height="1000"/>
+                    <size key="freeformSize" width="375" height="1500"/>
                     <connections>
                         <outlet property="featureTextField" destination="Qzb-Q4-UHh" id="tj0-bT-HD6"/>
                         <outlet property="goodsCommentTextField" destination="ZKM-0q-PDh" id="s9n-6y-E7Z"/>
-                        <outlet property="goodsConditionTextField" destination="y3V-AZ-r6O" id="KNK-c5-QGr"/>
                         <outlet property="goodsImage" destination="D3K-R5-N9C" id="e21-rB-8bx"/>
                         <outlet property="goodsNameTextField" destination="LcO-xz-ot5" id="ECl-iq-ekU"/>
                         <outlet property="goodsPlaceTextField" destination="6TK-4G-lNH" id="Gwn-QV-9z1"/>
                         <outlet property="goodsPriceTextField" destination="1Yx-MW-WGn" id="E5Q-FZ-iTB"/>
-                        <outlet property="goodsTimeTextField" destination="2Yw-cL-lLs" id="l9F-dZ-2Iw"/>
+                        <outlet property="goodsTimeTextField" destination="yXe-Jw-Uqh" id="BB1-07-lqk"/>
                         <outlet property="scrollView" destination="Kzb-gc-7RI" id="AeA-TS-7JB"/>
                         <outlet property="selectConditionButton" destination="QA2-ZF-c1d" id="z8W-PW-xZ2"/>
                         <outlet property="selectedConditionLabel" destination="2DK-Gw-ABD" id="AzD-8C-6PL"/>
