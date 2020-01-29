@@ -93,7 +93,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                  position: type // バックカメラorフロントカメラ
              )
             if device == nil{
-                // self.performSegue(withIdentifier: "toGoodsInfoFromCamera", sender: nil) // カメラが使えない時は勝手に遷移させる
+                self.performSegue(withIdentifier: "toGoodsInfo", sender: nil) // カメラが使えない時は勝手に遷移させる
             }
             else{
                  let input = try AVCaptureDeviceInput(device: device!) // 入力元
