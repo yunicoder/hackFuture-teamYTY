@@ -12,6 +12,8 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     @IBOutlet weak var nameSearch: UISearchBar!
     @IBOutlet weak var goodsCollectionView: UICollectionView! // 商品のコレクションビュー
     
+    let refreshCtl = UIRefreshControl()
+    
     @IBOutlet weak var goodsImage: UIImageView!
     
     var goodsInfo = [GoodsInfo]() // 全部のデータ
@@ -31,6 +33,8 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         goodsCollectionView.dataSource = self  // 要素の数やセル、クラスなどデータの元となる処理の委譲
         
         LayoutInit(collectionView: goodsCollectionView) // セルの大きさなどのレイアウトを設定
+        refreshCtl.addTarget(self, action: Selector(("refreshTable")), for: UIControl.Event.valueChanged)
+        self.goodsCollectionView.refreshControl = refreshCtl
         
         // kintoneからデータを取得する
         multiGetRecords(completionClosure: { (result:[GoodsInfo]) in
@@ -49,6 +53,19 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
             self.goodsInfo = result
             self.goodsCollectionView.reloadData()
         })
+    }
+    
+    @objc func refreshTable() {
+          // 更新処理
+          // kintoneからデータを取得する
+          multiGetRecords(completionClosure: { (result:[GoodsInfo]) in
+              self.filterGoodsInfo = result
+               //print("\(self.filterGoodsInfo):filterGoodsInfoFromAppear")
+              self.goodsInfo = result
+              self.goodsCollectionView.reloadData()
+          })
+          // クルクルを止める
+        refreshCtl.endRefreshing()
     }
     
     //リターンキーが押された時
