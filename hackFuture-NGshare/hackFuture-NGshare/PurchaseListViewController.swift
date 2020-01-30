@@ -135,9 +135,9 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
             collectionImage.image = picImage // 画像を表示
         }
         
-        // cellの中にあるLabelに商品名を代入する
-        if let nameLabel = cell.contentView.viewWithTag(2) as? UILabel {
-            nameLabel.text = filterGoodsInfo[indexPath.row].name
+        // cellの中にあるLabelに価格を代入する
+        if let priceLabel = cell.contentView.viewWithTag(2) as? UILabel {
+            priceLabel.text = "¥ " + filterGoodsInfo[indexPath.row].price + " "
         }
         
         // cell.backgroundColor = .red  // セルの色をなんとなく赤に
