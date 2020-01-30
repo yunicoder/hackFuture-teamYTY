@@ -20,6 +20,10 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     var filterGoodsInfo = [GoodsInfo]() //フィルター後のデータ(基本こっち)
     var searchGoodsInfo = [GoodsInfo]()
     
+    // レイアウト用変数
+    let margin:CGFloat = 0.5 // マージン
+    let numOfColumn:CGFloat = 3 // 列の数
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,9 +127,12 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         let cell = goodsCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) // 表示するセルを登録(先にStoryboad内でidentifierを指定しておく)
         
         // cellの中にあるcollectionImageに画像を代入する
-        if var collectionImage = cell.contentView.viewWithTag(1) as? UIImageView {
-            var picImage = PicDataToUIImage(picData: filterGoodsInfo[indexPath.row].image)
-            collectionImage.image = picImage
+        if let collectionImage = cell.contentView.viewWithTag(1) as? UIImageView {
+            var picImage = PicDataToUIImage(picData: filterGoodsInfo[indexPath.row].image) // base64からUIImageに変換
+            let cellWidth:CGFloat = goodsCollectionView.bounds.size.width / numOfColumn -  margin * (numOfColumn - 1)// セルの縦横の大きさを計算
+            let reSize = CGSize(width: cellWidth, height: cellWidth) // セルの縦横の大きさ
+            picImage = picImage.reSizeImage(reSize: reSize) // 画像の大きさをセルの縦横に合わせる
+            collectionImage.image = picImage // 画像を表示
         }
         
         // cellの中にあるLabelに商品名を代入する
@@ -133,19 +140,16 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
             nameLabel.text = filterGoodsInfo[indexPath.row].name
         }
         
-        cell.backgroundColor = .red  // セルの色をなんとなく赤に
+        // cell.backgroundColor = .red  // セルの色をなんとなく赤に
         return cell
     }
     
     
     // collectionViewの委譲ではなくレイアウトで
     func LayoutInit(collectionView: UICollectionView){
-        let margin:CGFloat = 0.5 // マージン
-        let numOfColumn:CGFloat = 3 // 列の数
         let layout = UICollectionViewFlowLayout() // 今回のセルのレイアウト
-        let width = collectionView.bounds.size.width / numOfColumn -  margin * (numOfColumn - 1)// 縦横の大きさを計算
-        
-        layout.itemSize = CGSize(width: width, height: width) // セルの大きさを設定
+        let cellWidth:CGFloat = goodsCollectionView.bounds.size.width / numOfColumn -  margin * (numOfColumn - 1)// セルの縦横の大きさを計算
+        layout.itemSize = CGSize(width: cellWidth, height: cellWidth) // セルの大きさを設定
         layout.minimumInteritemSpacing = margin // セル同士の間隔
         
         collectionView.collectionViewLayout = layout
