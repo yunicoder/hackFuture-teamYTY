@@ -88,18 +88,23 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
         
         //時間はドラムロール
         goodsTimeTextField.inputView = datePicker
+        goodsTimeTextField.inputAccessoryView = custombar
         
         //文字列の初期化
         goodsNameTextField.text = ""
         goodsNameTextField.placeholder = "(例)モバイルバッテリー"
+        goodsNameTextField.keyboardType = UIKeyboardType.default
         selectedConditionLabel.text = ""
         goodsPriceTextField.text = ""
         goodsPriceTextField.placeholder = "(例)500"
         goodsPlaceTextField.text = ""
         goodsPlaceTextField.placeholder = "(例)3F◯◯の前"
+        goodsPlaceTextField.keyboardType = UIKeyboardType.default
         goodsCommentTextField.text = ""
+        goodsCommentTextField.keyboardType = UIKeyboardType.default
         featureTextField.text = ""
         featureTextField.placeholder = "(例)黄色パーカー"
+        featureTextField.keyboardType = UIKeyboardType.default
         
         
         if let data = UserDefaults.standard.data(forKey: "imageKey"){
@@ -274,6 +279,10 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
         if(goodsPriceTextField.isFirstResponder){
             goodsPriceTextField.resignFirstResponder()
             registerGoods.price = goodsPriceTextField.text!
+        }
+        if(goodsTimeTextField.isFirstResponder){
+            goodsTimeTextField.resignFirstResponder()
+            registerGoods.time = goodsTimeTextField.text!
         }
     }
     
