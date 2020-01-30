@@ -326,12 +326,6 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
         goodsTimeTextField.text = "\(formatter.string(from: datePicker.date))"
     }
     
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool {
-        // キーボード入力や、カット/ペースによる変更を防ぐ
-        return false
-    }
 }
 
 @IBDesignable class InspectableTextView: UITextView {
