@@ -108,7 +108,8 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
         
         
         if let data = UserDefaults.standard.data(forKey: "imageKey"){
-            goodsImage.image = UIImage(data: data)
+            goodsImage.image = UIImage(data: data) // dataをUIImageに変換
+            goodsImage.image = goodsImage.image!.reSizeImage(reSize: CGSize(width: 180, height: 180)) // 正方形に整形した画像を表示(元データは変えない)
         }
         
         //状態選択画面や確認画面から遷移してきた時。つまり値を保持している時
@@ -335,12 +336,6 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
         goodsTimeTextField.text = "\(formatter.string(from: datePicker.date))"
     }
     
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool {
-        // キーボード入力や、カット/ペースによる変更を防ぐ
-        return false
-    }
 }
 
 @IBDesignable class InspectableTextView: UITextView {

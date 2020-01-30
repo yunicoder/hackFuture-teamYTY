@@ -12,11 +12,17 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     @IBOutlet weak var nameSearch: UISearchBar!
     @IBOutlet weak var goodsCollectionView: UICollectionView! // 商品のコレクションビュー
     
+    let refreshCtl = UIRefreshControl()
+    
     @IBOutlet weak var goodsImage: UIImageView!
     
     var goodsInfo = [GoodsInfo]() // 全部のデータ
     var filterGoodsInfo = [GoodsInfo]() //フィルター後のデータ(基本こっち)
     var searchGoodsInfo = [GoodsInfo]()
+    
+    // レイアウト用変数
+    let margin:CGFloat = 0.5 // マージン
+    let numOfColumn:CGFloat = 3 // 列の数
     
     
     override func viewDidLoad() {
@@ -31,6 +37,8 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         goodsCollectionView.dataSource = self  // 要素の数やセル、クラスなどデータの元となる処理の委譲
         
         LayoutInit(collectionView: goodsCollectionView) // セルの大きさなどのレイアウトを設定
+        refreshCtl.addTarget(self, action: Selector(("refreshTable")), for: UIControl.Event.valueChanged)
+        self.goodsCollectionView.refreshControl = refreshCtl
         
         // kintoneからデータを取得する
         multiGetRecords(completionClosure: { (result:[GoodsInfo]) in
@@ -46,9 +54,22 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         multiGetRecords(completionClosure: { (result:[GoodsInfo]) in
             self.filterGoodsInfo = result
              //print("\(self.filterGoodsInfo):filterGoodsInfoFromAppear")
+            self.goodsInfo = result
             self.goodsCollectionView.reloadData()
         })
-        goodsCollectionView.reloadData() // データをリロードする
+    }
+    
+    @objc func refreshTable() {
+          // 更新処理
+          // kintoneからデータを取得する
+          multiGetRecords(completionClosure: { (result:[GoodsInfo]) in
+              self.filterGoodsInfo = result
+               //print("\(self.filterGoodsInfo):filterGoodsInfoFromAppear")
+              self.goodsInfo = result
+              self.goodsCollectionView.reloadData()
+          })
+          // クルクルを止める
+        refreshCtl.endRefreshing()
     }
     
     //リターンキーが押された時
@@ -106,15 +127,12 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         let cell = goodsCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) // 表示するセルを登録(先にStoryboad内でidentifierを指定しておく)
         
         // cellの中にあるcollectionImageに画像を代入する
-        if var collectionImage = cell.contentView.viewWithTag(1) as? UIImageView {
-            var picImage = PicDataToUIImage(picData: filterGoodsInfo[indexPath.row].image)
-            var picImageView = UIImageView(image:picImage)
-            
-            
-            let width = collectionView.bounds.size.width / 3.0 -  0.5 * (3.0 - 1)
-            picImageView.frame = CGRect(x:0, y:0, width:width, height:width)
-            
-            collectionImage = picImageView
+        if let collectionImage = cell.contentView.viewWithTag(1) as? UIImageView {
+            var picImage = PicDataToUIImage(picData: filterGoodsInfo[indexPath.row].image) // base64からUIImageに変換
+            let cellWidth:CGFloat = goodsCollectionView.bounds.size.width / numOfColumn -  margin * (numOfColumn - 1)// セルの縦横の大きさを計算
+            let reSize = CGSize(width: cellWidth, height: cellWidth) // セルの縦横の大きさ
+            picImage = picImage.reSizeImage(reSize: reSize) // 画像の大きさをセルの縦横に合わせる
+            collectionImage.image = picImage // 画像を表示
         }
         
         // cellの中にあるLabelに商品名を代入する
@@ -122,19 +140,16 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
             nameLabel.text = filterGoodsInfo[indexPath.row].name
         }
         
-        cell.backgroundColor = .red  // セルの色をなんとなく赤に
+        // cell.backgroundColor = .red  // セルの色をなんとなく赤に
         return cell
     }
     
     
     // collectionViewの委譲ではなくレイアウトで
     func LayoutInit(collectionView: UICollectionView){
-        let margin:CGFloat = 0.5 // マージン
-        let numOfColumn:CGFloat = 3 // 列の数
         let layout = UICollectionViewFlowLayout() // 今回のセルのレイアウト
-        let width = collectionView.bounds.size.width / numOfColumn -  margin * (numOfColumn - 1)// 縦横の大きさを計算
-        
-        layout.itemSize = CGSize(width: width, height: width) // セルの大きさを設定
+        let cellWidth:CGFloat = goodsCollectionView.bounds.size.width / numOfColumn -  margin * (numOfColumn - 1)// セルの縦横の大きさを計算
+        layout.itemSize = CGSize(width: cellWidth, height: cellWidth) // セルの大きさを設定
         layout.minimumInteritemSpacing = margin // セル同士の間隔
         
         collectionView.collectionViewLayout = layout
