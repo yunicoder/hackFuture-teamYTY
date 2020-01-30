@@ -285,6 +285,10 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
             goodsTimeTextField.resignFirstResponder()
             registerGoods.time = goodsTimeTextField.text!
         }
+        if(goodsCommentTextField.isFirstResponder){
+            goodsCommentTextField.resignFirstResponder()
+        }
+
     }
     
     // "購入画面"ボタンが押された時の処理
