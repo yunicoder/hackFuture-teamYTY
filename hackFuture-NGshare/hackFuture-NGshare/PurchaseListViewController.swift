@@ -40,6 +40,7 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
         refreshCtl.addTarget(self, action: Selector(("refreshTable")), for: UIControl.Event.valueChanged)
         self.goodsCollectionView.refreshControl = refreshCtl
         
+        
         // kintoneからデータを取得する
         multiGetRecords(completionClosure: { (result:[GoodsInfo]) in
             self.goodsInfo = result
@@ -50,6 +51,17 @@ class PurchaseListViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppear")
+        if(purchassFlag == 1){
+            let alert: UIAlertController = UIAlertController(title: "購入エラー", message: "既に他の人が購入しています", preferredStyle:  UIAlertController.Style.alert)
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+            })
+            alert.addAction(defaultAction)
+            present(alert, animated: true, completion: nil)
+            purchassFlag = 0
+        }
         // kintoneからデータを取得する
         multiGetRecords(completionClosure: { (result:[GoodsInfo]) in
             self.filterGoodsInfo = result

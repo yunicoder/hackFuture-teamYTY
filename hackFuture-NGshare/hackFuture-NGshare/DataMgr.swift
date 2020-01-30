@@ -10,6 +10,8 @@
 import Foundation
 import UIKit
 
+var purchassFlag = 0
+
 /*--------
  構造体と変数の宣言
 ----------*/
