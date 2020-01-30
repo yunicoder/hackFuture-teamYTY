@@ -48,7 +48,8 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var goodsCommentTextField: UITextView!
     @IBOutlet weak var goodsTimeTextField: UITextField!
-    
+
+
     
     /* ライフサイクル */
     override func viewDidLoad() {
@@ -160,6 +161,9 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
 
         super.viewWillAppear(animated)
         self.configureObserver()
+        goodsCommentTextField.text = "（例）ほぼ新品ですのでお買い得です"
+        goodsCommentTextField.textColor = UIColor.lightGray
+        goodsCommentTextField.delegate = self
 
     }
 
@@ -184,6 +188,9 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
             //アラート画面を表示させる
             present(alert1, animated: true, completion: nil)
         }else{
+            if(self.registerGoods.comment == "（例）ほぼ新品ですのでお買い得です"){
+                self.registerGoods.comment = ""
+            }
             //アラートを表示する↓＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
             let alert2: UIAlertController = UIAlertController(title: "注意", message: "この商品を出品しますか？" + "\n-----------------------------------------------" + "\n【商品名】\n" + self.registerGoods.name + "\n\n【状態】\n" + self.registerGoods.condition + "\n\n【値段】\n" + self.registerGoods.price + "\n\n【取り引き場所】\n" + self.registerGoods.place + "\n\n【取引時間】\n" + self.registerGoods.time + "\n\n【出品者の特徴】\n" + self.registerGoods.feature + "\n\n【コメント】\n" + self.registerGoods.comment, preferredStyle: .actionSheet)
             let canselAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) { (UIAlertAction) in
@@ -245,6 +252,21 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
         print("textViewShouldEndEditing : \(String(describing: textView.text))");
         self.registerGoods.comment = textView.text! //コメント欄
         return true
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        print("反応")
+        if goodsCommentTextField.textColor == UIColor.lightGray {
+            goodsCommentTextField.text = nil
+            goodsCommentTextField.textColor = UIColor.black
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if goodsCommentTextField.text.isEmpty {
+            goodsCommentTextField.text = "（例）ほぼ新品ですのでお買い得です"
+            goodsCommentTextField.textColor = UIColor.lightGray
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
@@ -333,5 +355,4 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
     }
     
 }
-
 
