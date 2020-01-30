@@ -48,8 +48,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var goodsCommentTextField: UITextView!
     @IBOutlet weak var goodsTimeTextField: UITextField!
-
-
+    
     
     /* ライフサイクル */
     override func viewDidLoad() {
@@ -86,23 +85,26 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
         goodsPriceTextField.inputAccessoryView = custombar
         goodsPriceTextField.keyboardType = UIKeyboardType.numberPad
         goodsPriceTextField.delegate = self
-        goodsCommentTextField.inputAccessoryView = custombar
-        goodsCommentTextField.keyboardType = .default
         
         //時間はドラムロール
         goodsTimeTextField.inputView = datePicker
+        goodsTimeTextField.inputAccessoryView = custombar
         
         //文字列の初期化
         goodsNameTextField.text = ""
         goodsNameTextField.placeholder = "(例)モバイルバッテリー"
+        goodsNameTextField.keyboardType = UIKeyboardType.default
         selectedConditionLabel.text = ""
         goodsPriceTextField.text = ""
         goodsPriceTextField.placeholder = "(例)500"
         goodsPlaceTextField.text = ""
         goodsPlaceTextField.placeholder = "(例)3F◯◯の前"
+        goodsPlaceTextField.keyboardType = UIKeyboardType.default
         goodsCommentTextField.text = ""
+        goodsCommentTextField.keyboardType = UIKeyboardType.default
         featureTextField.text = ""
         featureTextField.placeholder = "(例)黄色パーカー"
+        featureTextField.keyboardType = UIKeyboardType.default
         
         
         if let data = UserDefaults.standard.data(forKey: "imageKey"){
@@ -161,9 +163,6 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
 
         super.viewWillAppear(animated)
         self.configureObserver()
-        goodsCommentTextField.text = "（例）ほぼ新品ですのでお買い得です"
-        goodsCommentTextField.textColor = UIColor.lightGray
-        goodsCommentTextField.delegate = self
 
     }
 
@@ -188,9 +187,6 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
             //アラート画面を表示させる
             present(alert1, animated: true, completion: nil)
         }else{
-            if(self.registerGoods.comment == "（例）ほぼ新品ですのでお買い得です"){
-                self.registerGoods.comment = ""
-            }
             //アラートを表示する↓＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
             let alert2: UIAlertController = UIAlertController(title: "注意", message: "この商品を出品しますか？" + "\n-----------------------------------------------" + "\n【商品名】\n" + self.registerGoods.name + "\n\n【状態】\n" + self.registerGoods.condition + "\n\n【値段】\n" + self.registerGoods.price + "\n\n【取り引き場所】\n" + self.registerGoods.place + "\n\n【取引時間】\n" + self.registerGoods.time + "\n\n【出品者の特徴】\n" + self.registerGoods.feature + "\n\n【コメント】\n" + self.registerGoods.comment, preferredStyle: .actionSheet)
             let canselAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) { (UIAlertAction) in
@@ -254,21 +250,6 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
         return true
     }
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        print("反応")
-        if goodsCommentTextField.textColor == UIColor.lightGray {
-            goodsCommentTextField.text = nil
-            goodsCommentTextField.textColor = UIColor.black
-        }
-    }
-
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if goodsCommentTextField.text.isEmpty {
-            goodsCommentTextField.text = "（例）ほぼ新品ですのでお買い得です"
-            goodsCommentTextField.textColor = UIColor.lightGray
-        }
-    }
-    
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
             textField.resignFirstResponder() //改行
             if(textField.tag == 1){ //名前欄
@@ -300,8 +281,9 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
             goodsPriceTextField.resignFirstResponder()
             registerGoods.price = goodsPriceTextField.text!
         }
-        if(goodsCommentTextField.isFirstResponder){
-            goodsCommentTextField.resignFirstResponder()
+        if(goodsTimeTextField.isFirstResponder){
+            goodsTimeTextField.resignFirstResponder()
+            registerGoods.time = goodsTimeTextField.text!
         }
     }
     
@@ -356,3 +338,48 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
     
 }
 
+@IBDesignable class InspectableTextView: UITextView {
+
+    // MARK: - プロパティ
+    /// プレースホルダーに表示する文字列（ローカライズ付き）
+    @IBInspectable var localizedString: String = "" {
+        didSet {
+            guard !localizedString.isEmpty else { return }
+            // Localizable.stringsを参照する
+            placeholderLabel.text = NSLocalizedString(localizedString, comment: "(例)使用感はあまりないです")
+            placeholderLabel.sizeToFit()  // 省略不可
+        }
+    }
+
+    /// プレースホルダー用ラベルを作成
+    private lazy var placeholderLabel = UILabel(frame: CGRect(x: 6, y: 6, width: 0, height: 0))
+
+    // MARK: - Viewライフサイクルメソッド
+    /// ロード後に呼ばれる
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        delegate = self
+        configurePlaceholder()
+        togglePlaceholder()
+    }
+
+    /// プレースホルダーを設定する
+    private func configurePlaceholder() {
+        placeholderLabel.textColor = UIColor.gray
+        addSubview(placeholderLabel)
+    }
+
+    /// プレースホルダーの表示・非表示切り替え
+    private func togglePlaceholder() {
+        // テキスト未入力の場合のみプレースホルダーを表示する
+        placeholderLabel.isHidden = text.isEmpty ? false : true
+    }
+}
+
+// MARK: -  UITextView Delegate
+extension InspectableTextView: UITextViewDelegate {
+    /// テキストが書き換えられるたびに呼ばれる ※privateにはできない
+    func textViewDidChange(_ textView: UITextView) {
+        togglePlaceholder()
+    }
+}
