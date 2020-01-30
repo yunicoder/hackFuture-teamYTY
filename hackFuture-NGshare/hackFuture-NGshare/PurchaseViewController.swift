@@ -81,6 +81,7 @@ class PurchaseViewController: UIViewController, UITextFieldDelegate {
                 if(result == 0){
                     self.performSegue(withIdentifier: "ToChatView", sender: nil)
                 }else{
+                    purchassFlag = 1
                     self.navigationController?.popToRootViewController(animated: true)
     
                 }
