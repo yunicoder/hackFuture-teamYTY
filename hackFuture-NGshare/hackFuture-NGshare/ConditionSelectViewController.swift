@@ -42,7 +42,7 @@ class ConditionSelectViewController: UIViewController, UITableViewDataSource, UI
                 //入力途中のデータと選んだ状態を入れる
                 controller.registerGoods.name = self.goodsTmp.name
                 controller.registerGoods.condition = self.conditions[selectedRow.row]
-                    controller.registerGoods.price =  self.goodsTmp.price
+                controller.registerGoods.price =  self.goodsTmp.price
                 controller.registerGoods.place = self.goodsTmp.place
                 controller.registerGoods.time = self.goodsTmp.time
                 controller.registerGoods.feature = self.goodsTmp.feature
