@@ -52,5 +52,15 @@ class ChatViewController: UIViewController {
     /* アクション */
     //受け取り完了ボタンを押したら
     @IBAction func completeButtonTapped(_ sender: UIButton) {
+        //アラートを表示する↓＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+        let alert: UIAlertController = UIAlertController(title: "確認", message: "受け取り完了しました。", preferredStyle: .alert)
+        let okAction: UIAlertAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+                self.navigationController?.popToRootViewController(animated: true) // 階層のトップに戻る
+        }
+            
+        //アラートに設定を反映させる
+        alert.addAction(okAction)
+        //アラート画面を表示させる
+        self.present(alert, animated: true, completion: nil)
     }
 }
