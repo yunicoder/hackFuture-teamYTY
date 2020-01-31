@@ -206,7 +206,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
     /* アクション */
     //出品ボタン
     @IBAction func exhibitButtonTapped(_ sender: UIButton) {
-        if(registerGoods.name == "noName" || registerGoods.condition == "noCondition" || registerGoods.price == "-1" || registerGoods.place == "noPlace" || registerGoods.time == "noTime"){
+        if(registerGoods.name == "noName" || registerGoods.name == "" || registerGoods.condition == "noCondition" || registerGoods.condition == "" || registerGoods.price == "-1" || registerGoods.price == "" || registerGoods.place == "noPlace" || registerGoods.place == "" || registerGoods.time == "noTime" || registerGoods.time == ""){
             //アラートを表示する↓＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
             let alert1: UIAlertController = UIAlertController(title: "注意", message: "必須情報が入力されていません", preferredStyle: .actionSheet)
             let canselAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) { (UIAlertAction) in
