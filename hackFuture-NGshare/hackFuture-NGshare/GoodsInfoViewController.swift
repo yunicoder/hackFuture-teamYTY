@@ -60,7 +60,8 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
         //ナビゲーションバーの戻るボタンを消す
         self.navigationItem.hidesBackButton = true
         
-        backBarButtonItem = UIBarButtonItem(title: "購入画面", style: .done, target: self, action: #selector(backBarButtonTapped(_:)))
+        // バーボタンアイテムの初期化
+        backBarButtonItem = UIBarButtonItem(title: "＜出品リスト", style: .done, target: self, action: #selector(backBarButtonTapped(_:)))
         // バーボタンアイテムの追加
         self.navigationItem.leftBarButtonItems = [backBarButtonItem]
         
@@ -96,17 +97,21 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
         goodsNameTextField.text = ""
         goodsNameTextField.placeholder = "(例)モバイルバッテリー"
         goodsNameTextField.keyboardType = UIKeyboardType.default
-        selectedConditionLabel.text = ""
+        goodsNameTextField.inputAccessoryView = custombar
+        //selectedConditionLabel.text = ""
         goodsPriceTextField.text = ""
         goodsPriceTextField.placeholder = "(例)500"
         goodsPlaceTextField.text = ""
         goodsPlaceTextField.placeholder = "(例)3F◯◯の前"
         goodsPlaceTextField.keyboardType = UIKeyboardType.default
+        goodsPlaceTextField.inputAccessoryView = custombar
         goodsCommentTextField.text = ""
         goodsCommentTextField.keyboardType = UIKeyboardType.default
+        goodsCommentTextField.inputAccessoryView = custombar
         featureTextField.text = ""
         featureTextField.placeholder = "(例)黄色パーカー"
         featureTextField.keyboardType = UIKeyboardType.default
+        featureTextField.inputAccessoryView = custombar
         
         
         if let data = UserDefaults.standard.data(forKey: "imageKey"){
@@ -139,7 +144,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
             if(registerGoods.comment != "" && registerGoods.comment != "noComment"){
                 goodsCommentTextField.text = self.registerGoods.comment
             }
-            
+
             retentionFlag = 0
         }
     }
@@ -149,6 +154,25 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
         //状態選択画面へ
         if(segue.identifier == "toConSelectView"){
             let controller = segue.destination as! ConditionSelectViewController
+            
+            if(self.goodsNameTextField.text != "" && self.goodsNameTextField.text != "noName"){
+                self.registerGoods.name = self.goodsNameTextField.text!
+            }
+            if(self.goodsPriceTextField.text != "" && self.goodsPriceTextField.text != "-1"){
+                self.registerGoods.price = self.goodsPriceTextField.text!
+            }
+            if(self.goodsPlaceTextField.text != "" && self.goodsPlaceTextField.text != "noPlace"){
+                self.registerGoods.place = self.goodsPlaceTextField.text!
+            }
+            if(self.goodsTimeTextField.text != "" && self.goodsTimeTextField.text != "noTime"){
+                self.registerGoods.time = self.goodsTimeTextField.text!
+            }
+            if(self.featureTextField.text != "" && self.featureTextField.text != "nofeature"){
+                self.registerGoods.name = self.goodsNameTextField.text!
+            }
+            if(self.goodsCommentTextField.text != "" && self.goodsCommentTextField.text != "Noname"){
+                self.registerGoods.comment = self.goodsCommentTextField.text!
+            }
             
             //入力中のデータを入れる
             controller.goodsTmp.name = self.registerGoods.name
@@ -312,10 +336,21 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
         if(goodsCommentTextField.isFirstResponder){
             goodsCommentTextField.resignFirstResponder()
         }
-
+        if(goodsNameTextField.isFirstResponder){
+            goodsNameTextField.resignFirstResponder()
+            registerGoods.name = goodsNameTextField.text!
+        }
+        if(goodsPlaceTextField.isFirstResponder){
+            goodsPlaceTextField.resignFirstResponder()
+            registerGoods.place = goodsPlaceTextField.text!
+        }
+        if(featureTextField.isFirstResponder){
+            featureTextField.resignFirstResponder()
+            registerGoods.feature = featureTextField.text!
+        }
     }
     
-    // "購入画面"ボタンが押された時の処理
+    // "出品一覧"ボタンが押された時の処理
     @objc func backBarButtonTapped(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "toPurchaseListView", sender: nil)
     }
