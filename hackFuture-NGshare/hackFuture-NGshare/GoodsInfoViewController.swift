@@ -241,7 +241,7 @@ class GoodsInfoViewController: UIViewController, UITextFieldDelegate, UITextView
                 addRecord(addedGoods: self.registerGoods)
                 
                 
-                self.performSegue(withIdentifier: "ToPurchaseListView", sender: nil)
+                self.performSegue(withIdentifier: "toPurchaseListView", sender: nil)
             }
             //アラートに設定を反映させる
             alert2.addAction(canselAction)
